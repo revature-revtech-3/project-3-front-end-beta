@@ -11,14 +11,12 @@ import { CartService } from "../../services/cart.service";
 import { TokenStorageService } from "../../services/token-storage.service";
 import { ProductService } from "../../services/product.service";
 
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-
   productAndDiscount: ProductAndDiscount = new ProductAndDiscount();
   transaction: Transaction = new Transaction();
   cartAndItems: CartAndItems = new CartAndItems();
@@ -48,8 +46,6 @@ export class CheckoutComponent implements OnInit {
     if (this.userId <= 0) this.userId = 1; //Remove this line if not testing
     this.displayAllCarts()
   }
-
-
   displayAllCarts() {
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe((response) => {
       this.cartAndItems = response;
@@ -58,7 +54,6 @@ export class CheckoutComponent implements OnInit {
       console.log(error);
     });
   }
-
   getItemsTotal(): any {
     let total = 0;
     this.cartAndItems.cartItems.forEach((value, index) => {
@@ -83,7 +78,6 @@ export class CheckoutComponent implements OnInit {
         this.displayAllCarts();
       },
       error: err => {
-
       }
     })
   }
@@ -100,12 +94,9 @@ export class CheckoutComponent implements OnInit {
         this.displayAllCarts();
       },
       error: err => {
-
       }
     });
   }
-
-
   proceedToCheckout() {
     this.cart.cartId = this.cartAndItems.cartId
     this.cart.userId = this.cartAndItems.userId
@@ -145,7 +136,6 @@ export class CheckoutComponent implements OnInit {
   calculateSingleItemCost(product: ProductAndDiscount): number {
     return product.productCost;
   }
-
   calculateTotalSavings(product: ProductAndDiscount): number {
     let cost = product.productCost;
     let discountPercentage = product.discountPercentage;
@@ -169,7 +159,6 @@ export class CheckoutComponent implements OnInit {
       })
     });
   }
-
   toProductModel(item: ItemProductAndDiscount) {
     let product = new Product();
     product.productId = item.productAndDiscount.productId;
@@ -183,5 +172,4 @@ export class CheckoutComponent implements OnInit {
     product.productRemoved = item.productAndDiscount.productRemoved;
     return product;
   }
-
 }
