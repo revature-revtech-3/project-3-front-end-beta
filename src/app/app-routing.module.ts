@@ -9,6 +9,8 @@ import { AdminComponent } from './users/admin/admin.component';
 import { LoginComponent } from './users/login/login.component';
 import { RegisterComponent } from './users/register/register.component';
 import { ProfileComponent } from './users/profile/profile.component';
+import { ConfirmationCheckoutComponent } from './shop/confirmation-checkout/confirmation-checkout.component';
+import { CheckoutComponent } from './shop/checkout/checkout.component';
 // import { GamesComponent } from '../app/games/games.component';
 // import { ComputersComponent } from './product/computers/computers.component';
 // import { CellPhonesComponent } from './product/cell-phones/cell-phones.component';
@@ -20,7 +22,7 @@ import { ProfileComponent } from './users/profile/profile.component';
 // import { DeskLampComponent } from './product/desk-lamp/desk-lamp.component';
 // import { AirPurifiersComponent } from './product/air-purifiers/air-purifiers.component';
 // import { GamePadsComponent } from './product/game-pads/game-pads.component';
-import { CheckoutComponent } from './shop/checkout/checkout.component';
+
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -41,9 +43,10 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "profile", component: ProfileComponent },
   { path: 'product', component: StoreProductComponent },
-  { path: '', redirectTo: 'product', pathMatch: 'full'},
+  { path: '', redirectTo: 'product', pathMatch: 'full' },
   { path: "product-page", component: ProductPageComponent },
   { path: "product-page/:productId", component: ProductPageComponent },
+  { path: 'confirmation-checkout/:sentTransaction', component: ConfirmationCheckoutComponent },
 
 ];
 

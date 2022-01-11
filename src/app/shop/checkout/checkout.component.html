@@ -27,7 +27,7 @@
             </div>
             <div class="entry-item-cost d-flex flex-column align-item-end my-cloumn3 active ">
               <div class="contact-shop ml-auto d-flex flex-row ">
-                <h6>Sold by Rev-Tech.com</h6>
+                <h6>Contact shop</h6>
               </div>
               <div class="d-flex flex-row align-items-start ">
 
@@ -44,35 +44,36 @@
                 <!-- </option> -->
                 <!-- </ng-container> -->
                 <!-- </select> -->
-
               </div>
+              <!-- calculate Total Cost if item do not has discount  -->
               <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto "
                 *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 0.01 ">
                 ${{calculateTotalCost(cartcheckout, calculateSingleItemCost) | number :'1.2-2'}} </h6>
+              <!-- calculate Total Cost if item has a discount -->
               <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto "
                 *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 0.01 ">
                 ${{calculateTotalCost(cartcheckout, calculateDiscountedItemCost) | number :'1.2-2'}} </h6>
-
+              <!-- show the old product cost if we have discount  -->
               <h6 class="item-old-price" *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 0.01 ">
                 $ {{calculateTotalCost(cartcheckout, calculateSingleItemCost) | number :'1.2-2'}}</h6><br>
-              <h6 class="item-old-price" *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 1.0 "
+              <!-- hidde the old product cost if we have discount  -->
+              <h6 class="item-old-price" *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 0.01 "
                 [ngStyle]="{'visibility': 'hidden'}">
                 $ {{cartcheckout.productAndDiscount.productCost}}</h6><br>
-
-
+              <!-- show the discount discription if item has discount -->
               <div class="item-decrription " *ngIf="cartcheckout.productAndDiscount.discountPercentage > 0.01 ">
-                {{"Discounted for: " + cartcheckout.productAndDiscount.discountDescription }}</div> <br>
-
+                {{"Discounted for:" + cartcheckout.productAndDiscount.discountDescription }}</div> <br>
+              <!-- hidden the discount discription if item has not discount -->
               <div class="item-decrription " *ngIf="cartcheckout.productAndDiscount.discountPercentage < 0.01"
                 [ngStyle]="{'visibility': 'hidden'}">
                 {{cartcheckout.productAndDiscount.discountDescription }}</div> <br>
-
+              <!-- show the discount Percentage if item has discount -->
+              <h6 class="item-sale " *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 0.01 ">
+                Sale: {{cartcheckout.productAndDiscount.discountPercentage * 100}}%</h6>
+              <!-- hidden the discount Percentage if item has discount -->
               <h6 class="item-sale " *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 0.01 "
                 [ngStyle]="{'visibility': 'hidden'}">
               </h6>
-
-              <h6 class="item-sale " *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 0.01 ">
-                Sale: {{cartcheckout.productAndDiscount.discountPercentage * 100}}%</h6>
             </div>
           </div>
         </div>
@@ -114,20 +115,7 @@
             <h6 class="yousaved d-flex flex-row mr-auto  ">You saved</h6><br>
             <h6 class="item-yousaved d-flex flex-row ml-auto  ">${{getUserSave() | number:'1.2-2' }}</h6>
           </div>
-
-          <!-- ------------------------------------------------- -->
-          <!-- <div class="shop-discount d-flex flex-row "> -->
-          <!-- <h6 class="shop-discount-title d-flex flex-row mr-auto ">Shop discount</h6> -->
-          <!-- <h6 class="shop-discount-amount d-flex d-flex flex-row ml-auto ">-$17.00</h6> -->
-          <!-- </div> -->
-          <!-- -------------------------------------------------- -->
           <hr>
-          <!-- ------------------------------------------------- -->
-          <!-- <div class="subtotal d-flex flex-row "> -->
-          <!-- <h6 class="subtotal-title d-flex flex-row mr-auto ">Subtotal</h6> -->
-          <!-- <h6 class="subtotal-amount d-flex d-flex flex-row ml-auto ">-$85.00</h6> -->
-          <!-- </div> -->
-          <!-- ------------------------------------------------- -->
           <div class="Shipping d-flex flex-row ">
             <h6 class="Shipping-title d-flex flex-row mr-auto ">Shipping</h6>
             <h6 class="Shipping-state d-flex d-flex flex-row ml-auto ">Free</h6>
@@ -137,7 +125,7 @@
             <button type="button " class="btn btn-secondary btn-lg btn-block " (click)="proceedToCheckout()">Proceed to
               checkout</button>
             <!-- ---------------------------------------------------- -->
-            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+            <!-- <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -150,13 +138,7 @@
                   </div>
                 </div>
               </div>
-            </div>
-
-
-            <!-- --------------------------------------------------------- -->
-
-
-
+            </div> -->
           </div>
         </div>
         <!-- End sidebar -->

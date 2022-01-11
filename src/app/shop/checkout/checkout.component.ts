@@ -28,7 +28,7 @@ export class CheckoutComponent implements OnInit {
   displayStyle: string = "";
   itemUpdating: CartItem = new CartItem();
   userId: number = 0;
-
+  newTransaction: Transaction = new Transaction();
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -123,26 +123,25 @@ export class CheckoutComponent implements OnInit {
     this.transaction.transactionId = null;
     this.transaction.transactionDate = null;
     this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
+      this.newTransaction = response;
+      this.router.navigate(['/confirmation-checkout', this.newTransaction.transactionId]);
+      console.log("my " + this.newTransaction.transactionId)
+
     }, error => {
       this.errorMsg = 'There was some internal error! Please try again later!';
     });
     this.updateMultiProducts();
-    setInterval(() => {
-      this.displayStyle = "none";
-      this.router.navigate(['/product']);
-    }, 5000);
+
   }
 
-
-  ngOnDestroy() {
-    clearInterval();
-  }
-
+  // calculate the item has a discount
   calculateDiscountedItemCost(product: ProductAndDiscount): number {
     let cost = product.productCost;
     let discountPercentage = product.discountPercentage;
     return cost - (cost * (discountPercentage));
   }
+
+  // return the item cost without any calculate 
   calculateSingleItemCost(product: ProductAndDiscount): number {
     return product.productCost;
   }
@@ -152,7 +151,7 @@ export class CheckoutComponent implements OnInit {
     let discountPercentage = product.discountPercentage;
     return cost * (discountPercentage);
   }
-
+  // calcSingleItem is the a function parametar
   calculateTotalCost(item: ItemProductAndDiscount, calcSingleItem: any) {
     return item.cartQty * calcSingleItem(item.productAndDiscount);
   }

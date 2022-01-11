@@ -1,0 +1,80 @@
+<section id="Checkout" class="Checkout">
+    <div class="container">
+        <div class="alert alert-success" role="alert">
+            Your order has been confirmed and it will arrive soon! <br>
+            Thanks for shopping at Rev-Tech.
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 entries">
+
+                <div class="entry" *ngFor="let purchasedItem of purchasedItems">
+                    <div class="entry-details  d-flex flex-row">
+                        <div class="d-flex flex-column my-cloumn1">
+                            <div class="entry-img">
+                                <img [src]="purchasedItem.product.imageUrl" width=300px height=" auto "
+                                    class="img-fluid ">
+                            </div>
+                        </div>
+                        <div class="my-cloumn2 d-flex flex-column align-items-start ">
+                            <h5 class="entry-title ">{{purchasedItem.product.productDescription}}</h5>
+                            <div class="entry-content ">
+                                <h4 class="item-details ">Category: {{purchasedItem.product.productCategory}}
+                                </h4><br>
+                                <h4 class="item-details ">Quantity: {{purchasedItem.itemQty}}</h4>
+                                <br>
+                            </div>
+                            <div class="entry-meta ">
+                            </div>
+                        </div>
+                        <div class="entry-item-cost d-flex flex-column align-item-end my-cloumn3 active ">
+                            <div class="contact-shop ml-auto d-flex flex-row ">
+                                <h6>Contact shop</h6>
+                            </div>
+                            <!--  Total Cost if item do not has discount  -->
+                            <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto ">$
+                                {{purchasedItem.purchaseCost}}</h6>
+                            <!-- calculate Total Cost if item has a discount -->
+                            <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto ">$</h6>
+                            <!-- show the old product cost if we have discount  -->
+                            <h6 class="item-old-price">$</h6>
+                            <br>
+                            <!-- hidde the old product cost if we have discount  -->
+                            <h6 class="item-old-price">$</h6><br>
+                            <!-- show the discount discription if item has discount -->
+                            <div class="item-decrription "> </div> <br>
+                            <!-- hidden the discount discription if item has not discount -->
+                            <div class="item-decrription "></div> <br>
+                            <!-- show the discount Percentage if item has discount -->
+                            <h6 class="item-sale "></h6>
+                            <!-- hidden the discount Percentage if item has discount -->
+                            <h6 class="item-sale "></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- transactionItemId: any = 0;
+transactionId: number = 0;
+userId: number = 0;
+cartId: number = 0;
+productId: number = 0;
+itemQty: number = 0;
+purchaseCost: number = 0;
+purchaseDate: any;
+product: Product = new Product();
+
+
+productId: number = 0;
+productSku: string = "";
+productName: string = "";
+productDescription: string = "";
+productCategory: string = "";
+productCost: number = 0.0;
+productQty: number = 0;
+imageUrl: string = "";
+productRemoved: boolean = false; -->
