@@ -64,8 +64,10 @@ export class StoreProductComponent implements OnInit {
     private cartAndItemsService: CartAndItemsService,
     private cartItemService: CartItemService) { }
     filteredProducts: Product[] = [];
+    filteredDiscounts: ProductAndDiscount[] = [];
     filterFlag: boolean = false;
     hideFlag: boolean = false;
+    discountOnlyFlag: boolean=false;
 
   ngOnInit(): void {
     //add code for the update
@@ -145,12 +147,13 @@ export class StoreProductComponent implements OnInit {
 
   filterByCategory(categoryName: String) {
     this.filteredProducts = [];
+    this.filteredDiscounts=[];
     this.allProducts.forEach((product) => {
       if (product.productCategory == categoryName) {this.filteredProducts.push(product)}
     });
 
     this.allDiscountProducts.forEach((product) => {
-      if (product.productCategory == categoryName) {this.filteredProducts.push(product)}
+      if (product.productCategory == categoryName) {this.filteredDiscounts.push(product)}
     });
     this.hideFlag = true;
     this.filterFlag = true;
@@ -158,12 +161,11 @@ export class StoreProductComponent implements OnInit {
   }
 
   filterByDiscount() {
-    this.filteredProducts = [];
-    this.allDiscountProducts.forEach((product) => {
-      this.filteredProducts.push(product);
-    });
-    this.hideFlag=true;
-    this.filterFlag=true;
+    sessionStorage.removeItem("searchQuery")
+    this.discountOnlyFlag=true;
+    this.filterFlag=false;
+    this.filteredProducts=[];
+    this.hideFlag=false;
   }
 
   unfilter() {
@@ -171,13 +173,14 @@ export class StoreProductComponent implements OnInit {
     this.filteredProducts = [];
     sessionStorage.removeItem("searchQuery");
     this.hideFlag = false;
+    this.discountOnlyFlag=false;
   }
 
   returnQuery() {
     return sessionStorage.getItem("searchQuery");
   }
 
-  searchedProducts(searched: string|null) {
+  searchedProducts(searched: string|null): Product[] {
     let returnedSet: Product[] = [];
     if (searched != null) {
       this.filterFlag=false;
@@ -190,6 +193,16 @@ export class StoreProductComponent implements OnInit {
           returnedSet.push(product);
         }
       });
+    }
+    return returnedSet;
+  }
+
+  searchedDiscounts(searched: string|null): ProductAndDiscount[] {
+    let returnedSet: ProductAndDiscount[] = [];
+    if (searched != null) {
+      this.filterFlag=false;
+      this.hideFlag = true;
+      let searchString: string = searched.toLowerCase();
       this.allDiscountProducts.forEach((product) => {
         let lowercaseName: string = product.productName.toLowerCase();
         let lowercaseCategory: string = product.productCategory.toLowerCase();

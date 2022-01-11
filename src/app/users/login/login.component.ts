@@ -52,15 +52,18 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.username = this.tokenStorage.getUser().username;
-        this.reloadPage()
+        this.router.navigate(['/product'])
+        .then(() => {
+        window.location.reload();
+        });
       },
       err => {
         this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
+        if (this.isLoginFailed = true) {
+          this.router.navigate(['/login']);
+        };
       }
     );
-    this.router.navigate(['/product']);
-
 
   }
 
