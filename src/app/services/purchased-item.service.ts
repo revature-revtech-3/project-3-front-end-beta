@@ -21,7 +21,7 @@ export class PurchasedItemService {
   }
 
   addPurchasedItems(items: PurchasedItem[]): Observable<boolean> {
-    return this.http.post<boolean>(this.baseUrl + "many/post", this.header);
+    return this.http.post<boolean>(this.baseUrl + "/many/post", items, this.header);
   }
 
   getPurchasedItemsByTransaction(transactionId: number): Observable<PurchasedItemProduct[]> {

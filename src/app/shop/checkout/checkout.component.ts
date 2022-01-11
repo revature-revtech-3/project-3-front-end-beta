@@ -10,6 +10,8 @@ import { AuthService } from "../../services/auth.service";
 import { CartService } from "../../services/cart.service";
 import { TokenStorageService } from "../../services/token-storage.service";
 import { ProductService } from "../../services/product.service";
+import {PurchasedItemService} from "../../services/purchased-item.service";
+import {PurchasedItem} from "../../models/purchased-item.model";
 
 @Component({
   selector: 'app-checkout',
@@ -36,7 +38,8 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService,
     private cartItemService: CartItemService,
     private tokenService: TokenStorageService,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private purchasedItemService: PurchasedItemService) { }
 
   ngOnInit(): void {
     //Line below from authService is not working.
@@ -113,9 +116,12 @@ export class CheckoutComponent implements OnInit {
     this.transaction.transactionId = null;
     this.transaction.transactionDate = null;
     this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
+      this.addItemsToPurchaseHistory(response.transactionId);
     }, error => {
       this.errorMsg = 'There was some internal error! Please try again later!';
     });
+
+
     this.updateMultiProducts();
     this.intervalId = setInterval(() => {
       this.displayStyle = "none";
@@ -157,6 +163,30 @@ export class CheckoutComponent implements OnInit {
       })
     });
   }
+
+  addItemsToPurchaseHistory(transactionId: number) {
+    let purchasedItems: PurchasedItem[] = [];
+    this.cartAndItems.cartItems.forEach((item) => {
+      let temp: PurchasedItem = new PurchasedItem();
+      temp.itemId = 0;
+      temp.transactionId = transactionId;
+      temp.userId = this.userId;
+      temp.cartId = item.cartId;
+      temp.productId = item.productId;
+      temp.itemQty = item.cartQty
+      temp.purchaseCost = this.calculateDiscountedItemCost(item.productAndDiscount);
+      purchasedItems.push(temp);
+    });
+    this.purchasedItemService.addPurchasedItems(purchasedItems).subscribe({
+      next: response => {
+
+      },
+      error: err => {
+
+      }
+    })
+  }
+
   toProductModel(item: ItemProductAndDiscount) {
     let product = new Product();
     product.productId = item.productAndDiscount.productId;
