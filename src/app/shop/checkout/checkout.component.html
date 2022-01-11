@@ -31,9 +31,15 @@
               </div>
               <div class="d-flex flex-row align-items-start ">
 
-                <input type="number" class="addItem " min="1" [max]="cartcheckout.productAndDiscount.productQty"
-                  name="cartcheckout.cartQty" [value]="cartcheckout.cartQty"
-                  (change)="changeQuantity(cartcheckout, $event.target)"> <br>
+                <!--                <input type="number" class="addItem" min="1" [max]="cartcheckout.productAndDiscount.productQty"-->
+                <!--                  name="cartcheckout.cartQty" [value]="cartcheckout.cartQty"-->
+                <!--                  (change)="changeQuantity(cartcheckout, $event.target)"> <br>-->
+
+                <div class="counter">
+                  <span class="down" (click)='decreaseCount(cartcheckout)'>-</span>
+                  <input class="addItem" [(ngModel)]="cartcheckout.cartQty" (change)="qtyChange(cartcheckout)">
+                  <span class="up" (click)='increaseCount(cartcheckout)'>+</span>
+                </div>
 
                 <!-- <select class="form-select " aria-label="Default select example" -->
                 <!-- (change)="changeQuantity(cartcheckout, $event.target)"> -->
@@ -47,33 +53,34 @@
               </div>
               <!-- calculate Total Cost if item do not has discount  -->
               <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto "
-                *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 0.01 ">
+                *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 1.0 ">
                 ${{calculateTotalCost(cartcheckout, calculateSingleItemCost) | number :'1.2-2'}} </h6>
               <!-- calculate Total Cost if item has a discount -->
               <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto "
-                *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 0.01 ">
+                *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 1.0 ">
                 ${{calculateTotalCost(cartcheckout, calculateDiscountedItemCost) | number :'1.2-2'}} </h6>
-              <!-- show the old product cost if we have discount  -->
-              <h6 class="item-old-price" *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 0.01 ">
+
+              <h6 class="item-old-price" *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 1.0 ">
                 $ {{calculateTotalCost(cartcheckout, calculateSingleItemCost) | number :'1.2-2'}}</h6><br>
               <!-- hidde the old product cost if we have discount  -->
               <h6 class="item-old-price" *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 0.01 "
                 [ngStyle]="{'visibility': 'hidden'}">
                 $ {{cartcheckout.productAndDiscount.productCost}}</h6><br>
-              <!-- show the discount discription if item has discount -->
-              <div class="item-decrription " *ngIf="cartcheckout.productAndDiscount.discountPercentage > 0.01 ">
-                {{"Discounted for:" + cartcheckout.productAndDiscount.discountDescription }}</div> <br>
-              <!-- hidden the discount discription if item has not discount -->
-              <div class="item-decrription " *ngIf="cartcheckout.productAndDiscount.discountPercentage < 0.01"
+
+
+              <div class="item-decrription " *ngIf="cartcheckout.productAndDiscount.discountPercentage > 1.0 ">
+                {{"Discounted for: " + cartcheckout.productAndDiscount.discountDescription }}</div> <br>
+
+              <div class="item-decrription " *ngIf="cartcheckout.productAndDiscount.discountPercentage < 1.0"
                 [ngStyle]="{'visibility': 'hidden'}">
                 {{cartcheckout.productAndDiscount.discountDescription }}</div> <br>
-              <!-- show the discount Percentage if item has discount -->
-              <h6 class="item-sale " *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 0.01 ">
-                Sale: {{cartcheckout.productAndDiscount.discountPercentage * 100}}%</h6>
-              <!-- hidden the discount Percentage if item has discount -->
-              <h6 class="item-sale " *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 0.01 "
+
+              <h6 class="item-sale " *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 1.0 "
                 [ngStyle]="{'visibility': 'hidden'}">
               </h6>
+
+              <h6 class="item-sale " *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 1.0 ">
+                Sale: {{cartcheckout.productAndDiscount.discountPercentage}}%</h6>
             </div>
           </div>
         </div>

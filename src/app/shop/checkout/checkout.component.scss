@@ -233,3 +233,24 @@ color: rgb(60, 63, 253);
   margin-top: 8px;
 }
 
+.counter {
+  display: block;
+  font-size: 25px;
+  padding: 0 10px;
+  cursor: pointer;
+  color: red;
+  user-select: none;
+}
+
+.addItem {
+  width: 50px;
+  border: 0;
+  line-height: 30px;
+  font-size: 20px;
+  text-align: center;
+
+  color: red;
+  appearance: none;
+  outline: 0;
+
+}

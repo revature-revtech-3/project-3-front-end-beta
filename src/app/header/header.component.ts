@@ -21,7 +21,8 @@ export class HeaderComponent implements OnInit {
     last_name: null,
     email: null,
     address: null, 
-    contact: null
+    contact: null,
+    userImage: ['']
   };
   isLoginFailed = false;
   errorMessage = '';
@@ -30,25 +31,29 @@ export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   username?: string;
   showAdmin = false;
+  showUser = false;
   currentUser: any;
   first_name?: string;
 
+  searchQuery: string="";
+  
   constructor(private router: Router, 
     private tokenStorageService: TokenStorageService,
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    this.tokenStorageService.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.tokenStorageService.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorageService.getUser().roles;
       this.currentUser = this.tokenStorageService.getUser();
     }
-    if (this.isLoggedIn) {
+    if (this.tokenStorageService.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
       this.username = user.username;
       this.showAdmin = this.roles.includes('ROLE_ADMIN');
+      this.showUser = this.roles.includes('ROLE_USER');
       this.first_name = user.first_name;
     }
     this.currentUser = this.tokenStorageService.getUser();
@@ -90,9 +95,9 @@ export class HeaderComponent implements OnInit {
     window.location.reload();
   }
   onSubmitregister(): void {
-    const { first_name, last_name, username, email, password, address, contact } = this.form;
+    const { first_name, last_name, username, email, password, address, contact, userImage } = this.form;
 
-    this.authService.register(first_name, last_name, username, email, password, address, contact).subscribe(
+    this.authService.register(first_name, last_name, username, email, password, address, contact, userImage).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;
@@ -109,6 +114,9 @@ export class HeaderComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     );
+  }
+  searchStore() {
+    sessionStorage.setItem("searchQuery", this.searchQuery);
   }
 
 }

@@ -54,6 +54,8 @@ export class StoreProductComponent implements OnInit {
     discountPercentage: 0
   }
 
+  searchQuery: string="";
+
   constructor(
     private router: Router,
     private formbuilder: FormBuilder,
@@ -61,6 +63,11 @@ export class StoreProductComponent implements OnInit {
     private tokenService: TokenStorageService,
     private cartAndItemsService: CartAndItemsService,
     private cartItemService: CartItemService) { }
+    filteredProducts: Product[] = [];
+    filteredDiscounts: ProductAndDiscount[] = [];
+    filterFlag: boolean = false;
+    hideFlag: boolean = false;
+    discountOnlyFlag: boolean=false;
 
   ngOnInit(): void {
     //add code for the update
@@ -84,9 +91,6 @@ export class StoreProductComponent implements OnInit {
           }
         }
         this.allProducts = response;
-        //-- For Testing Remove later
-        console.log("James testing");
-        console.log(response);
       },
       (error) => {
         this.errorProductMsg = "Unable to get allProducts - Try later";
@@ -107,12 +111,6 @@ export class StoreProductComponent implements OnInit {
         console.log(this.errorProductMsg);
       }
     )
-  }
-
-  //-----Example A function to search product(s) on sale
-  productOnSale() {
-    //do something or get by a speciific discount/sale endpoint
-
   }
 
   goToProduct(productId: number) {
@@ -147,5 +145,76 @@ export class StoreProductComponent implements OnInit {
     });
   }
 
+  filterByCategory(categoryName: String) {
+    this.filteredProducts = [];
+    this.filteredDiscounts=[];
+    this.allProducts.forEach((product) => {
+      if (product.productCategory == categoryName) {this.filteredProducts.push(product)}
+    });
 
+    this.allDiscountProducts.forEach((product) => {
+      if (product.productCategory == categoryName) {this.filteredDiscounts.push(product)}
+    });
+    this.hideFlag = true;
+    this.filterFlag = true;
+    sessionStorage.removeItem("searchQuery");
+  }
+
+  filterByDiscount() {
+    sessionStorage.removeItem("searchQuery")
+    this.discountOnlyFlag=true;
+    this.filterFlag=false;
+    this.filteredProducts=[];
+    this.hideFlag=false;
+  }
+
+  unfilter() {
+    this.filterFlag=false;
+    this.filteredProducts = [];
+    sessionStorage.removeItem("searchQuery");
+    this.hideFlag = false;
+    this.discountOnlyFlag=false;
+  }
+
+  returnQuery() {
+    return sessionStorage.getItem("searchQuery");
+  }
+
+  searchedProducts(searched: string|null): Product[] {
+    let returnedSet: Product[] = [];
+    if (searched != null) {
+      this.filterFlag=false;
+      this.hideFlag = true;
+      let searchString: string = searched.toLowerCase();
+      this.allProducts.forEach((product) => {
+        let lowercaseName: string = product.productName.toLowerCase();
+        let lowercaseCategory: string = product.productCategory.toLowerCase();
+        if (lowercaseName.includes(searchString) || lowercaseCategory.includes(searchString)) {
+          returnedSet.push(product);
+        }
+      });
+    }
+    return returnedSet;
+  }
+
+  searchedDiscounts(searched: string|null): ProductAndDiscount[] {
+    let returnedSet: ProductAndDiscount[] = [];
+    if (searched != null) {
+      this.filterFlag=false;
+      this.hideFlag = true;
+      let searchString: string = searched.toLowerCase();
+      this.allDiscountProducts.forEach((product) => {
+        let lowercaseName: string = product.productName.toLowerCase();
+        let lowercaseCategory: string = product.productCategory.toLowerCase();
+        if (lowercaseName.includes(searchString) || lowercaseCategory.includes(searchString)) {
+          returnedSet.push(product);
+        }
+      });
+    }
+    return returnedSet;
+  }
+
+  searchStore() {
+    sessionStorage.setItem("searchQuery", this.searchQuery);
+  }
 }

@@ -26,7 +26,7 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
-  { path: "admin", component: AdminComponent },
+  { path: "admin", component: AdminComponent , canActivate: [AdminGuard]},
   // { path: "games", component: GamesComponent},
   // { path: "computers", component: ComputersComponent},
   // { path: "cell-phones", component: CellPhonesComponent},
@@ -38,10 +38,10 @@ const routes: Routes = [
   // { path: "desk-lamps", component: DeskLampComponent},
   // { path: "air-purifiers", component: AirPurifiersComponent},
   // { path: "game-pads", component: GamePadsComponent},
-  { path: "checkout", component: CheckoutComponent },
+  { path: "checkout", component: CheckoutComponent , canActivate: [AdminGuard]},
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "profile", component: ProfileComponent },
+  { path: "profile", component: ProfileComponent , canActivate: [AdminGuard]},
   { path: 'product', component: StoreProductComponent },
   { path: '', redirectTo: 'product', pathMatch: 'full' },
   { path: "product-page", component: ProductPageComponent },

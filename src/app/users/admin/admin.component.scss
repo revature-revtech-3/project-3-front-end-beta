@@ -14,3 +14,11 @@ th, td {
 h2 {
   text-align: center;
 }
+// For adding * for required fields
+.asterixRequired:after {
+  content:" *";
+  color: red;
+}
+#addProdBtn{
+  margin-left: 90%;
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Product, ProductAndDiscount, Discount } from 'src/app/models/product.model';
 import { FileUploadService } from 'src/app/services/file-upload.service';
@@ -14,12 +14,16 @@ export class AdminComponent implements OnInit {
   row: any;
   //Arrays, Objects, & string
   allProducts: Product[] = [];
+
   productObject: Product = new Product();
   formValue         !: FormGroup;
   formValueProduct  !: FormGroup;
   formValueDiscount !: FormGroup;
+  formValueDiscountDelete !: FormGroup;
   formValueDiscountUpdate !: FormGroup;
   errorProductMsg: string = '';
+  storeImgUrl :  string = '';
+
   //Array for Form Fields to add new Product
   newProduct: Product = {
     productId: 0,
@@ -32,39 +36,55 @@ export class AdminComponent implements OnInit {
     productRemoved: false,
     imageUrl: ""
   }
+  //To Provide Different Product Categories in add product form
+  public selectedCat: string = "Phone";
+  categories = [
+    {value : 'Laptop',          text : 'Laptop'},
+    {value : 'Phones',          text : 'Phones'},
+    {value : 'Gaming Consoles', text : 'Gaming Consoles'},
+    {value : 'TV & Video',      text : 'TV & Video'},
+    {value : 'HeadPhones',      text : 'HeadPhones'},
+    {value : 'Video Games',     text : 'Video Games'},
+    {value : 'Cameras',         text : 'Cameras'}
+  ]
+
   constructor(
     private router: Router,
     private formbuilder: FormBuilder,
     private productService: ProductService,
     private fileUploadService: FileUploadService) { }
-  ngOnInit(): void {
-    //for the modal input type form value
-    this.formValue = this.formbuilder.group({
-      //For generating random SKU String
-      product_sku: [this.getRandomString()],
-      product_name: [''],
-      product_cost: [''],
-      product_category: [''],
-      product_description: [''],
-      product_qty: [''],
-      image_url: ['']
-
-    })
+    ngOnInit(): void {
+      //for the modal input type form value
+      this.formValue = this.formbuilder.group({
+        //For generating random SKU String
+        product_sku: [ this.getRandomString()],
+        product_name: ['' ,[Validators.required]],
+        product_cost: ['',[Validators.required]],
+        product_category: ['',[Validators.required]],
+        product_description: ['',[Validators.required]],
+        product_qty: ['',[Validators.required]],
+        image_url: ['',[Validators.required]]
+      })
 
     this.formValueProduct = this.formbuilder.group({
-      product_sku: [''],
-      product_name: [''],
-      product_cost: [''],
-      product_category: [''],
-      product_description: [''],
-      product_qty: [''],
-      image_url: ['']
+      product_sku: [this.getRandomString()],
+      product_name: ['',[Validators.required]],
+      product_cost: ['',[Validators.required]],
+      product_category: ['',[Validators.required]],
+      product_description: ['',[Validators.required]],
+      product_qty: ['',[Validators.required]],
+      image_url: ['',[Validators.required]]
     })
 
     this.formValueDiscount = this.formbuilder.group({
       discount_percentage: [''],
       discount_description: [''],
       product_id: ['']
+    })
+
+    this.formValueDiscountDelete = this.formbuilder.group({
+      product_id: [''],
+      discount_id: ['']
     })
 
     this.formValueDiscountUpdate = this.formbuilder.group({
@@ -102,7 +122,7 @@ export class AdminComponent implements OnInit {
       next: async (response: string) => {
         this.productObject.imageUrl = response;
         this.newProduct.imageUrl = response;
-        
+
       },
       error: (err: any) => {
         console.log(err);
@@ -110,32 +130,42 @@ export class AdminComponent implements OnInit {
     })
 
   }
+  
   // to add Product
   addProducts() {
-    this.newProduct.productSku = this.formValue.value.product_sku;
-    this.newProduct.productName = this.formValue.value.product_name;
-    this.newProduct.productCost = this.formValue.value.product_cost;
-    this.newProduct.productCategory = this.formValue.value.product_category;
-    this.newProduct.productDescription = this.formValue.value.product_description;
-    this.newProduct.productQty = this.formValue.value.product_qty;
+    this.newProduct.productSku = this.formValueProduct.value.product_sku;
+    this.newProduct.productName = this.formValueProduct.value.product_name;
+    this.newProduct.productCost = this.formValueProduct.value.product_cost;
+    this.newProduct.productCategory = this.formValueProduct.value.product_category;
+    this.newProduct.productDescription = this.formValueProduct.value.product_description;
+    this.newProduct.productQty = this.formValueProduct.value.product_qty;
 
     // Let's post the data through the post request in service
-      this.productService.addProductsService(this.newProduct).subscribe(
-        (response: any) => {
-          this.loadProducts();
-        },
-        (error: any) => {
-          console.log(error);
-        })
+    this.productService.addProductsService(this.newProduct).subscribe(
+      (response: any) => {
+        this.loadProducts();
+      },
+      (error: any) => {
+        console.log(error);
+      })
 
-      alert("Product was added Successfully");
-      //Close the Form Automatically
-      let ref = document.getElementById("cancel");
-      ref?.click();
-      this.formValue.reset();
-      this.router.navigate(['admin'])
-      
+    this.ngOnInit();
+    alert("Product was added successfully");
+    //Close the Form Automatically
+    let ref = document.getElementById("cancel");
+    ref?.click();
+    this.formValue.reset();
+    this.router.navigate(['admin'])
+
   }
+
+  //As per Poon no direct code to be used for refreshing the S.P.A. 
+  // reloadPage(): void {
+  //   window.location.reload();
+  // }
+
+
+// this.reloadPage();
   //Method to set the new values on to the modal table rows
   onEditRow(row: any) {
     this.productObject.productId = row.productId;
@@ -146,8 +176,10 @@ export class AdminComponent implements OnInit {
     this.formValue.controls["product_category"].setValue(row.productCategory);
     this.formValue.controls["product_description"].setValue(row.productDescription);
     this.formValue.controls["product_qty"].setValue(row.productQty);
+    //To Prevent image being lost - store its url in a variable here
+    this.storeImgUrl =  row.imageUrl;
     this.formValue.controls["image_url"].setValue(this.productObject.imageUrl);
-  
+
     //Reload the page
     this.loadProducts();
   }
@@ -159,11 +191,19 @@ export class AdminComponent implements OnInit {
     this.productObject.productCategory = this.formValue.value.product_category;
     this.productObject.productDescription = this.formValue.value.product_description;
     this.productObject.productQty = this.formValue.value.product_qty;
+    //To Prevent image being lost on update.
+    //We use the same Store Image variable above, check if product image is empty
+    // if Yes assign storeImgUrl to it. 
+    if(this.productObject.imageUrl == '' ){
+      // check if image url is updated or not
+      this.productObject.imageUrl = this.storeImgUrl;
+    }
+    
     console.log(this.formValue.value.image_url);
     //add more later if needed
     this.productService.updateProductsService(this.productObject).subscribe(
       (response) => {
-        alert("Product was updated Successfully");
+        alert("Product was updated successfully");
         //Let's reload the page once update is done
         this.router.navigate(['admin']);
         //Close the Form Automatically
@@ -177,19 +217,21 @@ export class AdminComponent implements OnInit {
   }
   // delete a product
   deleteProduct(pId: number) {
-    //Confirm with user before deleting a Product 
-    if(confirm("Are you sure to delete  product id: " + pId)) {
-    this.productService.deleteProductsService(pId).subscribe(
-      (Response: any) => {
-        this.loadProducts();
-      },
-      (error: any) => console.log(error)
-    )
+    //Confirm with user before deleting a Product
+    if(confirm("Are you sure to delete this product id: " + pId)) {
+      this.productService.deleteProductsService(pId).subscribe(
+        (Response: any) => {
+          this.loadProducts();
+        },
+        (error: any) => console.log(error)
+      )
     }
   }
   //--------- ProductAndDiscount Section------------//
   allDiscountProducts: ProductAndDiscount[] = [];
   discountObject: Discount = new Discount;
+  deleteDiscountId: number = 0;
+  deleteProductId: number = 0;
   NewDiscountedProduct: ProductAndDiscount = {
 
     productId: 0,
@@ -231,10 +273,10 @@ export class AdminComponent implements OnInit {
   addDiscountProducts() {
     this.newDiscount.discountPercentage = this.formValueDiscount.value.discount_percentage;
     this.newDiscount.discountDescription = this.formValueDiscount.value.discount_description;
-    this.newDiscount.productId = this.formValueDiscount.value.product_id;
+    // this.newDiscount.productId = this.formValueDiscount.value.product_id;
 
     //recieves the productID from OnEditRow(row)
-    // this.newDiscount.productId = this.productObject.productId;
+    this.newDiscount.productId = this.discountObject.productId;
 
     // Let's post the data through the post request in service
     this.productService.addDiscountService(this.newDiscount).subscribe(
@@ -245,7 +287,7 @@ export class AdminComponent implements OnInit {
       (error: any) => {
         console.log(error);
       })
-    alert("Discounted was added Successfully");
+    alert("Discounted was added successfully");
     //Close the Form Automatically
     let ref = document.getElementById("cancel");
     ref?.click();
@@ -265,7 +307,7 @@ export class AdminComponent implements OnInit {
         //Let's reload the page once update is done
         this.router.navigate(['admin']);
         //Close the Form Automatically
-        alert("Discount was updated Successfully");
+        alert("Discount was updated successfully");
         let ref = document.getElementById("cancel");
         ref?.click();
         this.formValueDiscount.reset();
@@ -276,19 +318,40 @@ export class AdminComponent implements OnInit {
       })
   }
   //For Deleting Discount Products
-  deleteDiscountProducts(discountId: number) {
-    //Confirm with user before deleting a Discount Product 
-    if(confirm("Are you sure to delete  THis Discount product id: " + discountId)) {
+  deleteDiscountProducts() {
+    //Confirm with user before deleting a Discount Product
+    if(confirm("Are you sure to delete this discount product id: " + this.deleteDiscountId)) {
 
-    this.productService.deleteDiscountService(discountId).subscribe(
-      (Response: any) => {
-        this.loadDiscountProducts();
-        this.loadProducts();
-      },
-      (error: any) => console.log(error)
-    )
+      this.productService.deleteDiscountService(this.deleteDiscountId).subscribe(
+        (Response: any) => {
+          this.loadDiscountProducts();
+          this.loadProducts();
+        },
+        (error: any) => console.log(error)
+      )
+    }
   }
-}
+  //For Deleting Discount Products
+  deleteProductsAlongWithDiscounts() {
+    //Confirm with user before deleting a Discount Product
+    if(confirm("Are you sure you want to delete this discount id: " + this.deleteDiscountId+", along with product id: "+this.deleteProductId)) {
+
+      this.productService.deleteDiscountService(this.deleteDiscountId).subscribe(
+        (Response: any) => {
+          this.loadDiscountProducts();
+          this.loadProducts();
+        },
+        (error: any) => console.log(error)
+      )
+      this.productService.deleteProductsService(this.deleteProductId).subscribe(
+        (Response: any) => {
+          this.loadDiscountProducts();
+          this.loadProducts();
+        },
+        (error: any) => console.log(error)
+      )
+    }
+  }
 
   //Method to set the new values on to the modal table rows
   onDiscountEditRow(row: any) {
@@ -302,6 +365,11 @@ export class AdminComponent implements OnInit {
     //To update discounts
     this.formValueDiscountUpdate.controls["discount_percentage"].setValue(row.discountPercentage);
     this.formValueDiscountUpdate.controls["discount_description"].setValue(row.discountDescription);
+    //To Delete discounts/products
+    this.formValueDiscountDelete.controls["product_id"].setValue(row.productId);
+    this.formValueDiscountDelete.controls["discount_id"].setValue(row.discountId);
+    this.deleteProductId = row.productId;
+    this.deleteDiscountId = row.discountId;
     //Reload the page
     this.loadDiscountProducts();
     this.loadProducts();
@@ -312,9 +380,9 @@ export class AdminComponent implements OnInit {
     let randomChars = 'AB2C13EH45IK67LM8PR9SXY';
     let result = '';
     for ( var i = 0; i < randomChars.length; i++ ) {
-        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+      result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
     }
     return result;
   }
-  
+
 }//end class
