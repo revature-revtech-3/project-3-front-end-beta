@@ -1,11 +1,12 @@
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { CartItemService } from './cart-item.service';
+import { AuthService } from './auth.service';
 
 describe('Cart Item Service', () => {
   let fixture: ComponentFixture<CartItemService>;

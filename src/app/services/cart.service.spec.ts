@@ -1,16 +1,19 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { CartService } from './cart.service';
 
 describe('CartService', () => {
-  let service: CartService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(CartService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule 
+      ],
+      declarations: [
+        CartService
+      ],
+    }).compileComponents();
+  }));
 });
