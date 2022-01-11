@@ -10,8 +10,8 @@ import { AuthService } from "../../services/auth.service";
 import { CartService } from "../../services/cart.service";
 import { TokenStorageService } from "../../services/token-storage.service";
 import { ProductService } from "../../services/product.service";
-import {PurchasedItemService} from "../../services/purchased-item.service";
-import {PurchasedItem} from "../../models/purchased-item.model";
+import { PurchasedItemService } from "../../services/purchased-item.service";
+import { PurchasedItem } from "../../models/purchased-item.model";
 
 @Component({
   selector: 'app-checkout',
@@ -28,7 +28,8 @@ export class CheckoutComponent implements OnInit {
   displayStyle: string = "";
   itemUpdating: CartItem = new CartItem();
   userId: number = 0;
-  intervalId: any = null;
+  newTransaction: Transaction = new Transaction();
+
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -116,6 +117,9 @@ export class CheckoutComponent implements OnInit {
     this.transaction.transactionId = null;
     this.transaction.transactionDate = null;
     this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
+      this.newTransaction = response;
+      this.router.navigate(['/confirmation-checkout/' + this.newTransaction.transactionId]);
+      console.log("my " + this.newTransaction.transactionId)
       this.addItemsToPurchaseHistory(response.transactionId);
     }, error => {
       this.errorMsg = 'There was some internal error! Please try again later!';
@@ -123,21 +127,17 @@ export class CheckoutComponent implements OnInit {
 
 
     this.updateMultiProducts();
-    this.intervalId = setInterval(() => {
-      this.displayStyle = "none";
-      this.router.navigate(['/product']);
-    }, 2000);
+
   }
-  ngOnDestroy() {
-    if(this.intervalId) {
-      clearInterval(this.intervalId);
-    }
-  }
+
+  // calculate the item has a discount
   calculateDiscountedItemCost(product: ProductAndDiscount): number {
     let cost = product.productCost;
     let discountPercentage = product.discountPercentage;
     return cost - (cost * (discountPercentage / 100));
   }
+
+  // return the item cost without any calculate 
   calculateSingleItemCost(product: ProductAndDiscount): number {
     return product.productCost;
   }
@@ -146,6 +146,7 @@ export class CheckoutComponent implements OnInit {
     let discountPercentage = product.discountPercentage;
     return cost * (discountPercentage / 100);
   }
+  // calcSingleItem is the a function parametar
   calculateTotalCost(item: ItemProductAndDiscount, calcSingleItem: any) {
     return item.cartQty * calcSingleItem(item.productAndDiscount);
   }
