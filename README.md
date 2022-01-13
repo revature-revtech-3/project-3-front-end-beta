@@ -73,8 +73,7 @@ To-do list:
 * Ability to contact customer support (live chat)
 
 ## Getting Started
-* git clone `https://github.com/revature-rev-tech/project-3-back-end.git`
-* git clone `https://github.com/revature-rev-tech/project-3-front-end-beta.git`
+Please refer to `STARTUP.md` file
 
 ## Entity Relationship Diagram
 ![ERD Image](https://i.postimg.cc/q75nz3yn/image.png)
