@@ -15,7 +15,7 @@
           <div class="mb-3">
             <label for="product_sku" class="form-label" >Product SKU</label>
             <input type="text" formControlName="product_sku" class="form-control" id="InputProductSku"
-              aria-describedby="productSkuHelp">
+              aria-describedby="productSkuHelp" readonly>
               <span class="text-danger"
               *ngIf="formValue.controls['product_sku'].dirty && formValue.hasError('required', 'product_sku')">
               Product SKU is Required
