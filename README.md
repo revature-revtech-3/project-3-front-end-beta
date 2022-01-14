@@ -216,6 +216,117 @@ Rev-Tech • E-Commerce
 └── tslint.json
 ```
 
+```
+Project-3-Back-End • E-Commerce
+
+├── src/main/java
+│   ├── com.project3.revtech
+│   │   └── RevtechApplication.java
+│   ├── com.project3.revtech.aop
+│   │   └── LoggingAspect.java
+│   ├── com.project3.revtech.config
+│   │   └── StorageConfig.java
+│   ├── com.project3.revtech.controller
+│   │   ├── AuthController.java
+│   │   ├── CartController.java
+│   │   ├── CartItemController.java
+│   │   ├── CartItemProductController.java
+│   │   ├── DiscountController.java
+│   │   ├── DscountedProductController.java
+│   │   ├── ProductAndDiscountController.java
+│   │   ├── ProductController.java
+│   │   ├── StorageController.java
+│   │   ├── TestController.java
+│   │   ├── TransactionController.java
+│   │   └── UserController.java
+│   ├── com.project3.revtech.dao
+│   │   ├── CartItemRepository.java
+│   │   ├── CartRepository.java
+│   │   ├── DiscountRepository.java
+│   │   ├── ImageControllerRepository.java
+│   │   ├── ProductRepository.java
+│   │   ├── RoleRepository.java
+│   │   ├── TransactionRepository.java
+│   │   └── UserRepository.java
+│   ├── com.project3.revtech.entity
+│   │   ├── Cart.java
+│   │   ├── CartItem.java
+│   │   ├── Discount.java
+│   │   ├── ERole.java
+│   │   ├── Image.java
+│   │   ├── Product.java
+│   │   ├── Role.java
+│   │   ├── Transaction.java
+│   │   └── User.java
+│   ├── com.project3.revtech.exception
+│   │   ├── ApplicationException.java
+│   │   └── GlobalExceptionHandler.java
+│   ├── com.project3.revtech.joinedPojo
+│   │   ├── CartAndItemsPojo.java
+│   │   ├── ItemProductDiscountPojo.java
+│   │   └── ProductAndDiscountPojo.java
+│   ├── com.project3.revtech.pojo
+│   │   ├── CartItemPojo.java
+│   │   ├── CartPojo.java
+│   │   ├── DiscountPojo.java
+│   │   ├── ImagePojo.java
+│   │   ├── ProductPojo.java
+│   │   ├── TransactionPojo.java
+│   │   └── UserPojo.java
+│   ├── com.project3.revtech.request
+│   │   ├── LoginRequest.java
+│   │   └── SignupRequest.java
+│   ├── com.project3.revtech.response
+│   │   ├── JwtResponse.java
+│   │   └── MessageResponse.java
+│   ├── com.project3.revtech.security
+│   │   └── WebSecurityConfig.java
+│   ├── com.project3.revtech.security.jwt
+│   │   ├── AuthEntryPointJwt.java
+│   │   ├── AuthTokenFilter.java
+│   │   └── JwtUtils.java
+│   ├── com.project3.revtech.security.service
+│   │   ├── UserDetailsImpl.java
+│   │   └── UserDetailsServiceImpl.java
+│   ├── com.project3.revtech.service
+│   │   ├── CartItemProductService.java
+│   │   ├── CartItemProductServiceImpl.java
+│   │   ├── CartItemService.java
+│   │   ├── CartItemServiceImpl.java
+│   │   ├── CartService.java
+│   │   ├── CartServiceImpl.java
+│   │   ├── DiscountService.java
+│   │   ├── DiscountServiceImpl.java
+│   │   ├── ProductAndDiscountService.java
+│   │   ├── ProductAndDiscountServiceImpl.java
+│   │   ├── ProductService.java
+│   │   ├── ProductServiceImpl.java
+│   │   ├── StorageService.java
+│   │   ├── TransactionService.java
+│   │   ├── TransactionServiceImpl.java
+│   │   ├── UserService.java
+│   │   └── UserServiceImpl.java
+├── scrc/main/resources
+│   ├── application.properties
+│   ├── application.yml
+│   ├── data.sql
+│   ├── logback.xml
+│   └── schema.sql
+├── src/test/java
+│   ├── com.project3.revtech
+│   ├── com.project3.revtech.prototype
+│   └── com.project3.revtech.service
+├── JRE System Library
+├── Maven Dependencies
+├── bin
+├── logs
+├── target
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+└── README.md
+```
+
 Team Structure
 ----
 ![Team Structure Image](https://i.postimg.cc/fL0gMJGz/Screen-Shot-2022-01-14-at-12-03-42-PM.png)
