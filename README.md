@@ -11,6 +11,7 @@ Project 3 - E-Commerce Store (Team Project)
 * [Getting Started](#getting-started)
 * [Entity Relationship Diagram](#entity-relationship-diagram)
 * [File Structure](#file-structure)
+* [Team Structure](#team-structure)
 * [Contributors](#contributors)
 
 ## Project Description
@@ -189,11 +190,26 @@ Rev-Tech • E-Commerce
 └── tslint.json
 ```
 
+Team Structure
+----
+![Team Structure Image](https://i.postimg.cc/fL0gMJGz/Screen-Shot-2022-01-14-at-12-03-42-PM.png)
+
 Contributors
 -----
-Scrum Master: Michelle Ng
+Scrum Master: 
+* Michelle Ng
 
-Team Leads: Rowel Selidio, James Lemaire, Aimen Altaiyeb
+Team Leads: 
+* Rowel Selidio - Technical Lead (User Development Team)
+* James Lemaire - Technical Lead (Product Development Team)
+* Aimen Altaiyeb - Technical Lead (Transaction Development Team)
 
-Team Members: Derrice Wright, Tulika Ghosh, Anthony Johnson, Austin Noel, Tareeq Hamilton, Sameh Botros
+Team Members: 
+* Derrice Wright (User Development Team)
+* Tulika Ghosh (User Development Team)
+* Anthony Johnson (Product Development Team)
+* Austin Noel (Product Development Team)
+* Tareeq Hamilton (Transaction Development Team)
+* Sameh Botros (Transaction Development Team)
+
 
