@@ -116,6 +116,8 @@ Rev-Tech • E-Commerce
 │   │   │   ├── cart.model.ts
 │   │   │   ├── instance.ts
 │   │   │   ├── product.model.ts
+│   │   │   ├── purchased-item.model.ts
+│   │   │   ├── review.model.ts
 │   │   │   ├── transaction.model.ts
 │   │   │   └── user.model.ts
 │   │   ├── services
@@ -133,6 +135,10 @@ Rev-Tech • E-Commerce
 │   │   │   ├── product-and-discount.service.ts
 │   │   │   ├── product.service.spec.ts
 │   │   │   ├── product.service.ts
+│   │   │   ├── purchased-item.service.spec.ts
+│   │   │   ├── purchased-item.service.ts
+│   │   │   ├── review.service.spec.ts
+│   │   │   ├── review.service.ts
 │   │   │   ├── token-storage.service.spec.ts
 │   │   │   ├── token-storage.service.ts
 │   │   │   ├── transaction.service.spec.ts
@@ -145,6 +151,16 @@ Rev-Tech • E-Commerce
 │   │   │   │   ├── checkout.component.scss
 │   │   │   │   ├── checkout.component.spec.ts
 │   │   │   │   └── checkout.component.ts
+│   │   │   ├── confirmation-checkout
+│   │   │   │   ├── confirmation-checkout.component.html
+│   │   │   │   ├── confirmation-checkout.component.scss
+│   │   │   │   ├── confirmation-checkout.component.spec.ts
+│   │   │   │   └── confirmation-checkout.component.ts
+│   │   │   ├── order-history
+│   │   │   │   ├── order-history.component.html
+│   │   │   │   ├── order-history.component.scss
+│   │   │   │   ├── order-history.component.spec.ts
+│   │   │   │   └── order-history.component.ts
 │   │   │   ├── product-page
 │   │   │   │   ├── product-page.component.html
 │   │   │   │   ├── product-page.component.scss
