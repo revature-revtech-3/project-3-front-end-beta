@@ -1,0 +1,36 @@
+  unix tutorial :  https://www.tutorialspoint.com/unix/
+https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
+
+error : https://exerror.com/error-package-jenkins-2-306-1-1-noarch-jenkins-requires-daemonize/
+
+timesheet url : https://rev2.force.com/revature/s/timesheet
+github training : user id:samia1047
+version control systems:
+2 types -centralized vcs eg. tortise, svn
+	-distributed vcs eg. git
+		-we have local repositories 
+1.working directory
+2.local repository 
+3.remote repository
+git init ----- > this creates a local git repository in the folder
+git add -------> adds the files to the staging area
+git commit  -n "first commit"----> this commits your files from staging area to  local repo
+
+
+
+
+look out for everyweek
+          	-qc(quality check) from another team
+	   	-coding challenge(mostly friday) by trainer
+		-quizz - mcq( mostly monday) by trainer
+
+every day - self learning for 1 hour (5 pm to 6 pm est)
+
+
+p0 -individual project evaluatded by QC
+
+p1 -paired project evaluatded by trainer
+
+p2 - paired poject
+
+p3 - group project given by centre of excellence (coe) a final p3 showcase infront of an audience
