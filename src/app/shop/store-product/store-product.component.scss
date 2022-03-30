@@ -16,7 +16,12 @@
 //     transform: scale(1.5); 
 //   }
 
-
+.block {
+  display: block;
+}
+.container-fluid {
+  grid-area: main;
+}
 
 /* The side navigation menu */
 .sidebar {
@@ -24,7 +29,8 @@
     padding: 0;
     width: 200px;
     background-color: #f1f1f1;
-    position: fixed;
+    grid-area: sidebar;
+    align-self: flex-start;
     height: 100%;
     overflow: auto;
   }
