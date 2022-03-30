@@ -12,7 +12,7 @@ export class User {
     imageUrl: string = "";
     userRemoved: boolean = false;
     // add after current user problems solved
-    // userSettings: UserSettings = null;
+    userSettings: UserSettings = new UserSettings();
 }
 
 export class UserSettings {
