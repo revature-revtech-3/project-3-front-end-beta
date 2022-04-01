@@ -36,10 +36,3 @@ export class Discount{
     discountPercentage: number = 0.0;
 }
 
-// exact variable names subject to change
-export class GroupBundle{
-    bundleId: number = 0;
-    bundleName: string = "";
-    discountPercentage: number = 0.0;
-    products: Product[] = [];
-}
