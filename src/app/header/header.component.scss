@@ -3,13 +3,14 @@
   position:relative;
   //margin: auto;
   display: block;
-  width: 100px;
+  width: 160px;
   //right: 40%;
   
-  margin-top: 2%;
-	padding-top: 5%;
+  margin-top: 60px;
+  margin-bottom: 0px;
+	padding-top: 25px;
   z-index: -2;
-  background: grey;
+  background: none;
 }
 .letter{
   //font-family: 'Roboto', sans-serif;
@@ -17,31 +18,33 @@
 	position: relative;
 	color: black;
   text-align: center;
-  bottom: 10px;
+  vertical-align: middle;
+  bottom: 6px;
+  z-index: 2;
 	//display: block;
 	//margin: auto;
 
 }
 .right{
   position: absolute;
-	top: 10px;
-	right:20px;
-	width: 60px;
+	top: 5px;
+	right:4px;
+	width: 150px;
 	height: 60px;
-  background: red;
-  z-index: -1;
-  clip-path: polygon(50% 0%, 50% 50%, 50% 100%, 95% 80%, 100% 25%);
+  background: grey;
+  z-index: 1;
+  clip-path: polygon(50% 0%, 50% 50%, 50% 100%, 90% 85%, 100% 25%);
 }
 
 .left{
   position: absolute;
-	top: 10px;
-	left: 20px;
-	width: 60px;
+	top: 5px;
+	left: 6px;
+	width: 150px;
 	height: 60px;
-  background: red;
-  z-index: -1;
-  clip-path: polygon(50% 0%, 50% 50%, 50% 100%, 5% 80%, 0 25%);
+  background: #909090;
+  z-index: 1;
+  clip-path: polygon(50% 0%, 50% 50%, 50% 100%, 10% 85%, 0 25%);
 }
 
 .navbar{
@@ -50,32 +53,4 @@
 
 span {
   padding-right: 1rem;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #04AA6D;
 }

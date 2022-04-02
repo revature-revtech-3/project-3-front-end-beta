@@ -41,23 +41,7 @@ export class HeaderComponent implements OnInit {
     private tokenStorageService: TokenStorageService,
     private authService: AuthService) { }
 
-  ngOnInit(): void {
-  //   this.tokenStorageService.isLoggedIn = !!this.tokenStorageService.getToken();
-  //   if (this.tokenStorageService.getToken()) {
-  //     this.isLoggedIn = true;
-  //     this.roles = this.tokenStorageService.getUser().roles;
-  //     this.currentUser = this.tokenStorageService.getUser();
-  //   }
-  //   if (this.tokenStorageService.isLoggedIn) {
-  //     // const user = this.tokenStorageService.getUser();
-  //     // this.roles = user.roles;
-  //     // this.username = user.username;
-  //     // this.showAdmin = this.roles.includes('ROLE_ADMIN');
-  //     // this.showUser = this.roles.includes('ROLE_USER');
-  //     // this.first_name = user.first_name;
-  //   }
-  //   this.currentUser = this.tokenStorageService.getUser();
-  }
+  ngOnInit(): void { }
 
   logout(): void {
     this.tokenStorageService.signOut();

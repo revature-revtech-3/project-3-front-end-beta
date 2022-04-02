@@ -1,31 +1,33 @@
-<div class="search-container">
-  <form action="#" method="" id="search_form">
-    <div class="sb-example-1">
-      <div class="search">
-        <input type="text" class="searchTerm" size="100" maxlength="150" name="search_text"
-          placeholder="What are you looking for?" id="search_text" style="color: black;" [(ngModel)]="searchQuery" />
-        <button type="submit" class="searchButton" (click)="searchStore()"><span class="material-icons">
-            search
-          </span></button>
-      </div>
-    </div>
-  </form>
-</div>
-<div id="block">
+<mat-sidenav mode="side" opened>
   <!-- The sidebar -->
   <div class="sidebar">
-    <a (click)="unfilter()" id="filterremove" class="active">Remove Filter</a>
-    <a (click)="filterByCategory('Phones')">Phones</a>
-    <a (click)="filterByCategory('Laptops')">Laptops</a>
-    <a (click)="filterByCategory('Video Games')">Video Games</a>
-    <a (click)="filterByCategory('TV & Video')">TV & Video</a>
-    <a (click)="filterByCategory('Headphones')">Headphones</a>
-    <a (click)="filterByCategory('Cameras')">Cameras</a>
-    <a (click)="filterByDiscount()">Discounted Items</a>
+    <button mat-button (click)="unfilter()" id="filterremove" class="active">Remove Filter</button>
+    <button mat-button (click)="filterByCategory('Phones')">Phones</button>
+    <button mat-button (click)="filterByCategory('Laptops')">Laptops</button>
+    <button mat-button (click)="filterByCategory('Video Games')">Video Games</button>
+    <button mat-button (click)="filterByCategory('TV & Video')">TV & Video</button>
+    <button mat-button (click)="filterByCategory('Headphones')">Headphones</button>
+    <button mat-button (click)="filterByCategory('Cameras')">Cameras</button>
+    <button mat-button (click)="filterByDiscount()">Discounted Items</button>
   </div>
-
+</mat-sidenav>
+<mat-sidenav-content>
   <!-- Page content -->
   <div class='container-fluid'>
+    <mat-toolbar-row class="search-container">
+      <form action="#" method="" id="search_form">
+        <div class="sb-example-1">
+          <div class="search">
+            <input type="text" class="searchTerm" size="100" maxlength="150" name="search_text"
+              placeholder="What are you looking for?" id="search_text" style="color: black;"
+              [(ngModel)]="searchQuery" />
+            <button type="submit" class="searchButton" (click)="searchStore()"><span class="material-icons">
+                search
+              </span></button>
+          </div>
+        </div>
+      </form>
+    </mat-toolbar-row>
     <div class="content">
       <div class="card-deck" *ngIf="returnQuery()">
         <div class="wrapper">
@@ -138,8 +140,7 @@
       </div>
     </div>
   </div>
-</div>
-
+</mat-sidenav-content>
 <div class="footer">
   <p>Need Help? <a href="/product" style="color: #dc3545; font-weight: bold;">Live Chat <i class='fas fa-comment-dots'
         style="color: white;"></i></a></p>
