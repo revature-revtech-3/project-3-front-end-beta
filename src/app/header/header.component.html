@@ -1,4 +1,9 @@
-<img src="https://i.postimg.cc/xdm3qnyD/Picture1.png" scale="0" width="10%">
+<div id="logo">
+  <div class="left" color="primary"></div>
+  <div class="right" color="primary-darker"></div>
+  <div class="mat-headline letter">RevTech</div>
+</div>
+<!-- <img src="https://i.postimg.cc/xdm3qnyD/Picture1.png" scale="0" width="10%"> -->
 <!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark"> -->
 
 <!-- Links -->
@@ -46,38 +51,67 @@
   </ul>
 
 </nav> -->
+<mat-toolbar color="primary">
+  <div>
+      <a class="nav-link" routerLink="product">Store</a>
+  </div>
+  <div *ngIf="isLogged()">
+      <a class="nav-link" routerLink="profile">Profile</a>
+  </div>
+  <div *ngIf="isLogged()">
+      <a class="nav-link" routerLink="order-history">Orders</a>
+  </div>
+    <span *ngIf="isLogged() && isShowAdmin()">
+      <a class="nav-link" routerLink="admin">Manage Store</a>
+    </span>
+    <div style="float:right" class="nav-item">
+      <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon" routerLink="checkout">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </div>
 
-<ul>
+
+    <span style="float:right" class="nav-item" *ngIf="!isLogged()">
+      <a class="nav-link" routerLink="login">Sign In</a>
+    </span>
+    <span style="float:right" class="nav-item" *ngIf="isLogged()">
+      <a class="nav-link" (click)="logout()">Logout</a>
+    </span>
+    <span style="float:right" class="nav-item" *ngIf="isLogged()">
+      <a href class="topnav-right" id="profile" *ngIf="isLogged()" onclick="return false">Hello, {{first_name}}</a>
+    </span>
+  
+
+</mat-toolbar>
+  <ul>
     <li class="nav-item">
-        <a class="nav-link" routerLink="product">Store</a>
+      <a class="nav-link" routerLink="product">Store</a>
     </li>
     <li class="nav-item" *ngIf="isLogged()">
-        <a class="nav-link" routerLink="profile">Profile</a>
+      <a class="nav-link" routerLink="profile">Profile</a>
     </li>
-    <li 
-      class="nav-item"
-      *ngIf="isLogged()">
+    <li class="nav-item" *ngIf="isLogged()">
       <a class="nav-link" routerLink="order-history">Orders</a>
     </li>
     <li class="nav-item" *ngIf="isLogged() && isShowAdmin()">
-        <a class="nav-link" routerLink="admin">Manage Store</a>
+      <a class="nav-link" routerLink="admin">Manage Store</a>
     </li>
     <li style="float:right" class="nav-item">
-        <a routerLink="checkout" class="topnav" id="cart" class="btn btn-danger btn-lg" id="cart" style="color: white;">
-            <span class="material-icons">shopping_cart</span>
-            <!-- <span><i class="fa fa-shopping-cart" style="font-size:24px" id="cart"></i></span>
+      <a routerLink="checkout" class="topnav" id="cart" class="btn btn-danger btn-lg" id="cart" style="color: white;">
+        <span class="material-icons">shopping_cart</span>
+        <!-- <span><i class="fa fa-shopping-cart" style="font-size:24px" id="cart"></i></span>
              -->
-        </a>
+      </a>
     </li>
-    
+
 
     <li style="float:right" class="nav-item" *ngIf="!isLogged()">
-        <a class="nav-link" routerLink="login">Sign In</a>
+      <a class="nav-link" routerLink="login">Sign In</a>
     </li>
     <li style="float:right" class="nav-item" *ngIf="isLogged()">
-        <a class="nav-link" (click)="logout()">Logout</a>
+      <a class="nav-link" (click)="logout()">Logout</a>
     </li>
     <li style="float:right" class="nav-item" *ngIf="isLogged()">
-        <a href class="topnav-right" id="profile" *ngIf="isLogged()" onclick="return false">Hello, {{first_name}}</a>
+      <a href class="topnav-right" id="profile" *ngIf="isLogged()" onclick="return false">Hello, {{first_name}}</a>
     </li>
-</ul>
+  </ul>
