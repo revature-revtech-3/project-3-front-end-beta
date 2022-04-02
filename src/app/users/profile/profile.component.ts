@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user.model';
+import { User, UserSettings } from 'src/app/models/user.model';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UserService } from 'src/app/services/user.service';
@@ -25,6 +25,14 @@ export class ProfileComponent implements OnInit {
     imageUrl: null
   }
 ​
+  editUserSettings: UserSettings = {
+    user_settings_id:  0,
+    user_id:  0,
+    css_mode: "",
+    email_notifications: true
+  }
+
+
   editUser: User ={
     user_id: 0,
     email: '',
@@ -36,7 +44,8 @@ export class ProfileComponent implements OnInit {
     userType: '',
     contact: '',
     imageUrl: '',
-    userRemoved: false
+    userRemoved: false,
+    userSettings: this.editUserSettings
   }
   private roles: string[] = [];
   isLoggedIn = false;
