@@ -35,3 +35,4 @@ export class Discount{
     discountDescription: string = "";
     discountPercentage: number = 0.0;
 }
+
