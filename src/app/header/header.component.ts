@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
@@ -9,6 +11,9 @@ import { TokenStorageService } from '../services/token-storage.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  darkModeToggle = new FormControl(false);
+  @HostBinding('class') className = '';
 
  
   isSuccessful = false;
@@ -39,24 +44,18 @@ export class HeaderComponent implements OnInit {
   
   constructor(private router: Router, 
     private tokenStorageService: TokenStorageService,
-    private authService: AuthService) { }
+    private authService: AuthService, private overlay: OverlayContainer) { }
 
-  ngOnInit(): void {
-  //   this.tokenStorageService.isLoggedIn = !!this.tokenStorageService.getToken();
-  //   if (this.tokenStorageService.getToken()) {
-  //     this.isLoggedIn = true;
-  //     this.roles = this.tokenStorageService.getUser().roles;
-  //     this.currentUser = this.tokenStorageService.getUser();
-  //   }
-  //   if (this.tokenStorageService.isLoggedIn) {
-  //     // const user = this.tokenStorageService.getUser();
-  //     // this.roles = user.roles;
-  //     // this.username = user.username;
-  //     // this.showAdmin = this.roles.includes('ROLE_ADMIN');
-  //     // this.showUser = this.roles.includes('ROLE_USER');
-  //     // this.first_name = user.first_name;
-  //   }
-  //   this.currentUser = this.tokenStorageService.getUser();
+  ngOnInit(): void { 
+    this.darkModeToggle.valueChanges.subscribe((darkMode) => {
+      const darkClassName = 'darkMode';
+      this.className = darkMode ? darkClassName : '';
+      if (darkMode) {
+        this.overlay.getContainerElement().classList.add(darkClassName);
+      } else {
+        this.overlay.getContainerElement().classList.remove(darkClassName);
+      }
+    });
   }
 
   logout(): void {
