@@ -4,6 +4,10 @@
   <div class="right" ></div>
   <div class="mat-display-1 letter">RevTech</div>
 </div>
+<!-- <mat-icon class="mr-8">brightness_5</mat-icon>
+<mat-slide-toggle [formControl]="darkModeToggle">DarkMode
+</mat-slide-toggle>
+<mat-icon>bedtime</mat-icon> -->
 </mat-toolbar-row>
 <!-- <img src="https://i.postimg.cc/xdm3qnyD/Picture1.png" scale="0" width="10%"> -->
 <!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark"> -->
@@ -28,10 +32,10 @@
     <button mat-button (click)="logout()">Logout</button>
   </span>
   <span *ngIf="isLogged()" style="float:right">
-    <button mat-button id="profile" *ngIf="isLogged()" onclick="return false">Hello, {{first_name}}</button>
+    <button mat-button [disableRipple]="true" id="profile" *ngIf="isLogged()" onclick="return false">Hello, {{first_name}}</button>
   </span>
   <span style="float:right">
-    <button mat-icon-button color="accent" aria-label="route to shopping cart" routerLink="checkout">
+    <button mat-icon-button color="white" aria-label="route to shopping cart" routerLink="checkout">
       <mat-icon>shopping_cart</mat-icon>
     </button>
   </span>

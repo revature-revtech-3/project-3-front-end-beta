@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
@@ -9,6 +11,9 @@ import { TokenStorageService } from '../services/token-storage.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  darkModeToggle = new FormControl(false);
+  @HostBinding('class') className = '';
 
  
   isSuccessful = false;
@@ -39,9 +44,19 @@ export class HeaderComponent implements OnInit {
   
   constructor(private router: Router, 
     private tokenStorageService: TokenStorageService,
-    private authService: AuthService) { }
+    private authService: AuthService, private overlay: OverlayContainer) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.darkModeToggle.valueChanges.subscribe((darkMode) => {
+      const darkClassName = 'darkMode';
+      this.className = darkMode ? darkClassName : '';
+      if (darkMode) {
+        this.overlay.getContainerElement().classList.add(darkClassName);
+      } else {
+        this.overlay.getContainerElement().classList.remove(darkClassName);
+      }
+    });
+  }
 
   logout(): void {
     this.tokenStorageService.signOut();
