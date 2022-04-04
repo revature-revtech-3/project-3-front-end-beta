@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveUser(data);
 
         this.isLoginFailed = false;
-       
+
         this.roles = this.tokenStorage.getUser().roles;
         this.router.navigate(['/product']);
       },
@@ -71,5 +71,10 @@ export class LoginComponent implements OnInit {
   product() {
     this.router.navigate(['/product']);
   }
+
+  forgetPassword() {
+    this.router.navigate(['/forget-password']);
+  }
+
 
 }
