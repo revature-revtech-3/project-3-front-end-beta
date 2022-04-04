@@ -21,19 +21,19 @@ $angular-default-theme: mat.define-dark-theme(
 
 @include mat.all-component-themes($angular-default-theme);
 
-// $angular-dark-theme: mat.define-dark-theme(
-//   (
-//     color: (
-//       primary: $angular-primary,
-//       accent: $angular-accent,
-//       warn: $angular-warn,
-//     ),
-//   )
-// );
+$angular-dark-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $angular-primary,
+      accent: $angular-accent,
+      warn: $angular-warn,
+    ),
+  )
+);
 
-// .darkMode {
-//   @include mat.all-component-colors($angular-dark-theme);
-// }
+.darkMode {
+  @include mat.all-component-colors($angular-dark-theme);
+}
 
 /* You can add global styles to this file, and also import other style files */
 

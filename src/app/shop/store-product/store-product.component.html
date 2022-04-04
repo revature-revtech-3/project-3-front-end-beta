@@ -1,6 +1,10 @@
 <mat-sidenav mode="side" opened>
   <!-- The sidebar -->
   <div class="sidebar">
+    <mat-icon class="mr-8">brightness_5</mat-icon>
+    <mat-slide-toggle [formControl]="darkModeToggle">
+    </mat-slide-toggle>
+    <mat-icon>bedtime</mat-icon>
     <button mat-button (click)="unfilter()" id="filterremove" class="active">Remove Filter</button>
     <button mat-button (click)="filterByCategory('Phones')">Phones</button>
     <button mat-button (click)="filterByCategory('Laptops')">Laptops</button>
@@ -20,11 +24,11 @@
           <mat-form-field appearance="fill">
             <input matInput placeholder="What are you looking for?" [(ngModel)]="searchQuery">
           </mat-form-field>
-            <button type="submit" class="searchButton" (click)="searchStore()">
-              <span class="material-icons">
-                search
-              </span>
-            </button>
+          <button type="submit" class="searchButton" (click)="searchStore()">
+            <span class="material-icons">
+              search
+            </span>
+          </button>
         </div>
       </form>
     </mat-toolbar-row>
