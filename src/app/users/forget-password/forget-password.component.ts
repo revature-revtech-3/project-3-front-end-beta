@@ -12,7 +12,6 @@ export class ForgetPasswordComponent implements OnInit {
   public isError = false;
 
   constructor(private authService: AuthService) { }
-  //token storage service 
 
   ngOnInit(): void {
   }

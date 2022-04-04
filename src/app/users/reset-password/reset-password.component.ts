@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ResetPasswordComponent implements OnInit {
   public newPassword = '';
   public confirmPassword = '';
-
   private userid = 0;
   public isVerified = false;
   public isVerifyComplete = false;

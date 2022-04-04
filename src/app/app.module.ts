@@ -17,6 +17,8 @@ import { OrderHistoryComponent } from './shop/order-history/order-history.compon
 import { ForgetPasswordComponent } from './users/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './users/reset-password/reset-password.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { ResetPasswordComponent } from './users/reset-password/reset-password.co
     ReactiveFormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
