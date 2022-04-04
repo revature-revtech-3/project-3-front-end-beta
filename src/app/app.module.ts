@@ -14,6 +14,8 @@ import { ProfileComponent } from './users/profile/profile.component';
 import { ProductPageComponent } from './shop/product-page/product-page.component';
 import { ConfirmationCheckoutComponent } from './shop/confirmation-checkout/confirmation-checkout.component';
 import { OrderHistoryComponent } from './shop/order-history/order-history.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { OrderHistoryComponent } from './shop/order-history/order-history.compon
     ReactiveFormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

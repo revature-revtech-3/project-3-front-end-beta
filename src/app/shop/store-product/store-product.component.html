@@ -1,144 +1,129 @@
-<div class="search-container">
-  <form action="#" method="" id="search_form">
-      <div class="sb-example-1">
-          <div class="search">
-              <input type="text" class="searchTerm" size="100" maxlength="150" name="search_text"
-                  placeholder="What are you looking for?" id="search_text" style="color: black;" [(ngModel)]="searchQuery" />
-              <button type="submit" class="searchButton" (click)="searchStore()"><span class="material-icons">
+<mat-sidenav mode="side" opened>
+  <!-- The sidebar -->
+  <div class="sidebar">
+    <button mat-button (click)="unfilter()" id="filterremove" class="active">Remove Filter</button>
+    <button mat-button (click)="filterByCategory('Phones')">Phones</button>
+    <button mat-button (click)="filterByCategory('Laptops')">Laptops</button>
+    <button mat-button (click)="filterByCategory('Video Games')">Video Games</button>
+    <button mat-button (click)="filterByCategory('TV & Video')">TV & Video</button>
+    <button mat-button (click)="filterByCategory('Headphones')">Headphones</button>
+    <button mat-button (click)="filterByCategory('Cameras')">Cameras</button>
+    <button mat-button (click)="filterByDiscount()">Discounted Items</button>
+  </div>
+</mat-sidenav>
+<mat-sidenav-content>
+  <!-- Page content -->
+  <div class='container-fluid'>
+    <mat-toolbar-row class="search-container">
+      <form action="#" method="" id="search_form">
+        <div class="sb-example-1">
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="What are you looking for?" [(ngModel)]="searchQuery">
+          </mat-form-field>
+            <button type="submit" class="searchButton" (click)="searchStore()">
+              <span class="material-icons">
                 search
-                </span></button>
-          </div>
-      </div>
-  </form>
-</div>
-
-<!-- The sidebar -->
-<div class="sidebar">
-  <a (click)="unfilter()" id="filterremove" class="active">Remove Filter</a>
-  <a (click)="filterByCategory('Phones')">Phones</a>
-  <a (click)="filterByCategory('Laptops')">Laptops</a>
-  <a (click)="filterByCategory('Video Games')">Video Games</a>
-  <a (click)="filterByCategory('TV & Video')">TV & Video</a>
-  <a (click)="filterByCategory('Headphones')">Headphones</a>
-  <a (click)="filterByCategory('Cameras')">Cameras</a>
-  <a (click)="filterByDiscount()">Discounted Items</a>
-</div>
-
-<!-- Page content -->
-<div class='container-fluid'>
-  <div class="content">
-    <div class="card-deck" *ngIf="returnQuery()">
-      <div class="wrapper">
-      <div class="card" *ngFor="let row of searchedProducts(returnQuery())" >
-          <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
-          <div class="card-body">
-              <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
+              </span>
+            </button>
+        </div>
+      </form>
+    </mat-toolbar-row>
+    <div class="content">
+      <div class="card-deck" *ngIf="returnQuery()">
+        <div class="wrapper">
+          <mat-card class="card" *ngFor="let row of searchedProducts(returnQuery())">
+            <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
+            <div class="card-footer">
               <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
               <p class="card-text">{{row.productCost | currency}}</p>
               <p class="card-text" class="parLength">{{row.productDescription}}</p>
               <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
               <small class="text-muted">{{row.productSku}}</small>
-              </div>
-          </div>
-      </div>
-      &nbsp;
-      <div class="wrapper">
-        <div class="card" *ngFor="let row of searchedDiscounts(returnQuery())">
-          <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
-          <div class="card-body">
-            <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
-            <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
-            <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
-              <s>{{row.productCost |
-                currency}}</s>
-            </p>
-            <p class="card-text" class="parLength">{{row.productDescription}}</p>
-            <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
-            <small class="text-muted">{{row.productSku}}</small>
-          </div>
+            </div>
+          </mat-card>
+        </div>
+        &nbsp;
+        <div class="wrapper">
+          <mat-card class="card" *ngFor="let row of searchedDiscounts(returnQuery())">
+            <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
+            <div class="card-footer">
+              <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
+              <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
+                <s>{{row.productCost |
+                  currency}}</s>
+              </p>
+              <p class="card-text" class="parLength">{{row.productDescription}}</p>
+              <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
+              <small class="text-muted">{{row.productSku}}</small>
+            </div>
+          </mat-card>
         </div>
       </div>
-    </div>
-    <div class="card-deck" *ngIf="filterFlag">
-      <div class="wrapper">
-      <div class="card" *ngFor="let row of filteredProducts" >
-          <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
-          <div class="card-body">
-              <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
+      <div class="card-deck" *ngIf="filterFlag">
+        <div class="wrapper">
+          <mat-card class="card" *ngFor="let row of filteredProducts">
+            <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
+            <div class="card-footer">
               <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
               <p class="card-text">{{row.productCost | currency}}</p>
               <p class="card-text" class="parLength">{{row.productDescription}}</p>
               <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
               <small class="text-muted">{{row.productSku}}</small>
-              </div>
-          </div>
-      </div>
-      &nbsp;
-      <div class="wrapper">
-        <div class="card" *ngFor="let row of filteredDiscounts">
-          <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
-          <div class="card-body">
-            <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
-            <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
-            <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
-              <s>{{row.productCost |
-                currency}}</s>
-            </p>
-            <p class="card-text" class="parLength">{{row.productDescription}}</p>
-            <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
-            <small class="text-muted">{{row.productSku}}</small>
-          </div>
+            </div>
+          </mat-card>
+        </div>
+        &nbsp;
+        <div class="wrapper">
+          <mat-card class="card" *ngFor="let row of filteredDiscounts">
+            <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
+            <div class="card-footer">
+              <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
+              <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
+                <s>{{row.productCost |
+                  currency}}</s>
+              </p>
+              <p class="card-text" class="parLength">{{row.productDescription}}</p>
+              <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
+              <small class="text-muted">{{row.productSku}}</small>
+            </div>
+          </mat-card>
         </div>
       </div>
-    </div>
-    <div class="card-deck" *ngIf="!hideFlag">
-      <div class="wrapper" *ngIf="!discountOnlyFlag">
-        <div class="card" *ngFor="let row of allProducts">
-          <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
-          <div class="card-body">
-            <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
-            <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
-            <p class="card-text">{{row.productCost | currency}}</p>
-            <p class="card-text" class="parLength">{{row.productDescription}}</p>
-            <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
+      <div class="card-deck" *ngIf="!hideFlag">
+        <div class="wrapper" *ngIf="!discountOnlyFlag">
+          <mat-card class="card" *ngFor="let row of allProducts">
+            <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
+            <div class="card-footer">
+              <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
+              <p class="card-text">{{row.productCost | currency}}</p>
+              <p class="card-text" class="parLength">{{row.productDescription}}</p>
+              <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
 
-            <small class="text-muted">{{row.productSku}}</small>
-          </div>
+              <small class="text-muted">{{row.productSku}}</small>
+            </div>
+          </mat-card>
         </div>
-      </div>
-      &nbsp;
-      <div class="wrapper">
-        <div class="card" *ngFor="let row of allDiscountProducts">
-          <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
-          <div class="card-body">
-            <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
-            <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
-            <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
-              <s>{{row.productCost |
-                currency}}</s>
-            </p>
-            <p class="card-text" class="parLength">{{row.productDescription}}</p>
-            <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
-            <small class="text-muted">{{row.productSku}}</small>
-          </div>
+        &nbsp;
+        <div class="wrapper">
+          <mat-card class="card" *ngFor="let row of allDiscountProducts">
+            <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
+            <div class="card-footer">
+              <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
+              <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
+                <s>{{row.productCost |
+                  currency}}</s>
+              </p>
+              <p class="card-text" class="parLength">{{row.productDescription}}</p>
+              <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
+              <small class="text-muted">{{row.productSku}}</small>
+            </div>
+          </mat-card>
         </div>
       </div>
     </div>
   </div>
-</div>
-
+</mat-sidenav-content>
 <div class="footer">
-  <p>Need Help? <a href="/product" style="color: #dc3545; font-weight: bold;">Live Chat <i class='fas fa-comment-dots' style="color: white;"></i></a></p>
+  <p>Need Help? <a href="/product" style="color: #dc3545; font-weight: bold;">Live Chat <i class='fas fa-comment-dots'
+        style="color: white;"></i></a></p>
 </div>
