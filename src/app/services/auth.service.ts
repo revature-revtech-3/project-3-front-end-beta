@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
-import {Instance} from "../models/Instance";
+import { Instance } from "../models/Instance";
 
 const AUTH_API = Instance.url + '/api/auth/';
 
@@ -16,26 +16,26 @@ const httpOptions = {
 export class AuthService {
 
   // this AuthService was created to keep track of
-      // 1) whether a user has logged in or not
-      // 2) the user who has logged in and manipulate it in the session storage
+  // 1) whether a user has logged in or not
+  // 2) the user who has logged in and manipulate it in the session storage
   isLoggedIn: boolean = false;
 
-  storeUser(user: User){
+  storeUser(user: User) {
     sessionStorage.setItem("userData", JSON.stringify(user));
   }
 
-  retrieveUser(): User{
+  retrieveUser(): User {
     var data: any = sessionStorage.getItem("userData");
-    return JSON.parse(data == null?'':data);
+    return JSON.parse(data == null ? '' : data);
   }
 
-  removeUser(){
+  removeUser() {
     sessionStorage.removeItem("userData");
   }
 
-  retrieveUserType(){
+  retrieveUserType() {
     var data: any = sessionStorage.getItem("userData");
-    var user: User = JSON.parse(data == null?'':data);
+    var user: User = JSON.parse(data == null ? '' : data);
     return user.userType;
   }
 
@@ -59,6 +59,23 @@ export class AuthService {
       contact,
       userImage
     }, httpOptions);
+  }
+
+  forgetPassword(email: string): Observable<any> {
+    return this.http.post<any>(Instance.url + "/api/reset_password/forgot_password", { email });
+  }
+
+  // GET /verify-token?token=
+  verifyToken(token: string): Observable<any> {
+    return this.http.get<any>(Instance.url + "/api/reset_password/reset_password?token=" + token);
+  }
+
+  // POST /reset-password 
+  resetPassword(userid: number, password: string): Observable<any> {
+    return this.http.post<any>(Instance.url + "/api/reset_password/updatePassword", {
+      user_id: userid,
+      password
+    });
   }
 
 }

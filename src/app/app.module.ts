@@ -14,6 +14,9 @@ import { ProfileComponent } from './users/profile/profile.component';
 import { ProductPageComponent } from './shop/product-page/product-page.component';
 import { ConfirmationCheckoutComponent } from './shop/confirmation-checkout/confirmation-checkout.component';
 import { OrderHistoryComponent } from './shop/order-history/order-history.component';
+import { ForgetPasswordComponent } from './users/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './users/reset-password/reset-password.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 
@@ -30,6 +33,9 @@ import { MaterialModule } from './material/material.module';
     ProductPageComponent,
     ConfirmationCheckoutComponent,
     OrderHistoryComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
+
   ],
   imports: [
     BrowserModule,
