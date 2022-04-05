@@ -1,0 +1,252 @@
+<section class="section-content padding-y bg">
+  <div class="container" *ngIf="productLoaded">
+    <article class="card">
+      <div class="card-body">
+        <div class="row">
+          <aside class="col-md-7">
+            <article class="gallery-wrap">
+              <div>
+                <div class="img-big-wrap">
+                  <a href="#"> <img [src]="productAndDiscount.imageUrl"></a>
+                </div> <!-- card img-big-wrap.// -->
+              </div>
+
+              <!-- <div class="thumbs-wrap">
+                  <a href="#" class="item-thumb"> <img src="assets/images/items/3.jpg"></a>
+                  <a href="#" class="item-thumb"> <img src="assets/images/items/3.jpg"></a>
+                  <a href="#" class="item-thumb"> <img src="assets/images/items/3.jpg"></a>
+                  <a href="#" class="item-thumb"> <img src="assets/images/items/3.jpg"></a>
+              </div> thumbs-wrap .// -->
+            </article> <!-- gallery-wrap .end// -->
+          </aside>
+          <main class="col-md-6">
+            <article>
+              <h3 class="title">{{productAndDiscount.productName}}</h3>
+              <div>
+              </div>
+              <hr>
+              <div class="mb-3">
+                <h6>Short description</h6>
+                <div>
+                  {{productAndDiscount.productName}}
+                  {{productAndDiscount.productSku}}
+                </div>
+                <div> {{productAndDiscount.productDescription}} </div>
+              </div>
+              <div class="form-group">
+              </div>
+              <div class="mb-3">
+                <div>
+                  <!--              <var class="price h4">${{productAndDiscount.productCost}}</var> <br>-->
+                  <h6 class="card-text">
+                    {{productAndDiscount.productCost-productAndDiscount.productCost*(productAndDiscount.discountPercentage
+                    / 100) | currency }}</h6>
+                  <h6 class="old-product-price" *ngIf="productAndDiscount.discountPercentage > 1.0">
+                    {{productAndDiscount.productCost | currency}} </h6>
+                </div>
+              </div> <!-- price-detail-wrap .// -->
+              <div class="mb-4">
+                <div class="counter" *ngIf="productAndDiscount.productQty > 0">
+                  <span class="down" (click)='decreaseCount()'>-</span>
+                  <input type="text" [(ngModel)]="counter" (change)="qtyChange()">
+                  <span class="up" (click)='increaseCount()'>+</span>
+                </div>
+                <span class="out-of-stock" *ngIf="productAndDiscount.productQty < 1">This item is out of stock</span>
+
+                <button class="btn btn-danger" (click)="goToCheckout()">Go to cart</button><br><br>
+                <h4 class="item-details ">Available: {{productAndDiscount.productQty}}</h4>
+
+                <!-- bye now button  -->
+                <div>
+
+                  <button type="button" class="btn btn-danger" (click)="toggleBuyNowForm()">Buy now</button>
+                  <div class="card m-5" style="width:30rem;"  *ngIf="toggleBuyNow">
+                    <div class="col-lg-9">
+                      <div>
+
+                        <h3 class="title ">Payment Method</h3>
+                        <div class="item categories ">
+
+                          <div class="form-check ">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                              value="option1" checked>
+
+                            <img src="../assets/image/icons8-visa-48.png " width="30px " hight="auto " alt=" "><label
+                              class="form-check-label " for="exampleRadios1 "></label>
+                            <img src="../assets/image/icons8-mastercard-48.png " width="30px " hight="auto "
+                              alt=" "><label class="form-check-label " for="exampleRadios1 "></label>
+                            <img src="../assets/image/icons8-american-express-48.png " width="30px " hight="auto "
+                              alt=" "><label class="form-check-label " for="exampleRadios1 "></label>
+                            <img src="../assets/image/discover.png " width="50px " hight="auto " alt=" "><label
+                              class="form-check-label " for="exampleRadios1 "></label>
+                          </div>
+                          <div class="form-check ">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                              value="option1" checked>
+                            <img src="../assets/image/icons8-paypal-48.png " width="30px " hight="auto " alt=" "><label
+                              class="form-check-label " for="exampleRadios1 "></label>
+                          </div>
+                          
+                        </div>
+                        <!-- ----------------------------------------------- -->
+<div class="total-items d-flex flex-row ">
+  <h6 class="item-title d-flex flex-row mr-auto ">item(s) total</h6><br>
+  <h6 class="item-amount d-flex flex-row ml-auto ">${{getItemsTotal() | number:'1.2-2' }}</h6>
+</div>
+<div class="yousaved d-flex flex-row ">
+  <h6 class="yousaved d-flex flex-row mr-auto  ">You saved</h6><br>
+  <h6 class="item-yousaved d-flex flex-row ml-auto  ">${{getUserSave() | number:'1.2-2' }}</h6>
+</div>
+<hr>
+
+<div class="Shipping d-flex flex-row ">
+  <h6 class="Shipping-title d-flex flex-row mr-auto ">Shipping</h6>
+  <h6 class="Shipping-state d-flex d-flex flex-row ml-auto ">Free</h6>
+</div>
+
+<div class="sidebar-item recent-posts ">
+  <button type="button " class="btn btn-danger btn-lg btn-block" (click)="proceedToCheckout()">Proceed to
+    checkout</button>
+
+</div>
+                      </div>
+                      <!-- End sidebar -->
+                    </div>
+                  </div>
+
+
+                </div>
+                <!-- bye now button  -->
+
+              </div>
+            </article> <!-- product-info-aside .// -->
+          </main> <!-- col.// -->
+        </div> <!-- row.// -->
+      </div> <!-- card-body.// -->
+    </article>
+
+    <h2 class="m-5">Submit Review</h2>
+    <article class="card mt-5">
+      <div class="card-body">
+        <div class="container">
+          <form (ngSubmit)="postReview()">
+
+            <label for="title">Review Title </label>
+            <input type="text" id="title" name="title" placeholder="Review Title:" [(ngModel)]="reviewForm.title">
+
+            <label for="rating">Rating</label>
+            <span *ngFor="let n of starRating()" type="hidden" class="fa fa-star star-active"
+              (click)="updateReviewRating(n)"></span>
+            <span *ngFor="let n of negativeStarRating()" type="hidden" class="fa fa-star star-inactive"
+              (click)="updateReviewRating(n + this.reviewForm.rating)"></span>
+
+
+            <br>
+            <br>
+
+            <label for="subject">Review</label>
+            <textarea id="subject" name="subject" placeholder="Write your review here" style="height:200px"
+              [(ngModel)]="reviewForm.review"></textarea>
+
+            <input type="submit" value="Submit">
+
+          </form>
+        </div>
+        <hr>
+        <div class="container-fluid px-1 py-5 mx-auto">
+          <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
+              <div class="card">
+                <div class="row justify-content-left d-flex">
+                  <div class="col-md-4 d-flex flex-column">
+                    <div class="rating-box">
+                      <h1 class="pt-4">{{averageRating}}</h1>
+                      <p class="">out of 5</p>
+                    </div>
+                    <div>
+                      <span *ngFor="let n of Rating(averageRating)" class="fa fa-star star-active "></span>
+                      <span *ngFor="let n of negativeRating(averageRating)" class="fa fa-star star-inactive "></span>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="rating-bar0 justify-content-center">
+                      <table class="text-left mx-auto">
+                        <tr>
+                          <td class="rating-label">Excellent</td>
+                          <td class="rating-bar">
+                            <div class="bar-container">
+                              <div class="bar-5"></div>
+                            </div>
+                          </td>
+                          <td class="text-right">{{reviewRatings.one}}</td>
+                        </tr>
+                        <tr>
+                          <td class="rating-label">Good</td>
+                          <td class="rating-bar">
+                            <div class="bar-container">
+                              <div class="bar-4"></div>
+                            </div>
+                          </td>
+                          <td class="text-right">{{reviewRatings.four}}</td>
+                        </tr>
+                        <tr>
+                          <td class="rating-label">Average</td>
+                          <td class="rating-bar">
+                            <div class="bar-container">
+                              <div class="bar-3"></div>
+                            </div>
+                          </td>
+                          <td class="text-right">{{reviewRatings.three}}</td>
+                        </tr>
+                        <tr>
+                          <td class="rating-label">Poor</td>
+                          <td class="rating-bar">
+                            <div class="bar-container">
+                              <div class="bar-2"></div>
+                            </div>
+                          </td>
+                          <td class="text-right">{{reviewRatings.two}}</td>
+                        </tr>
+                        <tr>
+                          <td class="rating-label">Terrible</td>
+                          <td class="rating-bar">
+                            <div class="bar-container">
+                              <div class="bar-1"></div>
+                            </div>
+                          </td>
+                          <td class="text-right">{{reviewRatings.one}}</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngFor="let review of reviews" class="card">
+                <div class="row d-flex">
+                  <!--                  <div class=""> <img class="profile-pic"> </div>-->
+                  <div class="d-flex flex-column">
+                    <h3 class="mt-2 mb-0">{{review.firstName + ' ' + review.lastName}}</h3>
+                    <div>
+                      <p class="text-left">
+                        <span class="text-muted">{{review.rating}}</span>
+                        <span *ngFor="let n of Rating(review.rating)" class="material-icons">grade</span>
+                        <span *ngFor="let n of negativeRating(review.rating)" class="material-icons">grade</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="ml-auto">
+                    <p class=" pt-5 pt-sm-3">{{review.date}}</p>
+                  </div>
+                </div>
+                <div class="row text-left">
+                  <h4 class="blue-text mt-3">{{review.title}}</h4>
+                  <p class="content">{{review.review}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- card-body.// -->
+    </article>
+  </div>
+</section>
