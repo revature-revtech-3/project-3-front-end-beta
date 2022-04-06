@@ -17,6 +17,7 @@ import { OrderHistoryComponent } from './shop/order-history/order-history.compon
 import { WishlistComponent } from './wishlist-page/wishlist/wishlist.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -45,6 +46,7 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     MatSidenavModule,
     MatIconModule,
+    MatCardModule,
    
   
     
