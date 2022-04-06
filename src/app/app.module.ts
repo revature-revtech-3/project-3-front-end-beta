@@ -36,6 +36,7 @@ import { MaterialModule } from './material/material.module';
     ForgetPasswordComponent,
     ResetPasswordComponent,
 
+
   ],
   imports: [
     BrowserModule,
