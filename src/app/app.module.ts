@@ -15,6 +15,11 @@ import { ProductPageComponent } from './shop/product-page/product-page.component
 import { ConfirmationCheckoutComponent } from './shop/confirmation-checkout/confirmation-checkout.component';
 import { OrderHistoryComponent } from './shop/order-history/order-history.component';
 import { WishlistComponent } from './wishlist-page/wishlist/wishlist.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
+
+
+
 
 @NgModule({
   declarations: [
@@ -38,6 +43,16 @@ import { WishlistComponent } from './wishlist-page/wishlist/wishlist.component';
     ReactiveFormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatSidenavModule,
+    MatIconModule,
+   
+  
+    
+    
+
+  
+ 
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
