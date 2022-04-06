@@ -18,6 +18,8 @@ import { WishlistComponent } from './wishlist-page/wishlist/wishlist.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 
@@ -47,6 +49,8 @@ import {MatCardModule} from '@angular/material/card';
     MatSidenavModule,
     MatIconModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatToolbarModule,
    
   
     
