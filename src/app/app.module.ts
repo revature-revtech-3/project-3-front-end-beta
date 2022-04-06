@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -38,6 +39,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ConfirmationCheckoutComponent,
     OrderHistoryComponent,
     WishlistComponent,
+   
+    
+
   ],
   imports: [
     BrowserModule,
@@ -46,11 +50,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ReactiveFormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatToolbarModule,
+    BrowserAnimationsModule,
+  
    
   
     
