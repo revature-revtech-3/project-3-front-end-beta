@@ -26,12 +26,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { Wishlist } from './models/wishlist.model';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.component';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.compon
     ForgetPasswordComponent,
     ResetPasswordComponent,
     WishlistComponent,
+  
     
 
   ],
