@@ -14,7 +14,9 @@ import { CartAndItemsService } from "../../services/cart-and-items.service";
   styleUrls: ['./store-product.component.scss']
 })
 export class StoreProductComponent implements OnInit {
-  //Arrays, Objects, & string
+  // Sidebar Toggle
+  // opened: boolean = false;
+  // Arrays, Objects, & string
   allProducts: Product[] = [];
   allDiscountProducts: ProductAndDiscount[] = [];
   indexArray: number[] = [];
