@@ -29,6 +29,7 @@ $rev-tech-theme: mat.define-light-theme((color: (primary: $rev-tech-primary,
 // that you are using.
 @include mat.all-component-themes($rev-tech-theme);
 
+//Setting background and foreground theme
 $rev-tech-dark-theme: mat.define-dark-theme((color: (primary: $rev-tech-primary,
       accent: $rev-tech-accent,
       warn: $rev-tech-warn,
