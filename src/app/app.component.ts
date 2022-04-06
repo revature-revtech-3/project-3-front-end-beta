@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { TokenStorageService } from './services/token-storage.service';
 
 @Component({
@@ -11,10 +12,23 @@ export class AppComponent {
   title = 'rev-tech';
   USER_KEY = 'auth-user';
 
+  //Angualr Material
+  @HostBinding('class') className = '';
+
+  toggleControl = new FormControl(false);
+
 
   constructor(private tokenstorage: TokenStorageService) {
     if (window.sessionStorage.getItem(this.USER_KEY)!=null){
      this.tokenstorage.isLoggedIn=true;
     }   
   }
+
+  //Angualr Material
+  ngOnInit() : void {
+    this.toggleControl.valueChanges.subscribe(val => {
+      this.className = val ? 'darkMode' : '';
+    });
+  }
 }
+
