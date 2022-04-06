@@ -1,2 +1,9 @@
 <app-header></app-header>
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+<router-outlet>
+    <mat-icon class="mr-8">brightness_5</mat-icon>
+    <mat-slide-toggle [formControl]="toggleControl" class="mr-8">
+    </mat-slide-toggle>
+    <mat-icon>bedtime</mat-icon>
+</router-outlet>
+</mat-sidenav-container>

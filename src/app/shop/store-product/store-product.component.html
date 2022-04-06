@@ -1,4 +1,4 @@
-<div class="search-container">
+<mat-toolbar-row class="search-container">
   <form action="#" method="" id="search_form">
       <div class="sb-example-1">
           <div class="search">
@@ -10,26 +10,35 @@
           </div>
       </div>
   </form>
-</div>
+<!-- </div> -->
+</mat-toolbar-row>
+
+
+
 
 <!-- The sidebar -->
+<mat-sidenav-container>
+<mat-sidenav mode="side" opened>
 <div class="sidebar">
-  <a (click)="unfilter()" id="filterremove" class="active">Remove Filter</a>
-  <a (click)="filterByCategory('Phones')">Phones</a>
-  <a (click)="filterByCategory('Laptops')">Laptops</a>
-  <a (click)="filterByCategory('Video Games')">Video Games</a>
-  <a (click)="filterByCategory('TV & Video')">TV & Video</a>
-  <a (click)="filterByCategory('Headphones')">Headphones</a>
-  <a (click)="filterByCategory('Cameras')">Cameras</a>
-  <a (click)="filterByDiscount()">Discounted Items</a>
+    <button mat-button (click)="unfilter()" id="filterremove" class="active">Remove Filter</button>
+    <button mat-button (click)="filterByCategory('Phones')">Phones</button>
+    <button mat-button (click)="filterByCategory('Laptops')">Laptops</button>
+    <button mat-button (click)="filterByCategory('Video Games')">Video Games</button>
+    <button mat-button (click)="filterByCategory('TV & Video')">TV & Video</button>
+    <button mat-button (click)="filterByCategory('Headphones')">Headphones</button>
+    <button mat-button (click)="filterByCategory('Cameras')">Cameras</button>
+    <button mat-button (click)="filterByDiscount()">Discounted Items</button>
 </div>
+</mat-sidenav>
+
+
 
 <!-- Page content -->
-<div class='container-fluid'>
+<div class="container-fluid mat-app-background">
   <div class="content">
     <div class="card-deck" *ngIf="returnQuery()">
       <div class="wrapper">
-      <div class="card" *ngFor="let row of searchedProducts(returnQuery())" >
+      <mat-card class="card" *ngFor="let row of searchedProducts(returnQuery())" >
           <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
           <div class="card-body">
               <p class="card-text"></p>
@@ -41,11 +50,11 @@
               <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
               <small class="text-muted">{{row.productSku}}</small>
               </div>
-          </div>
+          </mat-card>
       </div>
       &nbsp;
       <div class="wrapper">
-        <div class="card" *ngFor="let row of searchedDiscounts(returnQuery())">
+        <mat-card class="card" *ngFor="let row of searchedDiscounts(returnQuery())">
           <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
           <div class="card-body">
             <p class="card-text"></p>
@@ -60,12 +69,12 @@
             <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
             <small class="text-muted">{{row.productSku}}</small>
           </div>
-        </div>
+        </mat-card>
       </div>
     </div>
     <div class="card-deck" *ngIf="filterFlag">
       <div class="wrapper">
-      <div class="card" *ngFor="let row of filteredProducts" >
+      <mat-card class="card" *ngFor="let row of filteredProducts" >
           <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
           <div class="card-body">
               <p class="card-text"></p>
@@ -77,11 +86,11 @@
               <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
               <small class="text-muted">{{row.productSku}}</small>
               </div>
-          </div>
+          </mat-card>
       </div>
       &nbsp;
       <div class="wrapper">
-        <div class="card" *ngFor="let row of filteredDiscounts">
+        <mat-card class="card" *ngFor="let row of filteredDiscounts">
           <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
           <div class="card-body">
             <p class="card-text"></p>
@@ -96,12 +105,12 @@
             <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
             <small class="text-muted">{{row.productSku}}</small>
           </div>
-        </div>
+        </mat-card>
       </div>
     </div>
     <div class="card-deck" *ngIf="!hideFlag">
       <div class="wrapper" *ngIf="!discountOnlyFlag">
-        <div class="card" *ngFor="let row of allProducts">
+        <mat-card class="card" *ngFor="let row of allProducts">
           <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
           <div class="card-body">
             <p class="card-text"></p>
@@ -114,11 +123,11 @@
 
             <small class="text-muted">{{row.productSku}}</small>
           </div>
-        </div>
+        </mat-card>
       </div>
       &nbsp;
       <div class="wrapper">
-        <div class="card" *ngFor="let row of allDiscountProducts">
+        <mat-card class="card" *ngFor="let row of allDiscountProducts">
           <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
           <div class="card-body">
             <p class="card-text"></p>
@@ -133,11 +142,13 @@
             <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
             <small class="text-muted">{{row.productSku}}</small>
           </div>
-        </div>
+        </mat-card>
       </div>
     </div>
   </div>
 </div>
+</mat-sidenav-container>
+
 
 <div class="footer">
   <p>Need Help? <a href="/product" style="color: #dc3545; font-weight: bold;">Live Chat <i class='fas fa-comment-dots' style="color: white;"></i></a></p>

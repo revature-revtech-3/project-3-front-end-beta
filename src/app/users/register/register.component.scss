@@ -1,4 +1,9 @@
-label {
+.col-md-12 {
+  height: 100rem;
+  overflow: hidden;
+}
+
+  label {
     display: block;
     margin-top: 10px;
   }
@@ -9,7 +14,6 @@ label {
   }
   
   .card {
-    background-color: #f7f7f7;
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
     margin-top: 50px;
@@ -29,4 +33,4 @@ label {
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-  }
+  } 
