@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {Review, UserReview} from "../../models/review.model";
 import {ReviewService} from "../../services/review.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { WishlistAndItemsService } from 'src/app/services/wishlist-and-items.service';
+import { WishlistAndItems, WishlistItem } from 'src/app/models/wishlist.model';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
@@ -27,6 +29,8 @@ export class ProductPageComponent implements OnInit {
   userId: any = 0;
   cartAndItems: CartAndItems = new CartAndItems();
   item: CartItem = new CartItem();
+  wishlistAndItems: WishlistAndItems = new WishlistAndItems();
+  wishItem: WishlistItem = new WishlistItem();
   productId: number = 0;
   counter = 0;
   title = "Initiating Testing";
@@ -45,6 +49,7 @@ export class ProductPageComponent implements OnInit {
   constructor(private productAndDiscountService: ProductAndDiscountService,
               private cartItemService: CartItemService,
               private cartAndItemsService: CartAndItemsService,
+              private wishlistAndItemsService: WishlistAndItemsService,
               private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private tokenService: TokenStorageService,
@@ -93,9 +98,33 @@ export class ProductPageComponent implements OnInit {
       }
     });
   }
-
   goToCheckout() {
     this.router.navigate(['checkout']);
+  }
+
+  loadDataWishlist() {
+    this.productAndDiscountService.getProductAndDiscountService(this.productId).subscribe({
+      next: response => {
+        this.productAndDiscount = response;
+        this.productLoaded = true;
+      },
+      error: error => {
+      }
+    });
+    // if(this.user.userId <= 0) this.user.userId = 1; //Remove this line if not testing
+    this.wishlistAndItemsService.getWishlistAndItemsService(this.userId).subscribe({
+      next: response => {
+        this.wishlistAndItems = response;
+
+      },
+      error: error => {
+      }
+    });
+  }
+
+
+  goToWishlist() {
+    this.router.navigate(['wishlist']);
   }
 
   changeQuantity(item: ItemProductAndDiscount, event: any) {

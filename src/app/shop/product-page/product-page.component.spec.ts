@@ -12,6 +12,10 @@ import {Product, ProductAndDiscount} from "../../models/product.model";
 import {CartItem} from "../../models/cart.model";
 import {CartItemService} from "../../services/cart-item.service";
 
+import { WishlistItem } from 'src/app/models/wishlist.model';
+import { WishlistService } from 'src/app/services/wishlist.service';
+import { WishlistItemService } from 'src/app/services/wishlist-item.service';
+
 describe('ProductPageComponent', () => {
   let component: ProductPageComponent;
   let fixture: ComponentFixture<ProductPageComponent>;
@@ -21,19 +25,21 @@ describe('ProductPageComponent', () => {
   let formTest: NgControl;
   let productService: ProductService;
   let cartItemService: CartItemService;
+  let wishlistItemService: WishlistItemService;
 
   beforeEach(async () => {
 
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule, ReactiveFormsModule, FormsModule],
       declarations: [ ProductPageComponent ],
-      providers: [ProductAndDiscountService, CartItemService, FormBuilder, NgControl]
+      providers: [ProductAndDiscountService, CartItemService, FormBuilder, NgControl, WishlistItemService]
     })
       .compileComponents();
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
     productAndDiscountService = TestBed.inject(ProductAndDiscountService);
     cartItemService = TestBed.inject(CartItemService);
+    wishlistItemService = TestBed.inject(WishlistItemService);
     formTest = TestBed.inject(NgControl);
   });
 
@@ -161,6 +167,77 @@ describe('ProductPageComponent', () => {
       require[0].flush(expectedItem);
     });
 
+  });
+
+  describe('#addToWishlist',() =>{
+    let addedItem: WishlistItem;
+    let expectedItem: WishlistItem;
+    beforeEach(() => {
+
+      expectedItem = {
+        wishlistItemId: 1,
+        wishlistId: 2,
+        productId: 3,
+        wishlistQty: 4
+      }
+
+      addedItem = {
+        wishlistItemId: 1,
+        wishlistId: 2,
+        productId: 3,
+        wishlistQty: 4
+      }
+
+
+    });
+
+    //Test case 1
+    it('should POST expected item(s)', () => {
+      wishlistItemService.addNewItemService(addedItem).subscribe(
+        item => expect(item).toEqual(addedItem,'should  add wishlist item'),
+        fail
+      );
+
+      const require = httpTestingController.match(wishlistItemService.baseUrl + "/post");
+      expect(require[0].request.method).toEqual('POST');
+      require[0].flush(expectedItem);
+    });
+
+
+  });
+
+  describe('#removeFromWishlist',() =>{
+    let addedItem: WishlistItem;
+    let expectedItem: WishlistItem;
+    beforeEach(() => {
+
+      expectedItem = {
+        wishlistItemId: 1,
+        wishlistId: 2,
+        productId: 3,
+        wishlistQty: 4
+      }
+
+      addedItem = {
+        wishlistItemId: 1,
+        wishlistId: 2,
+        productId: 3,
+        wishlistQty: 4
+      }
+
+
+    });
+
+    it('should update expected item(s)', () => {
+      wishlistItemService.addNewItemService(addedItem).subscribe(
+        item => expect(item).toEqual(addedItem,'should  add wishlist item'),
+        fail
+      );
+
+      const require = httpTestingController.match(wishlistItemService.baseUrl + "/post");
+      expect(require[0].request.method).toEqual('POST');
+      require[0].flush(expectedItem);
+    });
 
   });
 

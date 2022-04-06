@@ -1,0 +1,19 @@
+GIT Commands
+-------------
+
+6. git config --global user.name "John Doe"
+7. git config --global user.email johndoe@example.com
+
+1. git init --------> this creates a local git repository in the folder
+2. git add . --------> adds the files to the staging area
+3. git commit -m "first commit" ---------> this commits your files from staging area to local repo
+4. git remote add origin https://github.com/DeveloperOneDemo/Notes.git -------> specifying the remote github url to which we want to push the code
+
+git remote set-url origin https://github.com/DeveloperOneDemo/NotesRedo.git
+
+5. git push -u origin master
+
+
+
+https://github.com/DeveloperOneDemo/NotesRedo.git
+

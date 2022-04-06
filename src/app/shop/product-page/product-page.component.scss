@@ -2,11 +2,13 @@ i {
   font-size: 22px;
   cursor: pointer;
 }
+
 .counter {
   width: 150px;
 
   display: flex;
 }
+
 .counter input {
   width: 50px;
   border: 0;
@@ -18,6 +20,7 @@ i {
   appearance: none;
   outline: 0;
 }
+
 .counter span {
   display: block;
   font-size: 25px;
@@ -26,9 +29,11 @@ i {
   color: #e53935;
   user-select: none;
 }
+
 .old-product-price {
   text-decoration: line-through;
 }
+
 body {
   background-image: linear-gradient(#4a148c, #e53935);
   background-repeat: no-repeat;
@@ -47,7 +52,7 @@ a:hover {
 
 .card {
   border-radius: 5px;
-  background-color: #fff;
+  //background-color: #fff;
   padding-left: 60px;
   padding-right: 60px;
   margin-top: 30px;
@@ -76,7 +81,7 @@ a:hover {
 
 .bar-container {
   width: 100%;
-  background-color: #f1f1f1;
+  //background-color: #f1f1f1;
   text-align: center;
   color: white;
   border-radius: 20px;
@@ -158,6 +163,7 @@ td {
 .vote {
   cursor: pointer;
 }
+
 /* Style inputs with type="text", select elements and textareas */
 input[type="text"],
 select,
@@ -170,6 +176,17 @@ textarea {
   margin-top: 6px; /* Add a top margin */
   margin-bottom: 16px; /* Bottom margin */
   resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+.review-title {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.review-content {
+  width: 100%;
+  height: 200px;
 }
 
 /* Style the submit button with a specific background color etc */
