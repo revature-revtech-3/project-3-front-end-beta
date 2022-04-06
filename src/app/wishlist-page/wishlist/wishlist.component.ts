@@ -51,7 +51,7 @@ export class WishlistComponent implements OnInit {
 }
 
 displayAllWishlists() {
-  this.wishlistAndItemsService.getWishlistAndItemsWithUserIdService(this.userId).subscribe((response) => {
+  this.wishlistAndItemsService.getWishlistAndItemsService(this.userId).subscribe((response) => {
     this.wishlistAndItems = response;
   }, error => {
     this.errorMsg = 'There was some internal error! Please try again later!';
