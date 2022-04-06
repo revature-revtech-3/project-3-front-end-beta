@@ -193,7 +193,7 @@ describe('ProductPageComponent', () => {
 
     //Test case 1
     it('should POST expected item(s)', () => {
-      wishlistItemService.addNewItemService(addedItem).subscribe(
+      wishlistItemService.addNewItemServiceWishlist(addedItem).subscribe(
         item => expect(item).toEqual(addedItem,'should  add wishlist item'),
         fail
       );
@@ -229,7 +229,7 @@ describe('ProductPageComponent', () => {
     });
 
     it('should update expected item(s)', () => {
-      wishlistItemService.addNewItemService(addedItem).subscribe(
+      wishlistItemService.addNewItemServiceWishlist(addedItem).subscribe(
         item => expect(item).toEqual(addedItem,'should  add wishlist item'),
         fail
       );
