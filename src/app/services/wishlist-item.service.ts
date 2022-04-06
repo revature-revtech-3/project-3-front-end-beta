@@ -26,15 +26,15 @@ export class WishlistItemService {
   }
 }
 
-addNewItemService(item: WishlistItem): Observable<WishlistItem> {
+addNewItemServiceWishlist(item: WishlistItem): Observable<WishlistItem> {
   return this.http.post<WishlistItem>(this.baseUrl + "add/items", item, this.header);
 }
 
-updateItemService(item: WishlistItem): Observable<WishlistItem> {
+updateItemServiceWishlist(item: WishlistItem): Observable<WishlistItem> {
   return this.http.put<WishlistItem>(this.baseUrl + "update/items", item, this.header);
 }
 
-removeItemService(itemId: number): Observable<boolean> {
+removeItemServiceWishlist(itemId: number): Observable<boolean> {
   return this.http.delete<boolean>(this.baseUrl + "/" + itemId + "/delete", this.header);
 }
 

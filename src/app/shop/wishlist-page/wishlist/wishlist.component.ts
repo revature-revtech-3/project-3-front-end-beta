@@ -10,6 +10,12 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { WishlistAndItemsService } from 'src/app/services/wishlist-and-items.service';
 import { WishlistItemService } from 'src/app/services/wishlist-item.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
+import { CommonModule } from '@angular/common';
+
+
+
+
+
 
 @Component({
   selector: 'app-wishlist',
@@ -79,8 +85,26 @@ calculateTotalCost(item: ItemProductAndDiscount, calcSingleItem: any) {
   return item.wishlistQty * calcSingleItem(item.productAndDiscount);
 }
 
+getItemsTotal(): any {
+  let total = 0;
+  this.wishlistAndItems.wishlistItems.forEach((value, index) => {
+    total += this.calculateTotalCost(value, this.calculateDiscountedItemCost);
+  });
+
+  return total.toFixed(2);
+}
+
+getUserSave(): any {
+  let save = 0;
+  this.wishlistAndItems.wishlistItems.forEach((value, index) => {
+    save += value.productAndDiscount.productCost * value.wishlistQty;
+  });
+  return (save - this.getItemsTotal()).toFixed(2)
+
+}
+
 remove(productId: number) {
-  this.wishlistItemService.removeItemService(productId).subscribe({
+  this.wishlistItemService.removeItemServiceWishlist(productId).subscribe({
     next: response => {
       this.displayAllWishlists();
     },
@@ -88,12 +112,44 @@ remove(productId: number) {
     }
   })
 }
+changeQuantity(item: ItemProductAndDiscount) {
+  let newItem = new WishlistItem();
+  newItem.wishlistItemId = item.wishlistItemId;
+  newItem.wishlistId = item.wishlistId;
+  newItem.productId = item.productId;
+  newItem.wishlistQty = item.wishlistQty;
+  this.wishlistItemService.updateItemServiceWishlist(newItem).subscribe({
+    next: response => {
 
-
-
-
-
-
-
-
+      this.displayAllWishlists();
+    },
+    error: err => {
+    }
+  });
 }
+
+proceedToCheckout() {
+  this.wishlist.wishlistId = this.wishlistAndItems.wishlistId
+  this.wishlist.userId = this.wishlistAndItems.userId
+  this.wishlist.wishlistTotal = parseInt(this.getItemsTotal());
+ 
+
+  this.wishlistService.updateWishlistService(this.wishlist).subscribe((response) => {
+    response;
+  }, error => {
+    this.errorMsg = 'There was some internal error! Please try again later!';
+  });
+
+  
+
+
+
+
+
+
+
+
+
+
+
+}}
