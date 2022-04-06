@@ -131,6 +131,13 @@ export class ProductPageComponent implements OnInit {
     this.router.navigate(['checkout']);
   }
 
+  goToWishlist() {
+    this.router.navigate(['wishlist']);
+  }
+  
+
+  
+
   changeQuantity(item: ItemProductAndDiscount, event: any) {
     let newItem = new CartItem();
     newItem.cartItemId = item.cartItemId;
