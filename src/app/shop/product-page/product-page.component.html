@@ -1,6 +1,6 @@
 <section class="section-content padding-y bg">
   <div class="container" *ngIf="productLoaded">
-    <article class="card">
+    <mat-card class="card">
       <div class="card-body">
         <div class="row">
           <aside class="col-md-7">
@@ -60,7 +60,7 @@
                 <div>
 
                   <button type="button" class="btn btn-danger" (click)="toggleBuyNowForm()">Buy now</button>
-                  <div class="card m-5" style="width:30rem;"  *ngIf="toggleBuyNow">
+                  <div class="card m-5" style="width:30rem;" *ngIf="toggleBuyNow">
                     <div class="col-lg-9">
                       <div>
 
@@ -86,29 +86,30 @@
                             <img src="../assets/image/icons8-paypal-48.png " width="30px " hight="auto " alt=" "><label
                               class="form-check-label " for="exampleRadios1 "></label>
                           </div>
-                          
+
                         </div>
                         <!-- ----------------------------------------------- -->
-<div class="total-items d-flex flex-row ">
-  <h6 class="item-title d-flex flex-row mr-auto ">item(s) total</h6><br>
-  <h6 class="item-amount d-flex flex-row ml-auto ">${{getItemsTotal() | number:'1.2-2' }}</h6>
-</div>
-<div class="yousaved d-flex flex-row ">
-  <h6 class="yousaved d-flex flex-row mr-auto  ">You saved</h6><br>
-  <h6 class="item-yousaved d-flex flex-row ml-auto  ">${{getUserSave() | number:'1.2-2' }}</h6>
-</div>
-<hr>
+                        <div class="total-items d-flex flex-row ">
+                          <h6 class="item-title d-flex flex-row mr-auto ">item(s) total</h6><br>
+                          <h6 class="item-amount d-flex flex-row ml-auto ">${{getItemsTotal() | number:'1.2-2' }}</h6>
+                        </div>
+                        <div class="yousaved d-flex flex-row ">
+                          <h6 class="yousaved d-flex flex-row mr-auto  ">You saved</h6><br>
+                          <h6 class="item-yousaved d-flex flex-row ml-auto  ">${{getUserSave() | number:'1.2-2' }}</h6>
+                        </div>
+                        <hr>
 
-<div class="Shipping d-flex flex-row ">
-  <h6 class="Shipping-title d-flex flex-row mr-auto ">Shipping</h6>
-  <h6 class="Shipping-state d-flex d-flex flex-row ml-auto ">Free</h6>
-</div>
+                        <div class="Shipping d-flex flex-row ">
+                          <h6 class="Shipping-title d-flex flex-row mr-auto ">Shipping</h6>
+                          <h6 class="Shipping-state d-flex d-flex flex-row ml-auto ">Free</h6>
+                        </div>
 
-<div class="sidebar-item recent-posts ">
-  <button type="button " class="btn btn-danger btn-lg btn-block" (click)="proceedToCheckout()">Proceed to
-    checkout</button>
+                        <div class="sidebar-item recent-posts ">
+                          <button type="button " class="btn btn-danger btn-lg btn-block"
+                            (click)="proceedToCheckout()">Proceed to
+                            checkout</button>
 
-</div>
+                        </div>
                       </div>
                       <!-- End sidebar -->
                     </div>
@@ -123,10 +124,10 @@
           </main> <!-- col.// -->
         </div> <!-- row.// -->
       </div> <!-- card-body.// -->
-    </article>
+    </mat-card>
 
     <h2 class="m-5">Submit Review</h2>
-    <article class="card mt-5">
+    <mat-card class="card mt-5">
       <div class="card-body">
         <div class="container">
           <form (ngSubmit)="postReview()">
@@ -247,6 +248,6 @@
           </div>
         </div>
       </div> <!-- card-body.// -->
-    </article>
+    </mat-card>
   </div>
 </section>
