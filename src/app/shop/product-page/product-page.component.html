@@ -10,13 +10,6 @@
                   <a href="#"> <img [src]="productAndDiscount.imageUrl"></a>
                 </div> <!-- card img-big-wrap.// -->
               </div>
-
-              <!-- <div class="thumbs-wrap">
-                  <a href="#" class="item-thumb"> <img src="assets/images/items/3.jpg"></a>
-                  <a href="#" class="item-thumb"> <img src="assets/images/items/3.jpg"></a>
-                  <a href="#" class="item-thumb"> <img src="assets/images/items/3.jpg"></a>
-                  <a href="#" class="item-thumb"> <img src="assets/images/items/3.jpg"></a>
-              </div> thumbs-wrap .// -->
             </article> <!-- gallery-wrap .end// -->
           </aside>
           <main class="col-md-6">
@@ -63,7 +56,7 @@
                 <div>
 
                   <button type="button" class="btn btn-danger" (click)="toggleBuyNowForm()">Buy now</button>
-                  <mat-card class="card m-5" style="width:30rem;"  *ngIf="toggleBuyNow">
+                  <mat-card class="card m-5" style="width:30rem;" *ngIf="toggleBuyNow">
                     <div class="col-lg-9">
                       <div>
 
@@ -94,11 +87,15 @@
                         <!-- ----------------------------------------------- -->
                         <div class="total-items d-flex flex-row ">
                           <h6 class="item-title d-flex flex-row mr-auto ">item(s) total</h6><br>
-                          <h6 class="item-amount d-flex flex-row ml-auto ">${{getItemsTotal() | number:'1.2-2' }}</h6>
+                          <h6 class="item-amount d-flex flex-row ml-auto ">
+                            ${{productAndDiscount.productCost-productAndDiscount.productCost*(productAndDiscount.discountPercentage
+                            / 100) | currency }}</h6>
                         </div>
                         <div class="yousaved d-flex flex-row ">
                           <h6 class="yousaved d-flex flex-row mr-auto  ">You saved</h6><br>
-                          <h6 class="item-yousaved d-flex flex-row ml-auto  ">${{getUserSave() | number:'1.2-2' }}</h6>
+                          <h6 class="item-yousaved d-flex flex-row ml-auto  ">
+                            ${{productAndDiscount.productCost*(productAndDiscount.discountPercentage/100)| currency}}
+                          </h6>
                         </div>
                         <hr>
 
@@ -177,7 +174,7 @@
                       <table class="text-left mx-auto">
                         <tr>&nbsp;
 
-                          <td  class="rating-label">Excellent</td>
+                          <td class="rating-label">Excellent</td>
                           <td class="rating-bar">
                             <div class="bar-container">
                               <div class="bar-5"></div>
