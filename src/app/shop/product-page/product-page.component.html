@@ -1,5 +1,5 @@
 <section class="section-content padding-y bg">
-  <div class="container" *ngIf="productLoaded">
+  <div class="container"  *ngIf="productLoaded">
     <mat-card class="card">
       <div class="card-body">
         <div class="row">
@@ -8,6 +8,7 @@
               <div>
                 <div class="img-big-wrap">
                   <a href="#"> <img [src]="productAndDiscount.imageUrl"></a>
+                 
                 </div> <!-- card img-big-wrap.// -->
               </div>
 
@@ -21,7 +22,8 @@
           </aside>
           <main class="col-md-6">
             <article>
-              <h3 class="title">{{productAndDiscount.productName}}</h3>
+              <h3 class="title">{{productAndDiscount.productName}}
+              </h3>
               <div>
               </div>
               <hr>
@@ -53,7 +55,8 @@
                 </div>
                 <span class="out-of-stock" *ngIf="productAndDiscount.productQty < 1">This item is out of stock</span>
 
-                <button class="btn btn-danger" (click)="goToWishlist()">Go to wishlist</button><br><br>
+                <button class="btn btn-danger" (click)="goToWishlist()">Add to wishlist</button><br><br>     
+                <!-- <mat-icon>cake</mat-icon> -->
                 <h4 class="item-details ">Available: {{productAndDiscount.productQty}}</h4>
 
                 <button class="btn btn-danger" (click)="goToCheckout()">Go to cart</button><br><br>
