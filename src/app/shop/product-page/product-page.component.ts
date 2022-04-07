@@ -370,7 +370,7 @@ export class ProductPageComponent implements OnInit {
       })
     });
   }
-//getItemsTotal been moved
+
   getItemsTotal(): any {
   let total = 0;
   this.buyNowCartAndItems.cartItems.forEach((value, index) => {
@@ -440,5 +440,7 @@ export class ProductPageComponent implements OnInit {
       }
     })
   }
+
+
 
 }
