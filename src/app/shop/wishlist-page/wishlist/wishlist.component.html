@@ -1,0 +1,81 @@
+======= Wishlist=======
+<section id="wishlist" class="wishlist">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 entries">
+          
+          <div class="entry" *ngFor="let wishlist of wishlistAndItems.wishlistItems">
+            <div class="entry-details  d-flex flex-row">
+              <div class="d-flex flex-column my-cloumn1">
+                <div class="entry-img">
+                  <img [src]="wishlist.productAndDiscount.imageUrl" width=300px height=" auto " class="img-fluid ">
+                </div>
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="my-cloumn2 d-flex flex-column align-items-start ">
+                <h5 class="entry-title ">{{wishlist.productAndDiscount.productDescription}}</h5>
+                <div class="entry-content ">
+                  <h4 class="item-details ">Category: {{wishlist.productAndDiscount.productCategory}}
+                  </h4><br>
+                  <h4 class="item-details ">Available: {{wishlist.productAndDiscount.productQty}}</h4>
+                  <br>
+                  <div class=" contact-shop ml-auto d-flex flex-row align-item-start ">
+                    <button class="remove " (click)="remove(wishlist.wishlistItemId)">Remove</button>
+                  </div>
+                </div>
+                <div class="entry-meta ">
+                </div>
+              </div>
+              <div class="entry-item-cost d-flex flex-column align-item-end my-cloumn3 active ">
+                <div class="contact-shop ml-auto d-flex flex-row ">
+                  <h6>Sold by Rev-Tech.com</h6>
+                </div>
+                <div class="d-flex flex-row align-items-start ">
+
+
+                </div>
+                <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto "
+                  *ngIf=" wishlist.productAndDiscount.discountPercentage < 1.0 ">
+                  ${{calculateTotalCost(wishlist, calculateSingleItemCost) | number :'1.2-2'}} </h6>
+                <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto "
+                  *ngIf=" wishlist.productAndDiscount.discountPercentage > 1.0 ">
+                  ${{calculateTotalCost(wishlist, calculateDiscountedItemCost) | number :'1.2-2'}} </h6>
+  
+                <h6 class="item-old-price" *ngIf=" wishlist.productAndDiscount.discountPercentage > 1.0 ">
+                  $ {{calculateTotalCost(wishlist, calculateSingleItemCost) | number :'1.2-2'}}</h6><br>
+                <h6 class="item-old-price" *ngIf=" wishlist.productAndDiscount.discountPercentage < 1.0 "
+                  [ngStyle]="{'visibility': 'hidden'}">
+                  $ {{wishlist.productAndDiscount.productCost}}</h6><br>
+  
+  
+                <div class="item-decrription " *ngIf="wishlist.productAndDiscount.discountPercentage > 1.0 ">
+                  {{"Discounted for: " + wishlist.productAndDiscount.discountDescription }}</div> <br>
+  
+                <div class="item-decrription " *ngIf="wishlist.productAndDiscount.discountPercentage < 1.0"
+                  [ngStyle]="{'visibility': 'hidden'}">
+                  {{wishlist.productAndDiscount.discountDescription }}</div> <br>
+  
+                <h6 class="item-sale " *ngIf=" wishlist.productAndDiscount.discountPercentage < 1.0 "
+                  [ngStyle]="{'visibility': 'hidden'}">
+                </h6>
+  
+                <h6 class="item-sale " *ngIf=" wishlist.productAndDiscount.discountPercentage > 1.0 ">
+                  Sale: {{wishlist.productAndDiscount.discountPercentage}}%</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="total-items d-flex flex-row ">
+            <h6 class="item-title d-flex flex-row mr-auto ">item(s) total</h6><br>
+            <h6 class="item-amount d-flex flex-row ml-auto ">${{getItemsTotal()  }}</h6>
+          </div>
+          <div class="yousaved d-flex flex-row ">
+            <h6 class="yousaved d-flex flex-row mr-auto  ">You saved</h6><br>
+            <h6 class="item-yousaved d-flex flex-row ml-auto  ">${{getUserSave()  }}</h6>
+          </div>
+
+         
+
+
+          <hr>
+  
