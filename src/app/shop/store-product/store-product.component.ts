@@ -7,6 +7,10 @@ import { Cart, CartAndItems, CartItem } from "../../models/cart.model";
 import { TokenStorageService } from "../../services/token-storage.service";
 import { CartItemService } from "../../services/cart-item.service";
 import { CartAndItemsService } from "../../services/cart-and-items.service";
+import { WishlistAndItemsService } from 'src/app/services/wishlist-and-items.service';
+
+import { Wishlist, WishlistAndItems, WishlistItem } from 'src/app/models/wishlist.model';
+import { WishlistItemService } from 'src/app/services/wishlist-item.service';
 
 @Component({
   selector: 'app-store-product',
@@ -26,6 +30,7 @@ export class StoreProductComponent implements OnInit {
   saveIndex: number = 0;
   userId: any = 0;
   cartAndItems: CartAndItems = new CartAndItems()
+  wishlistAndItems: WishlistAndItems = new WishlistAndItems()
 
   //Array for Form Fields to add new Product
   newProduct: Product = {
@@ -58,11 +63,14 @@ export class StoreProductComponent implements OnInit {
 
   searchQuery: string="";
 
+
   constructor(
     private router: Router,
+    private wishlistItemService: WishlistItemService,
     private formbuilder: FormBuilder,
     private productService: ProductService,
     private tokenService: TokenStorageService,
+    private wishlistAndItemsService: WishlistAndItemsService,
     private cartAndItemsService: CartAndItemsService,
     private cartItemService: CartItemService) { }
     filteredProducts: Product[] = [];
@@ -70,6 +78,7 @@ export class StoreProductComponent implements OnInit {
     filterFlag: boolean = false;
     hideFlag: boolean = false;
     discountOnlyFlag: boolean=false;
+    
 
   ngOnInit(): void {
     //add code for the update
@@ -127,6 +136,8 @@ export class StoreProductComponent implements OnInit {
     });
   }
 
+
+
   addToCart(productId: any) {
     let item = new CartItem();
     item.cartId = this.cartAndItems.cartId;
@@ -134,6 +145,31 @@ export class StoreProductComponent implements OnInit {
     item.cartQty = 1;
     item.cartItemId = -1;
     this.cartItemService.addNewItemService(item).subscribe({
+      next: response => {
+
+      },
+      error: error => {
+      }
+    });
+  }
+
+  loadWishlist() {
+    this.wishlistAndItemsService.getWishlistAndItemsService(this.userId).subscribe({
+      next: response => {
+        this.wishlistAndItems = response;
+      },
+      error: error => {
+      }
+    });
+  }
+
+  addToWishlist(productId: any) {
+    let itemwishlist = new WishlistItem();
+    itemwishlist.wishlistId = this.wishlistAndItems.wishlistId;
+    itemwishlist.productId = productId;
+    itemwishlist.wishlistQty = 1;
+    itemwishlist.wishlistItemId = -1;
+    this.wishlistItemService.addNewItemServiceWishlist(itemwishlist).subscribe({
       next: response => {
 
       },
