@@ -1,5 +1,5 @@
 <section class="section-content padding-y bg">
-  <div class="container" *ngIf="productLoaded">
+  <div class="container"  *ngIf="productLoaded">
     <mat-card class="card">
       <div class="card-body">
         <div class="row">
@@ -8,6 +8,7 @@
               <div>
                 <div class="img-big-wrap">
                   <a href="#"> <img [src]="productAndDiscount.imageUrl"></a>
+                 
                 </div> <!-- card img-big-wrap.// -->
               </div>
 
@@ -21,7 +22,8 @@
           </aside>
           <main class="col-md-6">
             <article>
-              <h3 class="title">{{productAndDiscount.productName}}</h3>
+              <h3 class="title">{{productAndDiscount.productName}}
+              </h3>
               <div>
               </div>
               <hr>

@@ -231,6 +231,21 @@ export class ProductPageComponent implements OnInit {
     this.updateCartItem();
   }
 
+  qtyChangeWishlist() {
+    if (this.counter > this.productAndDiscount.productQty) this.counter = this.productAndDiscount.productQty;
+    else if (this.counter < 0) this.counter = 0;
+    this.updateWishlistItem();
+  }
+
+  increaseWishlistCount() {
+    this.counter++;
+    this.qtyChangeWishlist();
+  }
+  decreaseWishlistCount() {
+    this.counter--;
+    this.qtyChangeWishlist();
+  }
+
   loadReviews() {
     this.reviewRatings = {
       "five": 0,
