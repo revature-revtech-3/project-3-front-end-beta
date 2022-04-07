@@ -91,11 +91,12 @@
                         <!-- ----------------------------------------------- -->
 <div class="total-items d-flex flex-row ">
   <h6 class="item-title d-flex flex-row mr-auto ">item(s) total</h6><br>
-  <h6 class="item-amount d-flex flex-row ml-auto ">${{getItemsTotal() | number:'1.2-2' }}</h6>
+  <h6 class="item-amount d-flex flex-row ml-auto ">${{productAndDiscount.productCost-productAndDiscount.productCost*(productAndDiscount.discountPercentage
+    / 100) | currency }}</h6>
 </div>
 <div class="yousaved d-flex flex-row ">
   <h6 class="yousaved d-flex flex-row mr-auto  ">You saved</h6><br>
-  <h6 class="item-yousaved d-flex flex-row ml-auto  ">${{getUserSave() | number:'1.2-2' }}</h6>
+  <h6 class="item-yousaved d-flex flex-row ml-auto  "> ${{productAndDiscount.productCost*(productAndDiscount.discountPercentage/100)| currency}}</h6>
 </div>
 <hr>
 
