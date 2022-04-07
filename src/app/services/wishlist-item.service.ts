@@ -34,8 +34,8 @@ updateItemServiceWishlist(itemwishlist: WishlistItem): Observable<WishlistItem> 
   return this.http.put<WishlistItem>(this.baseUrl + "update/items", itemwishlist, this.header);
 }
 
-removeItemServiceWishlist(itemId: number): Observable<boolean> {
-  return this.http.delete<boolean>(this.baseUrl + "/" + itemId + "/delete", this.header);
+removeItemServiceWishlist(itemwishlist: number): Observable<boolean> {
+  return this.http.delete<boolean>(this.baseUrl + "/" + itemwishlist + "/delete", this.header);
 }
 
 }

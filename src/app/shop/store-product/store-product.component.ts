@@ -164,12 +164,12 @@ export class StoreProductComponent implements OnInit {
   }
 
   addToWishlist(productId: any) {
-    let item = new WishlistItem();
-    item.wishlistId = this.wishlistAndItems.wishlistId;
-    item.productId = productId;
-    item.wishlistQty = 1;
-    item.wishlistItemId = -1;
-    this.wishlistItemService.addNewItemServiceWishlist(item).subscribe({
+    let itemwishlist = new WishlistItem();
+    itemwishlist.wishlistId = this.wishlistAndItems.wishlistId;
+    itemwishlist.productId = productId;
+    itemwishlist.wishlistQty = 1;
+    itemwishlist.wishlistItemId = -1;
+    this.wishlistItemService.addNewItemServiceWishlist(itemwishlist).subscribe({
       next: response => {
 
       },

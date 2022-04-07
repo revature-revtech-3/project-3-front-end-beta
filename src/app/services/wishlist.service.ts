@@ -24,8 +24,8 @@ export class WishlistService {
   addWishlistService(wishlist: Wishlist): Observable<Wishlist> {
     return this.http.post<Wishlist>(this.baseUrl + "add/wishLists", Wishlist, this.header);
   }
-  updateWishlistService(cart: Wishlist): Observable<Wishlist> {
-    return this.http.put<Wishlist>(this.baseUrl + "/put", cart, this.header);
+  updateWishlistService(wishlist: Wishlist): Observable<Wishlist> {
+    return this.http.put<Wishlist>(this.baseUrl + "/put", wishlist, this.header);
   }
 
 

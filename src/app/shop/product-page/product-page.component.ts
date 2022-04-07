@@ -181,11 +181,11 @@ export class ProductPageComponent implements OnInit {
     this.router.navigate(['wishlist']);
   }
 
-  changeWishlist(item: ItemProductAndDiscount, event: any) {
+  changeWishlist(itemwishlist: ItemProductAndDiscount, event: any) {
     let newItem = new WishlistItem();
     newItem.wishlistItemId = this.itemwishlist.wishlistItemId;
     newItem.wishlistId = this.itemwishlist.wishlistId;
-    newItem.productId = item.productId;
+    newItem.productId = itemwishlist.productId;
     newItem.wishlistQty = event.value;
     this.wishlistItemService.updateItemServiceWishlist(newItem).subscribe({
       next: response => {
