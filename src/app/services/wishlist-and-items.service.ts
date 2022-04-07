@@ -20,8 +20,8 @@ export class WishlistAndItemsService {
     }
    }
 
-   getWishlistAndItemsService(wishlistId: number): Observable<WishlistAndItems>{
-    return this.http.get<WishlistAndItems>(this.baseUrl + "/wishList/" + wishlistId + "/get", this.header);
+   getWishlistAndItemsService(userId: number): Observable<WishlistAndItems>{
+    return this.http.get<WishlistAndItems>(this.baseUrl + "/wishList/" + userId + "/get", this.header);
   }
 
   // getWishlistAndItemsWithUserIdService(userId: number): Observable<WishlistAndItems> {
