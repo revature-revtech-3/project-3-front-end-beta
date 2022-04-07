@@ -53,6 +53,9 @@
                 </div>
                 <span class="out-of-stock" *ngIf="productAndDiscount.productQty < 1">This item is out of stock</span>
 
+                <button class="btn btn-danger" (click)="goToWishlist()">Go to wishlist</button><br><br>
+                <h4 class="item-details ">Available: {{productAndDiscount.productQty}}</h4>
+
                 <button class="btn btn-danger" (click)="goToCheckout()">Go to cart</button><br><br>
                 <h4 class="item-details ">Available: {{productAndDiscount.productQty}}</h4>
 
@@ -60,7 +63,7 @@
                 <div>
 
                   <button type="button" class="btn btn-danger" (click)="toggleBuyNowForm()">Buy now</button>
-                  <div class="card m-5" style="width:30rem;" *ngIf="toggleBuyNow">
+                  <mat-card class="card m-5" style="width:30rem;"  *ngIf="toggleBuyNow">
                     <div class="col-lg-9">
                       <div>
 
@@ -113,7 +116,7 @@
                       </div>
                       <!-- End sidebar -->
                     </div>
-                  </div>
+                  </mat-card>
 
 
                 </div>
@@ -126,7 +129,7 @@
       </div> <!-- card-body.// -->
     </mat-card>
 
-    <h2 class="m-5">Submit Review</h2>
+    <h2 class="m-9">Submit Review</h2>
     <mat-card class="card mt-5">
       <div class="card-body">
         <div class="container">
@@ -155,9 +158,9 @@
         </div>
         <hr>
         <div class="container-fluid px-1 py-5 mx-auto">
-          <div class="row justify-content-center">
+          <div class="row justify-content-left">
             <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
-              <div class="card">
+              <mat-card class="card">
                 <div class="row justify-content-left d-flex">
                   <div class="col-md-4 d-flex flex-column">
                     <div class="rating-box">
@@ -170,10 +173,11 @@
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <div class="rating-bar0 justify-content-center">
+                    <div class="rating-bar0 justify-content-right">
                       <table class="text-left mx-auto">
-                        <tr>
-                          <td class="rating-label">Excellent</td>
+                        <tr>&nbsp;
+
+                          <td  class="rating-label">Excellent</td>
                           <td class="rating-bar">
                             <div class="bar-container">
                               <div class="bar-5"></div>
@@ -181,7 +185,9 @@
                           </td>
                           <td class="text-right">{{reviewRatings.one}}</td>
                         </tr>
-                        <tr>
+                        <tr>&nbsp;
+
+
                           <td class="rating-label">Good</td>
                           <td class="rating-bar">
                             <div class="bar-container">
@@ -190,7 +196,8 @@
                           </td>
                           <td class="text-right">{{reviewRatings.four}}</td>
                         </tr>
-                        <tr>
+                        <tr>&nbsp;
+
                           <td class="rating-label">Average</td>
                           <td class="rating-bar">
                             <div class="bar-container">
@@ -199,7 +206,9 @@
                           </td>
                           <td class="text-right">{{reviewRatings.three}}</td>
                         </tr>
-                        <tr>
+                        <tr>&nbsp;&nbsp;
+
+
                           <td class="rating-label">Poor</td>
                           <td class="rating-bar">
                             <div class="bar-container">
@@ -208,7 +217,10 @@
                           </td>
                           <td class="text-right">{{reviewRatings.two}}</td>
                         </tr>
-                        <tr>
+                        <tr>&nbsp;&nbsp;
+
+
+
                           <td class="rating-label">Terrible</td>
                           <td class="rating-bar">
                             <div class="bar-container">
@@ -221,7 +233,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </mat-card>
               <div *ngFor="let review of reviews" class="card">
                 <div class="row d-flex">
                   <!--                  <div class=""> <img class="profile-pic"> </div>-->

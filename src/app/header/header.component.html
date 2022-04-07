@@ -15,6 +15,12 @@
     <li class="nav-item" *ngIf="isLogged() && isShowAdmin()">
         <a class="nav-link" routerLink="admin">Manage Store</a>
     </li>
+
+    <li style="float:right" class="nav-item">
+      <a routerLink="wishlist" class="topnav" id="wishlist" class="btn btn-success btn-lg" id="wishlist" style="color: white;">
+          <span class="material-icons">list</span>
+      </a>
+  </li>
     <li style="float:right" class="nav-item">
         <a routerLink="checkout" class="topnav" id="cart" class="btn btn-danger btn-lg" id="cart" style="color: white;">
             <span class="material-icons">shopping_cart</span>
