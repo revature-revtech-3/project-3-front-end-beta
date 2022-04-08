@@ -41,11 +41,13 @@
       <mat-card class="card" *ngFor="let row of searchedProducts(returnQuery())" >
           <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
           <div class="card-body">
-              <p class="card-text"></p>
+              <p class="card-text">
+              </p>
           </div>
           <div class="card-footer">
               <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
-              <p class="card-text">{{row.productCost | currency}}</p>
+              <p class="card-text">{{row.productCost | currency}}
+              </p>
               <p class="card-text" class="parLength">{{row.productDescription}}</p>
               <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
               <small class="text-muted">{{row.productSku}}</small>
@@ -57,10 +59,13 @@
         <mat-card class="card" *ngFor="let row of searchedDiscounts(returnQuery())">
           <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
           <div class="card-body">
-            <p class="card-text"></p>
+            <p class="card-text">
+            </p>
           </div>
           <div class="card-footer">
-            <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
+            <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}
+   
+            </h5>
             <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
               <s>{{row.productCost |
                 currency}}</s>
