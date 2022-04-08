@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Product, ProductAndDiscount } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
@@ -7,6 +7,10 @@ import { Cart, CartAndItems, CartItem } from "../../models/cart.model";
 import { TokenStorageService } from "../../services/token-storage.service";
 import { CartItemService } from "../../services/cart-item.service";
 import { CartAndItemsService } from "../../services/cart-and-items.service";
+import { WishlistAndItemsService } from 'src/app/services/wishlist-and-items.service';
+import { Wishlist, WishlistAndItems, WishlistItem } from 'src/app/models/wishlist.model';
+import { WishlistItemService } from 'src/app/services/wishlist-item.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-store-product',
@@ -14,9 +18,10 @@ import { CartAndItemsService } from "../../services/cart-and-items.service";
   styleUrls: ['./store-product.component.scss']
 })
 export class StoreProductComponent implements OnInit {
-  // Sidebar Toggle
-  // opened: boolean = false;
-  // Arrays, Objects, & string
+  
+  darkModeToggle = new FormControl(false);
+  @HostBinding('class') className = '';
+
   allProducts: Product[] = [];
   allDiscountProducts: ProductAndDiscount[] = [];
   indexArray: number[] = [];
@@ -26,6 +31,7 @@ export class StoreProductComponent implements OnInit {
   saveIndex: number = 0;
   userId: any = 0;
   cartAndItems: CartAndItems = new CartAndItems()
+  wishlistAndItems: WishlistAndItems = new WishlistAndItems()
 
   //Array for Form Fields to add new Product
   newProduct: Product = {
@@ -58,24 +64,39 @@ export class StoreProductComponent implements OnInit {
 
   searchQuery: string="";
 
+
   constructor(
     private router: Router,
+    private wishlistItemService: WishlistItemService,
     private formbuilder: FormBuilder,
     private productService: ProductService,
     private tokenService: TokenStorageService,
+    private wishlistAndItemsService: WishlistAndItemsService,
     private cartAndItemsService: CartAndItemsService,
-    private cartItemService: CartItemService) { }
+    private cartItemService: CartItemService,
+    private overlay: OverlayContainer) { }
     filteredProducts: Product[] = [];
     filteredDiscounts: ProductAndDiscount[] = [];
     filterFlag: boolean = false;
     hideFlag: boolean = false;
     discountOnlyFlag: boolean=false;
+    
 
   ngOnInit(): void {
     //add code for the update
 
     this.userId = this.tokenService.getUser().user_id;
     this.loadDiscountedProducts();
+
+    this.darkModeToggle.valueChanges.subscribe((darkMode) => {
+      const darkClassName = 'darkMode';
+      this.className = darkMode ? darkClassName : '';
+      if (darkMode) {
+        this.overlay.getContainerElement().classList.add(darkClassName);
+      } else {
+        this.overlay.getContainerElement().classList.remove(darkClassName);
+      }
+    });
   }
 
   //Load all all Products
@@ -127,6 +148,8 @@ export class StoreProductComponent implements OnInit {
     });
   }
 
+
+
   addToCart(productId: any) {
     let item = new CartItem();
     item.cartId = this.cartAndItems.cartId;
@@ -134,6 +157,31 @@ export class StoreProductComponent implements OnInit {
     item.cartQty = 1;
     item.cartItemId = -1;
     this.cartItemService.addNewItemService(item).subscribe({
+      next: response => {
+
+      },
+      error: error => {
+      }
+    });
+  }
+
+  loadWishlist() {
+    this.wishlistAndItemsService.getWishlistAndItemsService(this.userId).subscribe({
+      next: response => {
+        this.wishlistAndItems = response;
+      },
+      error: error => {
+      }
+    });
+  }
+
+  addToWishlist(productId: any) {
+    let itemwishlist = new WishlistItem();
+    itemwishlist.wishlistId = this.wishlistAndItems.wishlistId;
+    itemwishlist.productId = productId;
+    itemwishlist.wishlistQty = 1;
+    itemwishlist.wishlistItemId = -1;
+    this.wishlistItemService.addNewItemServiceWishlist(itemwishlist).subscribe({
       next: response => {
 
       },

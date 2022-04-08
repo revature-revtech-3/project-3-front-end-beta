@@ -14,6 +14,10 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { ConfirmationCheckoutComponent } from "./shop/confirmation-checkout/confirmation-checkout.component";
 import { OrderHistoryComponent } from "./shop/order-history/order-history.component";
 import { ResetPasswordComponent } from './users/reset-password/reset-password.component';
+import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.component';
+
+
+
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -30,6 +34,7 @@ const routes: Routes = [
   { path: "order-history", component: OrderHistoryComponent, canActivate: [AdminGuard] },
   { path: "forget-password", component: ForgetPasswordComponent },
   { path: "reset-password", component: ResetPasswordComponent },
+  { path: "wishlist", component: WishlistComponent, canActivate: [AdminGuard] },
 
 ];
 
