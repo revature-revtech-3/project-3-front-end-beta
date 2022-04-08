@@ -1,3 +1,8 @@
+.body {
+  height: 100rem;
+  overflow: hidden;
+}
+
 
 table {
   border-collapse: collapse;
@@ -68,3 +73,8 @@ h2 {
   margin: 2px auto;
   z-index: 1100 !important;
 }
+
+label {
+  color: black;
+}
+

@@ -58,3 +58,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/*For stop Bootstrap Modal Dialog showing under Modal Background*/
+/* https://weblog.west-wind.com/posts/2016/sep/14/bootstrap-modal-dialog-showing-under-modal-background */
+.modal-backdrop {
+  display: none;
+}
