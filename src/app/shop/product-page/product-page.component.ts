@@ -143,8 +143,6 @@ export class ProductPageComponent implements OnInit {
     this.item.cartItemId = -1;
     this.cartItemService.addNewItemService(this.item).subscribe({
       next: response => {
-
-        // this.goToCheckout()
         this.loadData();
       },
       error: error => {
@@ -159,8 +157,6 @@ export class ProductPageComponent implements OnInit {
     this.itemwishlist.wishlistItemId = -1;
     this.wishlistItemService.addNewItemServiceWishlist(this.itemwishlist).subscribe({
       next: response => {
-
-        // this.goToCheckout()
         this.loadData();
       },
       error: error => {
@@ -279,10 +275,6 @@ export class ProductPageComponent implements OnInit {
     if (!this.averageRating) this.averageRating = 0;
   }
 
-  // getAverageRating() {
-  //   let totalStars = 0;
-  //
-  // }
 
   postReview() {
     this.reviewForm.productId = this.productId;
@@ -298,32 +290,23 @@ export class ProductPageComponent implements OnInit {
   }
 
   starRating(): Array<number> {
-    // if (this.reviewForm.rating < 1) this.reviewForm.rating = 1;
-    // console.log();
     return Array.from({ length: this.reviewForm.rating }, (_, i) => i + 1)
   }
 
   negativeStarRating(): Array<number> {
     return Array.from({ length: 5 - this.reviewForm.rating }, (_, i) => i + 1)
-    // return Array(5 - this.reviewForm.rating);
+
   }
 
   Rating(rate: number): Array<number> {
-    // if (this.reviewForm.rating < 1) this.reviewForm.rating = 1;
+
     return Array.from({ length: rate }, (_, i) => i + 1)
   }
 
   negativeRating(rate: number): Array<number> {
     return Array.from({ length: 5 - rate }, (_, i) => i + 1)
-    // return Array(5 - this.reviewForm.rating);
+
   }
-
-
-  // numSequence(): Array<number> {
-  //   // if (this.reviewForm.rating < 1) this.reviewForm.rating = 1;
-  //   return Array(this.reviewForm.rating);
-  // }
-
 
   updateReviewRating(event: any) {
     this.reviewForm.rating = parseInt(event);
@@ -371,7 +354,7 @@ export class ProductPageComponent implements OnInit {
             this.buyNowCartAndItems.cartId = response.cartId;
             console.log(this.buyNowCartAndItems.cartId);
             // this.goToCheckout()
-            //this.loadData();
+            // this.loadData();
 
             this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
               next: response => {
@@ -530,9 +513,3 @@ export class ProductPageComponent implements OnInit {
     })
   }
 }
-
-
-
-
-}
-
