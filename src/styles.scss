@@ -22,7 +22,7 @@ $rev-tech-warn: mat.define-palette(mat.$red-palette);
 // theming systems such as "color" or "typography".
 $rev-tech-theme: mat.define-light-theme((
   color: (
-    primary: $rev-tech-primary,
+    primary: $rev-tech-primary, 
     accent: $rev-tech-accent,
     warn: $rev-tech-warn,
   )

@@ -6,6 +6,8 @@ import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartAndItemsService } from 'src/app/services/cart-and-items.service';
 import { CartItemService } from 'src/app/services/cart-item.service';
+import { WishlistAndItemsService } from 'src/app/services/wishlist-and-items.service';
+import { WishlistItemService } from 'src/app/services/wishlist-item.service';
 import { ProductAndDiscountService } from 'src/app/services/product-and-discount.service';
 import { TokenStorageService } from "../../services/token-storage.service";
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +22,8 @@ import { Transaction } from "../../models/transaction.model";
 import { PurchasedItemService } from "../../services/purchased-item.service";
 import { Product } from 'src/app/models/product.model';
 import { Cart } from 'src/app/models/cart.model';
+import { Wishlist, WishlistAndItems, WishlistItem } from 'src/app/models/wishlist.model';
+import { WishlistService } from 'src/app/services/wishlist.service';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
@@ -34,8 +38,10 @@ export class ProductPageComponent implements OnInit {
   productAndDiscount: ProductAndDiscount = new ProductAndDiscount();
   userId: any = 0;
   cartAndItems: CartAndItems = new CartAndItems();
+  wishlistAndItems: WishlistAndItems = new WishlistAndItems();
   buyNowCartAndItems: CartAndItems = new CartAndItems();
   item: CartItem = new CartItem();
+  itemwishlist: WishlistItem = new WishlistItem();
   buyNowItem: CartItem = new CartItem();
   productId: number = 0;
   counter = 0;
@@ -45,6 +51,7 @@ export class ProductPageComponent implements OnInit {
   averageRating: number = 0.0;
   productLoaded: boolean = false;
   cart: Cart = new Cart();
+  wishlist: Wishlist = new Wishlist();
   buyNowCart: Cart = new Cart();
   errorMsg: string = "";
   displayStyle: string = "";
@@ -61,16 +68,20 @@ export class ProductPageComponent implements OnInit {
 
 
   }
+ 
 
 
   constructor(private productAndDiscountService: ProductAndDiscountService,
     private cartItemService: CartItemService,
     private cartAndItemsService: CartAndItemsService,
+    private wishlistItemService: WishlistItemService,
+    private wishlistAndItemsService: WishlistAndItemsService,
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private tokenService: TokenStorageService,
     private router: Router,
     private cartService: CartService,
+    private wishlistService: WishlistService,
     private transactionService: TransactionService,
     private productService: ProductService,
     private purchasedItemService: PurchasedItemService,
@@ -99,6 +110,17 @@ export class ProductPageComponent implements OnInit {
       error: error => {
       }
     });
+    this.wishlistAndItemsService.getWishlistAndItemsService(this.userId).subscribe({
+      next: response => {
+        this.wishlistAndItems = response;
+        console.log("loadData");
+        console.log(response);
+
+      },
+      error: error => {
+      }
+    });
+  
     // if(this.user.userId <= 0) this.user.userId = 1; //Remove this line if not testing
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
       next: response => {
@@ -111,6 +133,9 @@ export class ProductPageComponent implements OnInit {
       }
     });
   }
+  
+
+
   updateCartItem() {
     this.item.cartId = this.cartAndItems.cartId;
     this.item.productId = this.productId;
@@ -127,16 +152,52 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
+  updateWishlistItem() {
+    this.itemwishlist.wishlistId = this.wishlistAndItems.wishlistId;
+    this.itemwishlist.productId = this.productId;
+    this.itemwishlist.wishlistQty = this.counter;
+    this.itemwishlist.wishlistItemId = -1;
+    this.wishlistItemService.addNewItemServiceWishlist(this.itemwishlist).subscribe({
+      next: response => {
+
+        // this.goToCheckout()
+        this.loadData();
+      },
+      error: error => {
+      }
+    });
+  }
+
+
+
   goToCheckout() {
     this.router.navigate(['checkout']);
   }
 
+
+
+
   goToWishlist() {
     this.router.navigate(['wishlist']);
   }
-  
 
-  
+  changeWishlist(itemwishlist: ItemProductAndDiscount, event: any) {
+    let newItem = new WishlistItem();
+    newItem.wishlistItemId = this.itemwishlist.wishlistItemId;
+    newItem.wishlistId = this.itemwishlist.wishlistId;
+    newItem.productId = itemwishlist.productId;
+    newItem.wishlistQty = event.value;
+    this.wishlistItemService.updateItemServiceWishlist(newItem).subscribe({
+      next: response => {
+        console.log("changeQuantity");
+        console.log(response);
+        this.loadData();
+      },
+      error: err => {
+      }
+    });
+  }
+
 
   changeQuantity(item: ItemProductAndDiscount, event: any) {
     let newItem = new CartItem();
@@ -168,6 +229,21 @@ export class ProductPageComponent implements OnInit {
     if (this.counter > this.productAndDiscount.productQty) this.counter = this.productAndDiscount.productQty;
     else if (this.counter < 0) this.counter = 0;
     this.updateCartItem();
+  }
+
+  qtyChangeWishlist() {
+    if (this.counter > this.productAndDiscount.productQty) this.counter = this.productAndDiscount.productQty;
+    else if (this.counter < 0) this.counter = 0;
+    this.updateWishlistItem();
+  }
+
+  increaseWishlistCount() {
+    this.counter++;
+    this.qtyChangeWishlist();
+  }
+  decreaseWishlistCount() {
+    this.counter--;
+    this.qtyChangeWishlist();
   }
 
   loadReviews() {
@@ -384,6 +460,10 @@ export class ProductPageComponent implements OnInit {
   calculateTotalCost(item: ItemProductAndDiscount, calcSingleItem: any) {
     return item.cartQty * calcSingleItem(item.productAndDiscount);
   }
+    // calcSingleItem is the a function parametar
+    calculateTotalCostWishlist(item: ItemProductAndDiscount, calcSingleItem: any) {
+      return item.cartQty * calcSingleItem(item.productAndDiscount);
+    }
 
   // calculate the item has a discount
   calculateDiscountedItemCost(product: ProductAndDiscount): number {
@@ -395,6 +475,15 @@ export class ProductPageComponent implements OnInit {
     let save = 0;
     this.cartAndItems.cartItems.forEach((value, index) => {
       save += value.productAndDiscount.productCost * value.cartQty;
+    });
+    return (save - this.getItemsTotal()).toFixed(2)
+
+  }
+
+  getUserSaveWishlist(): any {
+    let save = 0;
+    this.wishlistAndItems.wishlistItems.forEach((value, index) => {
+      save += value.productAndDiscount.productCost * value.wishlistQty;
     });
     return (save - this.getItemsTotal()).toFixed(2)
 
@@ -440,7 +529,6 @@ export class ProductPageComponent implements OnInit {
       }
     })
   }
-
-
-
 }
+
+

@@ -128,17 +128,17 @@ changeQuantity(item: ItemProductAndDiscount) {
   });
 }
 
-proceedToCheckout() {
-  this.wishlist.wishlistId = this.wishlistAndItems.wishlistId
-  this.wishlist.userId = this.wishlistAndItems.userId
-  this.wishlist.wishlistTotal = parseInt(this.getItemsTotal());
+// proceedToWishlist() {
+//   this.wishlist.wishlistId = this.wishlistAndItems.wishlistId
+//   this.wishlist.userId = this.wishlistAndItems.userId
+//   this.wishlist.wishlistTotal = parseInt(this.getItemsTotal());
  
 
-  this.wishlistService.updateWishlistService(this.wishlist).subscribe((response) => {
-    response;
-  }, error => {
-    this.errorMsg = 'There was some internal error! Please try again later!';
-  });
+  // this.wishlistService.updateWishlistService(this.wishlist).subscribe((response) => {
+  //   response;
+  // }, error => {
+  //   this.errorMsg = 'There was some internal error! Please try again later!';
+  // });
 
   
 
@@ -152,4 +152,4 @@ proceedToCheckout() {
 
 
 
-}}
+}
