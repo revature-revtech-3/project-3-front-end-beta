@@ -68,7 +68,7 @@ export class ProductPageComponent implements OnInit {
 
 
   }
- 
+
 
 
   constructor(private productAndDiscountService: ProductAndDiscountService,
@@ -120,7 +120,7 @@ export class ProductPageComponent implements OnInit {
       error: error => {
       }
     });
-  
+
     // if(this.user.userId <= 0) this.user.userId = 1; //Remove this line if not testing
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
       next: response => {
@@ -133,7 +133,7 @@ export class ProductPageComponent implements OnInit {
       }
     });
   }
-  
+
 
 
   updateCartItem() {
@@ -368,7 +368,7 @@ export class ProductPageComponent implements OnInit {
 
                 this.buyNowCart.userId = this.userId;
                 this.buyNowCart.cartTotal = parseInt(this.getItemsTotal());
-                
+
                 this.buyNowCart.cartRemoved = true
                 this.buyNowCart.cartPaid = true
                 console.log("buyNowCart:");
@@ -431,22 +431,22 @@ export class ProductPageComponent implements OnInit {
   }
 
   getItemsTotal(): any {
-  let total = 0;
-  this.buyNowCartAndItems.cartItems.forEach((value, index) => {
-    total += this.calculateTotalCost(value, this.calculateDiscountedItemCost);
-  });
+    let total = 0;
+    this.buyNowCartAndItems.cartItems.forEach((value, index) => {
+      total += this.calculateTotalCost(value, this.calculateDiscountedItemCost);
+    });
 
-  return total.toFixed(2);
-}
+    return total.toFixed(2);
+  }
 
   // calcSingleItem is the a function parametar
   calculateTotalCost(item: ItemProductAndDiscount, calcSingleItem: any) {
     return item.cartQty * calcSingleItem(item.productAndDiscount);
   }
-    // calcSingleItem is the a function parametar
-    calculateTotalCostWishlist(item: ItemProductAndDiscount, calcSingleItem: any) {
-      return item.cartQty * calcSingleItem(item.productAndDiscount);
-    }
+  // calcSingleItem is the a function parametar
+  calculateTotalCostWishlist(item: ItemProductAndDiscount, calcSingleItem: any) {
+    return item.cartQty * calcSingleItem(item.productAndDiscount);
+  }
 
   // calculate the item has a discount
   calculateDiscountedItemCost(product: ProductAndDiscount): number {
