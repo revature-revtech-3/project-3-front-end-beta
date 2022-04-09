@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpHeaders, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Discount, Product, ProductAndDiscount } from '../models/product.model';
+import { Bundle, Discount, Product, ProductAndDiscount } from '../models/product.model';
 import {Instance} from "../models/Instance";
 import { TokenStorageService } from './token-storage.service';
 
@@ -21,6 +21,11 @@ export class ProductService {
   productsUrlGetOne = Instance.url + "/api/products/getone";
   //Get all products endpoint
   productsUrlGetAll = Instance.url + "/api/products/getall";
+
+   // GetAllBundles
+bundlesUrlGetAll = Instance.url + "/api/bundles"
+// Add or Create Bundle
+bundlesUrlAdd = Instance.url + "/api/create/bundles";
   
   //Anthony's Endpoints for EC2
   discountProductUrlGet= Instance.url + "/discount/all/discountedProducts";
@@ -76,6 +81,14 @@ export class ProductService {
 
   deleteDiscountService(discountId: number): Observable<Discount> {
     return this.http.delete<Discount>(this.discountUrlRemove + "/" + discountId, this.header);
+  }
+
+   //get all Bundles
+   getAllBundleProductsService(): Observable<Bundle[]> {
+    return this.http.get<Bundle[]>(this.bundlesUrlGetAll);
+  }
+  addBundleProductsService(newBundle: Bundle): Observable<Bundle> {
+    return this.http.post<Bundle>(this.bundlesUrlAdd, newBundle, this.header);
   }
 
 }

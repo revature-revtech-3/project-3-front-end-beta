@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Product, ProductAndDiscount } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
@@ -8,9 +8,9 @@ import { TokenStorageService } from "../../services/token-storage.service";
 import { CartItemService } from "../../services/cart-item.service";
 import { CartAndItemsService } from "../../services/cart-and-items.service";
 import { WishlistAndItemsService } from 'src/app/services/wishlist-and-items.service';
-
 import { Wishlist, WishlistAndItems, WishlistItem } from 'src/app/models/wishlist.model';
 import { WishlistItemService } from 'src/app/services/wishlist-item.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-store-product',
@@ -18,9 +18,10 @@ import { WishlistItemService } from 'src/app/services/wishlist-item.service';
   styleUrls: ['./store-product.component.scss']
 })
 export class StoreProductComponent implements OnInit {
-  // Sidebar Toggle
-  // opened: boolean = false;
-  // Arrays, Objects, & string
+  
+  darkModeToggle = new FormControl(false);
+  @HostBinding('class') className = '';
+
   allProducts: Product[] = [];
   allDiscountProducts: ProductAndDiscount[] = [];
   indexArray: number[] = [];
@@ -72,7 +73,8 @@ export class StoreProductComponent implements OnInit {
     private tokenService: TokenStorageService,
     private wishlistAndItemsService: WishlistAndItemsService,
     private cartAndItemsService: CartAndItemsService,
-    private cartItemService: CartItemService) { }
+    private cartItemService: CartItemService,
+    private overlay: OverlayContainer) { }
     filteredProducts: Product[] = [];
     filteredDiscounts: ProductAndDiscount[] = [];
     filterFlag: boolean = false;
@@ -85,6 +87,16 @@ export class StoreProductComponent implements OnInit {
 
     this.userId = this.tokenService.getUser().user_id;
     this.loadDiscountedProducts();
+
+    this.darkModeToggle.valueChanges.subscribe((darkMode) => {
+      const darkClassName = 'darkMode';
+      this.className = darkMode ? darkClassName : '';
+      if (darkMode) {
+        this.overlay.getContainerElement().classList.add(darkClassName);
+      } else {
+        this.overlay.getContainerElement().classList.remove(darkClassName);
+      }
+    });
   }
 
   //Load all all Products

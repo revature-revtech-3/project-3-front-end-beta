@@ -1,13 +1,13 @@
 &nbsp;
-<div class="modal fade" id="addproductCenter" tabindex="-1" role="dialog" aria-labelledby="addproductTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="addproductCenter" tabindex="-1" role="dialog" aria-labelledby="addproductTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addproductTitle">Add Product</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+
       </div>
       &nbsp;
       <div class="modal-body">
@@ -94,6 +94,79 @@
   </div>
 </div>
 
+<!-- bundle product-->
+&nbsp;
+<div class="modal fade" id="addbundleCenter" tabindex="-1" role="dialog" aria-labelledby="addbundleTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addbundleTitle">Add Bundle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      &nbsp;
+      <div class="modal-body">
+        <form [formGroup]="formValueBundle">
+          <div class="mb-3">
+            <label for="bundle_id" class="form-label" >Bundle ID</label>
+            <input type="text" formControlName="bundle_id" class="form-control" id="InputBundleId"
+              aria-describedby="bundleIdHelp">
+              <span class="text-danger"
+              *ngIf="formValue.controls['bundle_id'] && formValue.hasError('required', 'bundle_id')">
+              Bundle ID is Required
+             </span>
+          </div>
+          <div class="mb-3">
+            <label for="Bundle_name" class="form-label" class="asterixRequired">Bundle Name</label>
+            <input type="text" formControlName="bundle_name" class="form-control" id="InputBundleName"
+              aria-describedby="BundleNameHelp">
+              <span class="text-danger"
+              *ngIf="formValue.controls['bundle_name'] && formValue.hasError('required', 'bundle_name')">
+              Bundle Name is Required
+             </span>
+          </div>
+          <div class="mb-3">
+            <label for="product_percentage" class="form-label">Bundle Percentage</label>
+            <input type="text" formControlName="bundle_percentage" class="form-control" id="InputBundlePercentage "
+              aria-describedby="BundlePercentageHelp" placeholder="Please enter whole number (ex. 20 = 20%)">
+          </div>
+
+          <div class="mb-3">
+            <label for="product_one_id" class="form-label" class="asterixRequired">Product One ID</label>
+            <input type="text" formControlName="product_one_id" class="form-control" id="InputProductOneId"
+              aria-describedby="productOneIdHelp">
+              <span class="text-danger"
+              *ngIf="formValue.controls['product_one_id'] && formValue.hasError('required', 'product_one_id')">
+              Product One Id is Required
+             </span>
+          </div>
+
+          <div class="mb-3">
+            <label for="product_two_id" class="form-label" class="asterixRequired">Product Two ID</label>
+            <input type="text" formControlName="product_two_id" class="form-control" id="InputProductTwoId"
+              aria-describedby="productTwoIdHelp">
+              <span class="text-danger"
+              *ngIf="formValue.controls['product_two_id'] && formValue.hasError('required', 'product_Two_id')">
+              Product Two Id is Required
+             </span>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" (click)="addProducts()" class="btn btn-primary">Add</button> -->
+        <!-- <button type="button" (click)="addProducts()" class="btn btn-primary">Add</button> -->
+        <button type="button" (click)="addBundles()" [disabled]="!formValueBundle.valid"class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- bundle product-->
+
+
 <div style="overflow-x:auto; border-radius: 5px; border-style: groove;">
   <div style="border-radius: 5px; border-style: groove; margin-left:30%; margin-right:30%">
   <br>
@@ -101,36 +174,53 @@
    <p style="padding-left: 2in;padding-right: 2in;text-align: center;">
     Add Product: to add products to the store</p>
     <p style="padding-left: 2in;padding-right: 2in;text-align: center;">
+      Add Bundle: to add Bundles to the store</p>
+    <p style="padding-left: 2in;padding-right: 2in;text-align: center;">
     Update (Orange): to update discounts for a product</p>
     <p style="padding-left: 2in;padding-right: 2in;text-align: center;">
     Delete (Black): will give you the choice to either delete a discount for a product or to delete both</p>
     <p style="padding-left: 2in;padding-right: 2in;text-align: center;">
-      Update (Blue): to update products</p>
+     Update (Blue): to update products</p>
       <p style="padding-left: 2in;padding-right: 2in;text-align: center;">
         Delete (Red): to delete a product</p>
+        <p style="padding-left: 2in;padding-right: 2in;text-align: center;">
+          Add Discount: to add a product</p>
         <p style="padding-left: 2in;padding-right: 2in;text-align: center;">
           Add Discount: to add a product</p>
         </div>
   
   <br>
   &nbsp;
-
+  
   <button type="button" id="displayProdBtn" class="btn btn-primary" (click)="displayProducts()">
     Display Product Inventory
   </button>
   <button type="button" id="displayDiscountBtn" class="btn btn-primary" (click)="displayDiscounts()">
     Display Product Discounts
+  </button>   &nbsp; &nbsp;
+  <button type="button" id="displayBundleBtn" class="btn btn-primary" (click)="displayBundles()">
+    Display Bundle Deals
   </button>
+
+
+  <br>
+  &nbsp;
   <div>
+    <button class="tooltip" type="button" title="add product to store" id="addBundleBtn" class="btn btn-primary myDIV" data-toggle="modal" data-target="#addbundleCenter">
+      Add Bundle 
+    </button> 
+  
   <button class="tooltip" type="button" title="add product to store" id="addProdBtn" class="btn btn-primary myDIV" data-toggle="modal" data-target="#addproductCenter">
     Add Product 
   </button> 
+</div>
+ 
 
   
   <br><br>
-  <h3>Product & Discount Details</h3>
+  <h3 *ngIf="toggleBundleTable==false">Product & Discount Details</h3>
   <table>
-    <tr>
+    <tr *ngIf="toggleBundleTable==false">
       <th scope="col">Product Id </th>
       <th scope="col">Product Name</th>
       <th scope="col">Product Category</th>
@@ -192,39 +282,80 @@
   </table>
   <br><br>
 
-  <!-- <h3>Discount Table</h3>&nbsp;<p> To edit details of products listed in the discount table, please remove applied discount first.</p>
+
+
+
+  <br><br>
+  <h3>Product & Bundle Deal Details</h3>
   <table>
     <tr>
-      <th scope="col">Product Id </th>
-      <th scope="col">Product Name</th>
-      <th scope="col">Product Category</th>
-      <th scope="col">Product Percentage</th>
+      <th scope="col">Bundle Id </th>
+      <th scope="col">Bundle Name</th>
+      <th scope="col">Bundle Percentage</th>
+      <!-- <th scope="col">Product Category</th> -->
+      <th scope="col">Bundle Cost</th>
       <th scope="col">Product Cost</th>
-      <th scope="col">Product Quantity</th>
-      <th scope="col">Product SKU</th>
-      <th scope="col">Product Description</th>
-      <th scope="col">Update</th>
+   
+      <!-- <th scope="col">Bundle Quantity</th> -->
+      <!-- <th scope="col">Bundle SKU</th> -->
+      <th scope="col">Item Description</th>
+      <th scope="col">Item1 Image</th>
+      <!-- <th scope="col">Bundle Category</th> -->
+      <th scope="col">Product Cost</th>
+      <!-- <th scope="col">Bundle Quantity</th> -->
+      <!-- <th scope="col">Bundle SKU</th> -->
+      <th scope="col">Item Description</th>
+      <th scope="col">Item2 Image</th>
+      <!-- <th scope="col">Update</th>
       <th scope="col">Delete</th>
+      <th scope="col">Add</th> -->
       <th></th>
     </tr>
-    <tr *ngFor="let row of allDiscountProducts">
-      <td>{{row.productId}}</td>
-      <td>{{row.productName}}</td>
-      <td>{{row.productCategory}}</td>
-      <td>{{row.discountPercentage}}%</td>
-      <td>{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}</td>
-      <td>{{row.productQty}}</td>
-      <td>{{row.productSku}}</td>
-      <td>{{row.productDescription}}</td>
-      <td> <button (click)="onDiscountEditRow(row)" type="button" class="btn btn-success" data-bs-toggle="modal"
+      
+      <tr *ngFor="let rowb of allBundles">
+        
+      <td *ngIf="toggleBundleTable==true">{{rowb.bundleId}}</td>
+      <td *ngIf="toggleBundleTable==true">{{rowb.bundleName}}</td>
+      <td *ngIf="toggleBundleTable==true">{{rowb.bundlePercentage}}%</td>
+      <!-- <td *ngIf="toggleBundleTable==true">{{rowb.productOnePojo}}</td>
+      <td *ngIf="toggleBundleTable==true">{{rowb.productTwoPojo}}</td> -->
+
+      <!-- <td *ngIf="toggleBundleTable==true">{{rowb.productOnePojo.productCategory}}</td> -->
+      <td *ngIf="toggleBundleTable==true">{{rowb.productOnePojo.productCost-rowb.productOnePojo.productCost*(rowb.bundlePercentage/100)+rowb.productTwoPojo.productCost-rowb.productTwoPojo.productCost*(rowb.bundlePercentage/100) | currency}} </td>
+      <td *ngIf="toggleBundleTable==true">{{rowb.productOnePojo.productCost-rowb.productOnePojo.productCost*(rowb.bundlePercentage/100) | currency}}</td>
+      <!-- <td *ngIf="toggleBundleTable==true">{{rowb.productOnePojo.productQty}}</td> -->
+      <!-- <td *ngIf="toggleBundleTable==true">{{rowb.productOnePojo.productSku}}</td> -->
+      <td *ngIf="toggleBundleTable==true">{{rowb.productOnePojo.productDescription}}</td>
+      <td *ngIf="toggleBundleTable==true"><img id="image-size" class="" src="{{rowb.productOnePojo.imageUrl}}" width="90px" height="90px" /> 
+       </td> 
+
+       <!-- <td *ngIf="toggleBundleTable==true">{{rowb.productTwoPojo.productCategory}}</td> -->
+       <td *ngIf="toggleBundleTable==true">{{rowb.productTwoPojo.productCost-rowb.productTwoPojo.productCost*(rowb.bundlePercentage/100) | currency}}</td>
+       <!-- <td *ngIf="toggleBundleTable==true">{{rowb.productTwoPojo.productQty}}</td> -->
+       <!-- <td *ngIf="toggleBundleTable==true">{{rowb.productTwoPojo.productSku}}</td> -->
+       <td *ngIf="toggleBundleTable==true">{{rowb.productTwoPojo.productDescription}}</td>
+       <td *ngIf="toggleBundleTable==true"><img id="image-size" class="" src="{{rowb.productTwoPojo.imageUrl}}" width="90px" height="90px" /> 
+        </td>
+       <!-- <td *ngIf="toggleBundleTable==true"> <button (click)="onBundleEditRow(row)" type="button" class="btn btn-success" data-bs-toggle="modal"
           data-bs-target="#exampleModal3" class="btn btn-warning"><i class="fa fa-edit">Update</i></button>
       </td>
-      <td> <button (click)="onDiscountEditRow(row)" type="button" class="btn btn-secondary"
+      <td *ngIf="toggleBundleTable==true"> <button (click)="onBundleEditRow(row)" type="button" class="btn btn-secondary"
           data-bs-toggle="modal" data-bs-target="#exampleModal5"class="btn btn-dark"><i class="fa fa-trash-o"></i>Delete</button>
-      </td>
+      </td> -->
+    <!-- </li>
+
+  </ul>
+</td> -->
     </tr>
-  </table> -->
+
+    
+
+  </table>
+  <br><br>
+
 </div>
+
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -292,6 +423,8 @@
   </div>
 </div>
 
+
+
 <!-- Discount Products Section Modal form -->
  <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog"> 
@@ -331,7 +464,7 @@
 </div>
 
 <!-- Discount Products Section  Modal form | DELETE FORM -->
-<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -364,7 +497,7 @@
 </div>
 
 <!-- Discount Products Section Modal form -->
-<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -400,345 +533,3 @@
 </div>
 
 
-
-
-
-<!-- <div class="modal fade" id="addproductCenter" tabindex="-1" role="dialog" aria-labelledby="addproductTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addproductTitle">Add Product</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      &nbsp;
-      <div class="modal-body">
-        <form [formGroup]="formValueProduct">
-          <div class="mb-3">
-            <label for="product_sku" class="form-label" >Product SKU</label>
-            <input type="text" formControlName="product_sku" class="form-control" id="InputProductSku"
-              aria-describedby="productSkuHelp">
-              <span class="text-danger"
-              *ngIf="formValue.controls['product_sku'].dirty && formValue.hasError('required', 'product_sku')">
-              Product SKU is Required
-             </span>
-          </div>
-          <div class="mb-3">
-            <label for="product_name" class="form-label" class="asterixRequired">Product Name</label>
-            <input type="text" formControlName="product_name" class="form-control" id="InputProductName"
-              aria-describedby="productNameHelp">
-              <span class="text-danger"
-              *ngIf="formValue.controls['product_name'].dirty && formValue.hasError('required', 'product_name')">
-              Product Name is Required
-             </span>
-          </div>
-          <div class="mb-3">
-            <label for="product_category" class="form-label" class="asterixRequired">Product Category</label>
-              <select formControlName="product_category" class="form-control" id="categoryTypes" [ngModel]="selectedCat">
-                <option *ngFor="let option of categories" [value]="option.value">{{option.text}}</option>
-              </select>
-
-              <span class="text-danger"
-              *ngIf="formValue.controls['product_category'].dirty && formValue.hasError('required', 'product_category')">
-              Product Category is Required
-             </span>
-          </div>
-          <div class="mb-3">
-            <label for="product_cost" class="form-label" class="asterixRequired">Product Cost</label>
-            <input type="text" formControlName="product_cost" class="form-control" id="InputProductCost"
-              aria-describedby="productCostHelp">
-              <span class="text-danger"
-              *ngIf="formValue.controls['product_cost'].dirty && formValue.hasError('required', 'product_cost')">
-              Product Cost is Required
-             </span>
-          </div>
-          <div class="mb-3">
-            <label for="product_qty" class="form-label" class="asterixRequired">Product Quantity</label>
-            <input type="text" formControlName="product_qty" class="form-control" id="InputProductQty "
-              aria-describedby="productQtyHelp">
-              <span class="text-danger"
-              *ngIf="formValue.controls['product_qty'].dirty && formValue.hasError('required', 'product_qty')">
-              Product Quantity is Required
-             </span>
-          </div>
-          <div class="mb-3">
-            <label for="image_url" class="form-label" class="asterixRequired"> Select Img File</label>
-            <input #imageInput type="file" formControlName="image_url" class="form-control" id="InputProductImgUrl"
-              aria-describedby="productImgUrlHelp" accept="image/*" (change)="uploadImage($event)">
-              <span class="text-danger"
-              *ngIf="formValue.controls['image_url'].dirty && formValue.hasError('required', 'image_url')">
-              Product Image is Required
-             </span>
-          </div>
-          <div class="mb-3">
-            <label for="product_description" class="form-label" class="asterixRequired">Product description</label>
-            <textarea type="text" formControlName="product_description" class="form-control"
-              id="InputProductDescription " aria-describedby="productDescriptionHelp">
-              </textarea>
-              <span class="text-danger"
-              *ngIf="formValue.controls['product_description'].dirty && formValue.hasError('required', 'product_description')">
-              Product Description is Required
-             </span>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" (click)="addProducts()" [disabled]="!formValueProduct.valid"class="btn btn-primary">Add</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div style="overflow-x:auto;">
-  <br>
-  <h2>Product Inventory</h2>
-  <br>
-  &nbsp;
-
-  <button type="button" id="addProdBtn" class="btn btn-primary" data-toggle="modal" data-target="#addproductCenter">
-    Add Product 
-  </button>
-  <br><br>
-  <h3>Product Table</h3>
-  <table>
-    <tr>
-      <th scope="col">Product Id </th>
-      <th scope="col">Product Name</th>
-      <th scope="col">Product Category</th>
-      <th scope="col">Product Cost</th>
-      <th scope="col">Product Quantity</th>
-      <th scope="col">Product SKU</th>
-      <th scope="col">Product Description</th>
-      <th scope="col">Product Image</th>
-      <th scope="col">Update</th>
-      <th scope="col">Delete</th>
-      <th scope="col">Add</th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let row of allProducts">
-      <td>{{row.productId}}</td>
-      <td>{{row.productName}}</td>
-      <td>{{row.productCategory}}</td>
-      <td>{{row.productCost | currency}}</td>
-      <td>{{row.productQty}}</td>
-      <td>{{row.productSku}}</td>
-      <td>{{row.productDescription}}</td>
-      <td><img id="image-size" class="" src="{{row.imageUrl}}" width="90px" height="90px" />
-      </td>
-      <td> <button (click)="onEditRow(row)" type="button" class="btn btn-success" data-bs-toggle="modal"
-          data-bs-target="#exampleModal" class="btn btn-info"><i class="fa fa-edit">Update</i></button>
-      </td>
-      <td> <button (click)="deleteProduct(row.productId)" type="button" class="btn btn-secondary" data-bs-toggle=""
-          class="btn btn-danger"><i class="fa fa-trash-o">Delete</i></button>
-      </td>
-      <td> <button (click)="onDiscountEditRow(row)" type="button" class="btn btn-success" data-bs-toggle="modal"
-        data-bs-target="#exampleModal4" class="btn btn-info"><i class="fa fa-edit" >Add Discount</i></button>
-    </td>
-    </tr>
-  </table>
-  <br><br>
-
-  <h3>Discount Table</h3>&nbsp;<p> To edit details of products listed in the discount table, please remove applied discount first.</p>
-  <table>
-    <tr>
-      <th scope="col">Product Id </th>
-      <th scope="col">Product Name</th>
-      <th scope="col">Product Category</th>
-      <th scope="col">Product Percentage</th>
-      <th scope="col">Product Cost</th>
-      <th scope="col">Product Quantity</th>
-      <th scope="col">Product SKU</th>
-      <th scope="col">Product Description</th>
-      <th scope="col">Update</th>
-      <th scope="col">Delete</th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let row of allDiscountProducts">
-      <td>{{row.productId}}</td>
-      <td>{{row.productName}}</td>
-      <td>{{row.productCategory}}</td>
-      <td>{{row.discountPercentage}}%</td>
-      <td>{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}</td>
-      <td>{{row.productQty}}</td>
-      <td>{{row.productSku}}</td>
-      <td>{{row.productDescription}}</td>
-      <td> <button (click)="onDiscountEditRow(row)" type="button" class="btn btn-success" data-bs-toggle="modal"
-          data-bs-target="#exampleModal3" class="btn btn-warning"><i class="fa fa-edit">Update</i></button>
-      </td>
-      <td> <button (click)="onDiscountEditRow(row)" type="button" class="btn btn-secondary"
-          data-bs-toggle="modal" data-bs-target="#exampleModal5"class="btn btn-dark"><i class="fa fa-trash-o"></i>Delete</button>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update Product</h5>
-        <button type="button" id="cancel" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="formValue">
-          <div class="mb-3">
-            <label for="product_sku" class="form-label" class="asterixRequired">Product SKU</label>
-            <input type="text" formControlName="product_sku" class="form-control" id="InputProductSku"
-              aria-describedby="productSkuHelp">
-          </div>
-          <div class="mb-3">
-            <label for="product_name" class="form-label" class="asterixRequired">Product Name</label>
-            <input type="text" formControlName="product_name" class="form-control" id="InputProductName"
-              aria-describedby="productNameHelp">
-          </div>
-          <div class="mb-3">
-            <label for="product_category" class="form-label" class="asterixRequired">Product Category</label>
-            
-              <select formControlName="product_category" class="form-control" id="categoryTypes" [ngModel]="selectedCat">
-                <option *ngFor="let option of categories" [value]="option.value">{{option.text}}</option>
-              </select>
-
-              <span class="text-danger"
-              *ngIf="formValue.controls['product_category'].dirty && formValue.hasError('required', 'product_category')">
-              Product Category is Required
-             </span>
-          </div>
-          <div class="mb-3">
-            <label for="product_cost" class="form-label" class="asterixRequired">Product Cost</label>
-            <input type="number" formControlName="product_cost" class="form-control" id="InputProductCost"
-              aria-describedby="productCostHelp">
-          </div>
-          <div class="mb-3">
-            <label for="product_qty" class="form-label" class="asterixRequired">Product Quantity</label>
-            <input type="text" formControlName="product_qty" class="form-control" id="InputProductQty "
-              aria-describedby="productQtyHelp">
-          </div>
-          <div class="mb-3">
-
-            <label for="image_url" class="form-label">Choose image  to update </label>
-            <input #imageInput type="file" formControlName="image_url" class="form-control" id="InputProductImgUrl"
-              aria-describedby="productImgUrlHelp" accept="image/*" (change)="uploadImage($event)">
-
-          </div>
-          <div class="mb-3">
-            <label for="product_description" class="form-label" class="asterixRequired">Product description</label>
-            <textarea type="text" formControlName="product_description" class="form-control"
-              id="InputProductDescription " aria-describedby="productDescriptionHelp">
-                </textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" (click)="updateProducts()" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- Discount Products Section Modal form -->
- <!-- <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog"> 
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Discount</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="formValueDiscount">
-          <div class="mb-3">
-            <label for="product_percentage" class="form-label">Product Discount Percentage</label>
-            <input type="text" formControlName="discount_percentage" class="form-control" id="InputProductPercentage "
-              aria-describedby="productPercentageHelp" placeholder="Please enter whole number (ex. 20 = 20%)">
-          </div>
-          <div class="mb-3">
-            <label for="product_discount_description" class="form-label">Product Discount Description</label>
-            <textarea type="text" formControlName="discount_description" class="form-control"
-              id="InputProductDescription " aria-describedby="productDescriptionHelp" placeholder="Black Friday Deal">
-              </textarea>
-          </div>
-          <div class="mb-3">
-            <label for="product_id" class="form-label">Product Id</label>
-            <span type="number"  class="form-control" id="InputProductId "
-              aria-describedby="productIdHelp">{{discountObject.productId}}</span>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" (click)="addDiscountProducts()" class="btn btn-primary">Add Discount</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- Discount Products Section  Modal form | DELETE FORM -->
-<!-- <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Discount/Delete Product</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="formValueDiscountDelete">
-          <div class="mb-3">
-            <label for="product_id" class="form-label">Product ID</label>
-            <span type="text"  class="form-control" id="InputProductId "
-              aria-describedby="productPercentageHelp">{{deleteProductId}}</span>
-          </div>
-          <div class="mb-3">
-            <label for="product_discount_description" class="form-label"> Discount ID</label>
-            <span type="text"  class="form-control" id="InputDiscountId "
-              aria-describedby="productPercentageHelp">{{deleteDiscountId}}</span>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id="cancel" (click)="deleteDiscountProducts()" data-bs-dismiss="modal" class="btn btn-primary">Delete Discount</button>
-        <button type="button" id="cancel" (click)="deleteProductsAlongWithDiscounts()" data-bs-dismiss="modal" class="btn btn-primary">Delete Product</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- Discount Products Section Modal form -->
-<!-- <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update Discount</h5>
-
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="formValueDiscount">
-          <div class="mb-3">
-            <label for="product_percentage" class="form-label">Product Discount Percentage</label>
-            <input type="text" formControlName="discount_percentage" class="form-control" id="InputProductPercentage "
-              aria-describedby="productPercentageHelp">
-          </div>
-          <div class="mb-3">
-            <label for="product_discount_description" class="form-label">Product Discount Description</label>
-            <textarea type="text" formControlName="discount_description" class="form-control"
-              id="InputProductDescription " aria-describedby="productDescriptionHelp">
-              </textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" (click)="updateDiscountProducts()" class="btn btn-primary">Update Discount</button>
-      </div>
-    </div>
-  </div>
-</div> -->

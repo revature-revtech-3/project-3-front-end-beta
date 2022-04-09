@@ -51,6 +51,7 @@ import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.compon
     ResetPasswordComponent,
     WishlistComponent,
 
+
   ],
   imports: [
     BrowserModule,
