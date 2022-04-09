@@ -113,8 +113,8 @@ export class ProductPageComponent implements OnInit {
     this.wishlistAndItemsService.getWishlistAndItemsService(this.userId).subscribe({
       next: response => {
         this.wishlistAndItems = response;
-        console.log("loadData");
-        console.log(response);
+        //console.log("loadData");
+       // console.log(response);
 
       },
       error: error => {
@@ -125,8 +125,8 @@ export class ProductPageComponent implements OnInit {
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
       next: response => {
         this.cartAndItems = response;
-        console.log("loadData");
-        console.log(response);
+       // console.log("loadData");
+        //console.log(response);
 
       },
       error: error => {
@@ -189,8 +189,8 @@ export class ProductPageComponent implements OnInit {
     newItem.wishlistQty = event.value;
     this.wishlistItemService.updateItemServiceWishlist(newItem).subscribe({
       next: response => {
-        console.log("changeQuantity");
-        console.log(response);
+       // console.log("changeQuantity");
+      //  console.log(response);
         this.loadData();
       },
       error: err => {
@@ -207,8 +207,8 @@ export class ProductPageComponent implements OnInit {
     newItem.cartQty = event.value;
     this.cartItemService.updateItemService(newItem).subscribe({
       next: response => {
-        console.log("changeQuantity");
-        console.log(response);
+       // console.log("changeQuantity");
+        //console.log(response);
         this.loadData();
       },
       error: err => {
@@ -355,8 +355,8 @@ export class ProductPageComponent implements OnInit {
 
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
       next: response => {
-        console.log("getCartAndItemsWithUSerIdService");
-        console.log(response);
+        //console.log("getCartAndItemsWithUSerIdService");
+        //console.log(response);
         this.buyNowCartAndItems = response;
 
         this.buyNowItem.cartId = this.buyNowCartAndItems.cartId;
@@ -365,20 +365,20 @@ export class ProductPageComponent implements OnInit {
         this.buyNowItem.cartItemId = -1;
         this.cartItemService.addNewItemService(this.buyNowItem).subscribe({
           next: response => {
-            console.log("addNewItemService");
-            console.log(response);
-            console.log("hello");
+            //console.log("addNewItemService");
+           /// console.log(response);
+            //console.log("hello");
             this.buyNowCartAndItems.cartId = response.cartId;
-            console.log(this.buyNowCartAndItems.cartId);
+           //console.log(this.buyNowCartAndItems.cartId);
             // this.goToCheckout()
             //this.loadData();
 
             this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
               next: response => {
                 this.buyNowCartAndItems = response;
-                console.log("loadData");
-                console.log(response);
-                console.log(this.buyNowCartAndItems.cartId);
+               // console.log("loadData");
+               // console.log(response);
+               // console.log(this.buyNowCartAndItems.cartId);
 
                 this.buyNowCart.cartId = this.buyNowCartAndItems.cartId
                 //this.buyNowCart.userId = this.buyNowCartAndItems.userId
@@ -388,17 +388,17 @@ export class ProductPageComponent implements OnInit {
                 
                 this.buyNowCart.cartRemoved = true
                 this.buyNowCart.cartPaid = true
-                console.log("buyNowCart:");
-                console.log(this.buyNowCart);
+                //console.log("buyNowCart:");
+               // console.log(this.buyNowCart);
                 this.cartService.updateCartService(this.buyNowCart).subscribe((response) => {
-                  console.log("updateCartService");
-                  console.log(response);
+                  //console.log("updateCartService");
+                  //console.log(response);
                   this.transaction.cartId = this.buyNowCartAndItems.cartId;
                   this.transaction.transactionId = null;
                   this.transaction.transactionDate = null;
                   this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
-                    console.log("sendTransaction");
-                    console.log(response);
+                   // console.log("sendTransaction");
+                    //console.log(response);
                     this.newTransaction = response;
                     this.updateMultiProducts();
                     this.addItemsToPurchaseHistory(response.transactionId);
