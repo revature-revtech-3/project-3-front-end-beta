@@ -50,8 +50,6 @@ import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.compon
     ForgetPasswordComponent,
     ResetPasswordComponent,
     WishlistComponent,
-  
-    
 
   ],
   imports: [
