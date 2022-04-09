@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use '@angular/material'as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -20,6 +19,7 @@ $rev-tech-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
+
 $rev-tech-theme: mat.define-light-theme((
   color: (
     primary: $rev-tech-primary, 
@@ -38,14 +38,11 @@ $rev-tech-theme: mat.define-light-theme((
 
 
 //Setting background and foreground theme
-$rev-tech-dark-theme: mat.define-dark-theme((
-  color: (
-    primary: $rev-tech-primary,
-    accent: $rev-tech-accent,
-    warn: $rev-tech-warn,
+$rev-tech-dark-theme: mat.define-dark-theme((color: (primary: $rev-tech-primary,
+      accent: $rev-tech-accent,
+      warn: $rev-tech-warn,
     ),
-  )
-);
+  ));
 
 .darkMode {
   @include mat.all-component-colors($rev-tech-dark-theme);
@@ -53,8 +50,25 @@ $rev-tech-dark-theme: mat.define-dark-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -64,4 +78,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* https://weblog.west-wind.com/posts/2016/sep/14/bootstrap-modal-dialog-showing-under-modal-background */
 .modal-backdrop {
   display: none;
+
 }

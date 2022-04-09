@@ -21,7 +21,7 @@ export class ForgetPasswordComponent implements OnInit {
       next: data => {
         this.isComplete = true;
         this.isError = false;
-
+        this.email = '';
       },
       error: err => {
         this.isComplete = true;
@@ -32,3 +32,4 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
 }
+

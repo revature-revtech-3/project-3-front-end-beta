@@ -1,0 +1,6 @@
+{
+    "/api": {
+    "target": "http://ec2-54-227-229-86.compute-1.amazonaws.com:8080",
+    "secure": false
+    }
+}
