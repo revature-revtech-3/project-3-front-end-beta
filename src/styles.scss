@@ -19,10 +19,14 @@ $rev-tech-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$rev-tech-theme: mat.define-light-theme((color: (primary: $rev-tech-primary,
-      accent: $rev-tech-accent,
-      warn: $rev-tech-warn,
-    )));
+
+$rev-tech-theme: mat.define-light-theme((
+  color: (
+    primary: $rev-tech-primary, 
+    accent: $rev-tech-accent,
+    warn: $rev-tech-warn,
+  )
+));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -66,7 +70,13 @@ body {
   height: 100%;
 }
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/*For stop Bootstrap Modal Dialog showing under Modal Background*/
+/* https://weblog.west-wind.com/posts/2016/sep/14/bootstrap-modal-dialog-showing-under-modal-background */
+.modal-backdrop {
+  display: none;
+
 }
