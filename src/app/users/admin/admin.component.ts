@@ -125,6 +125,7 @@ export class AdminComponent implements OnInit {
   displayProducts(){
     this.toggleProductTable=true;
     this.toggleDiscountTable=false;
+    this.toggleBundleTable=false;
 
     // if(this.toggleDiscountTable==false){
      
@@ -139,6 +140,7 @@ export class AdminComponent implements OnInit {
     displayDiscounts(){
       this.toggleDiscountTable=true;
       this.toggleProductTable=false;
+      this.toggleBundleTable=false;
       // if(this.toggleProductTable==false){
       //   // this.toggleProductTable==true;
       //   this.toggleDiscountTable=true;
