@@ -53,6 +53,7 @@ import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.compon
   
     
 
+
   ],
   imports: [
     BrowserModule,

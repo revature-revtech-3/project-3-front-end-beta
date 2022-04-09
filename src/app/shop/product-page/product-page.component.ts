@@ -68,7 +68,7 @@ export class ProductPageComponent implements OnInit {
 
 
   }
- 
+
 
 
   constructor(private productAndDiscountService: ProductAndDiscountService,
@@ -113,27 +113,27 @@ export class ProductPageComponent implements OnInit {
     this.wishlistAndItemsService.getWishlistAndItemsService(this.userId).subscribe({
       next: response => {
         this.wishlistAndItems = response;
-        console.log("loadData");
-        console.log(response);
+        //console.log("loadData");
+       // console.log(response);
 
       },
       error: error => {
       }
     });
-  
+
     // if(this.user.userId <= 0) this.user.userId = 1; //Remove this line if not testing
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
       next: response => {
         this.cartAndItems = response;
-        console.log("loadData");
-        console.log(response);
+       // console.log("loadData");
+        //console.log(response);
 
       },
       error: error => {
       }
     });
   }
-  
+
 
 
   updateCartItem() {
@@ -143,8 +143,6 @@ export class ProductPageComponent implements OnInit {
     this.item.cartItemId = -1;
     this.cartItemService.addNewItemService(this.item).subscribe({
       next: response => {
-
-        // this.goToCheckout()
         this.loadData();
       },
       error: error => {
@@ -159,8 +157,6 @@ export class ProductPageComponent implements OnInit {
     this.itemwishlist.wishlistItemId = -1;
     this.wishlistItemService.addNewItemServiceWishlist(this.itemwishlist).subscribe({
       next: response => {
-
-        // this.goToCheckout()
         this.loadData();
       },
       error: error => {
@@ -189,8 +185,8 @@ export class ProductPageComponent implements OnInit {
     newItem.wishlistQty = event.value;
     this.wishlistItemService.updateItemServiceWishlist(newItem).subscribe({
       next: response => {
-        console.log("changeQuantity");
-        console.log(response);
+       // console.log("changeQuantity");
+      //  console.log(response);
         this.loadData();
       },
       error: err => {
@@ -207,8 +203,8 @@ export class ProductPageComponent implements OnInit {
     newItem.cartQty = event.value;
     this.cartItemService.updateItemService(newItem).subscribe({
       next: response => {
-        console.log("changeQuantity");
-        console.log(response);
+       // console.log("changeQuantity");
+        //console.log(response);
         this.loadData();
       },
       error: err => {
@@ -229,6 +225,21 @@ export class ProductPageComponent implements OnInit {
     if (this.counter > this.productAndDiscount.productQty) this.counter = this.productAndDiscount.productQty;
     else if (this.counter < 0) this.counter = 0;
     this.updateCartItem();
+  }
+
+  qtyChangeWishlist() {
+    if (this.counter > this.productAndDiscount.productQty) this.counter = this.productAndDiscount.productQty;
+    else if (this.counter < 0) this.counter = 0;
+    this.updateWishlistItem();
+  }
+
+  increaseWishlistCount() {
+    this.counter++;
+    this.qtyChangeWishlist();
+  }
+  decreaseWishlistCount() {
+    this.counter--;
+    this.qtyChangeWishlist();
   }
 
   loadReviews() {
@@ -264,10 +275,6 @@ export class ProductPageComponent implements OnInit {
     if (!this.averageRating) this.averageRating = 0;
   }
 
-  // getAverageRating() {
-  //   let totalStars = 0;
-  //
-  // }
 
   postReview() {
     this.reviewForm.productId = this.productId;
@@ -283,32 +290,23 @@ export class ProductPageComponent implements OnInit {
   }
 
   starRating(): Array<number> {
-    // if (this.reviewForm.rating < 1) this.reviewForm.rating = 1;
-    // console.log();
     return Array.from({ length: this.reviewForm.rating }, (_, i) => i + 1)
   }
 
   negativeStarRating(): Array<number> {
     return Array.from({ length: 5 - this.reviewForm.rating }, (_, i) => i + 1)
-    // return Array(5 - this.reviewForm.rating);
+
   }
 
   Rating(rate: number): Array<number> {
-    // if (this.reviewForm.rating < 1) this.reviewForm.rating = 1;
+
     return Array.from({ length: rate }, (_, i) => i + 1)
   }
 
   negativeRating(rate: number): Array<number> {
     return Array.from({ length: 5 - rate }, (_, i) => i + 1)
-    // return Array(5 - this.reviewForm.rating);
+
   }
-
-
-  // numSequence(): Array<number> {
-  //   // if (this.reviewForm.rating < 1) this.reviewForm.rating = 1;
-  //   return Array(this.reviewForm.rating);
-  // }
-
 
   updateReviewRating(event: any) {
     this.reviewForm.rating = parseInt(event);
@@ -340,8 +338,8 @@ export class ProductPageComponent implements OnInit {
 
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
       next: response => {
-        console.log("getCartAndItemsWithUSerIdService");
-        console.log(response);
+        //console.log("getCartAndItemsWithUSerIdService");
+        //console.log(response);
         this.buyNowCartAndItems = response;
 
         this.buyNowItem.cartId = this.buyNowCartAndItems.cartId;
@@ -350,40 +348,40 @@ export class ProductPageComponent implements OnInit {
         this.buyNowItem.cartItemId = -1;
         this.cartItemService.addNewItemService(this.buyNowItem).subscribe({
           next: response => {
-            console.log("addNewItemService");
-            console.log(response);
-            console.log("hello");
+            //console.log("addNewItemService");
+           /// console.log(response);
+            //console.log("hello");
             this.buyNowCartAndItems.cartId = response.cartId;
-            console.log(this.buyNowCartAndItems.cartId);
+           //console.log(this.buyNowCartAndItems.cartId);
             // this.goToCheckout()
-            //this.loadData();
+            // this.loadData();
 
             this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
               next: response => {
                 this.buyNowCartAndItems = response;
-                console.log("loadData");
-                console.log(response);
-                console.log(this.buyNowCartAndItems.cartId);
+               // console.log("loadData");
+               // console.log(response);
+               // console.log(this.buyNowCartAndItems.cartId);
 
                 this.buyNowCart.cartId = this.buyNowCartAndItems.cartId
                 //this.buyNowCart.userId = this.buyNowCartAndItems.userId
 
                 this.buyNowCart.userId = this.userId;
                 this.buyNowCart.cartTotal = parseInt(this.getItemsTotal());
-                
+
                 this.buyNowCart.cartRemoved = true
                 this.buyNowCart.cartPaid = true
-                console.log("buyNowCart:");
-                console.log(this.buyNowCart);
+                //console.log("buyNowCart:");
+               // console.log(this.buyNowCart);
                 this.cartService.updateCartService(this.buyNowCart).subscribe((response) => {
-                  console.log("updateCartService");
-                  console.log(response);
+                  //console.log("updateCartService");
+                  //console.log(response);
                   this.transaction.cartId = this.buyNowCartAndItems.cartId;
                   this.transaction.transactionId = null;
                   this.transaction.transactionDate = null;
                   this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
-                    console.log("sendTransaction");
-                    console.log(response);
+                   // console.log("sendTransaction");
+                    //console.log(response);
                     this.newTransaction = response;
                     this.updateMultiProducts();
                     this.addItemsToPurchaseHistory(response.transactionId);
@@ -431,24 +429,24 @@ export class ProductPageComponent implements OnInit {
       })
     });
   }
-//getItemsTotal been moved
-  getItemsTotal(): any {
-  let total = 0;
-  this.buyNowCartAndItems.cartItems.forEach((value, index) => {
-    total += this.calculateTotalCost(value, this.calculateDiscountedItemCost);
-  });
 
-  return total.toFixed(2);
-}
+  getItemsTotal(): any {
+    let total = 0;
+    this.buyNowCartAndItems.cartItems.forEach((value, index) => {
+      total += this.calculateTotalCost(value, this.calculateDiscountedItemCost);
+    });
+
+    return total.toFixed(2);
+  }
 
   // calcSingleItem is the a function parametar
   calculateTotalCost(item: ItemProductAndDiscount, calcSingleItem: any) {
     return item.cartQty * calcSingleItem(item.productAndDiscount);
   }
-    // calcSingleItem is the a function parametar
-    calculateTotalCostWishlist(item: ItemProductAndDiscount, calcSingleItem: any) {
-      return item.cartQty * calcSingleItem(item.productAndDiscount);
-    }
+  // calcSingleItem is the a function parametar
+  calculateTotalCostWishlist(item: ItemProductAndDiscount, calcSingleItem: any) {
+    return item.cartQty * calcSingleItem(item.productAndDiscount);
+  }
 
   // calculate the item has a discount
   calculateDiscountedItemCost(product: ProductAndDiscount): number {
@@ -515,4 +513,5 @@ export class ProductPageComponent implements OnInit {
     })
   }
 }
+
 

@@ -28,6 +28,11 @@ export class WishlistService {
     return this.http.put<Wishlist>(this.baseUrl + "/put", wishlist, this.header);
   }
 
+  getWishlistService(userId: number): Observable<Wishlist>{
+    return this.http.get<Wishlist>(this.baseUrl + "/user/" + userId + "/get", this.header);
+  }
+
+
 
 
 

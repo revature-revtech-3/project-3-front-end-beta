@@ -20,13 +20,13 @@ export class WishlistAndItemsService {
     }
    }
 
-   getWishlistAndItemsService(userId: number): Observable<WishlistAndItems>{
-    return this.http.get<WishlistAndItems>(this.baseUrl + "/wishList/" + userId + "/get", this.header);
+   getWishlistAndItemsService(wishlistId: number): Observable<WishlistAndItems>{
+    return this.http.get<WishlistAndItems>(this.baseUrl + "/wishList/" + wishlistId + "/get", this.header);
   }
 
-  // getWishlistAndItemsWithUserIdService(userId: number): Observable<WishlistAndItems> {
-  //   return this.http.get<WishlistAndItems>(this.baseUrl + "/user/" + userId + "/get", this.header);
-  // }
+  getWishlistAndItemsWithUserIdService(userId: number): Observable<WishlistAndItems> {
+    return this.http.get<WishlistAndItems>(this.baseUrl + "/user/" + userId + "/get", this.header);
+  }
 
 
 

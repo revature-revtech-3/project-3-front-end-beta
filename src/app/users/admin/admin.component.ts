@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Product, ProductAndDiscount, Discount } from 'src/app/models/product.model';
+import { Product, ProductAndDiscount, Discount, Bundle } from 'src/app/models/product.model';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -14,12 +14,15 @@ export class AdminComponent implements OnInit {
   row: any;
   toggleDiscountTable: boolean = false;
   toggleProductTable: boolean = false;
+  toggleBundleTable: boolean = false;
   //Arrays, Objects, & string
   allProducts: Product[] = [];
+  allBundles: Bundle[] = [];
 
   productObject: Product = new Product();
   formValue         !: FormGroup;
   formValueProduct  !: FormGroup;
+  formValueBundle  !: FormGroup;
   formValueDiscount !: FormGroup;
   formValueDiscountDelete !: FormGroup;
   formValueDiscountUpdate !: FormGroup;
@@ -38,6 +41,17 @@ export class AdminComponent implements OnInit {
     productRemoved: false,
     imageUrl: ""
   }
+//Bundle
+  //Array for Form Fields to Create new Bundle
+  newBundle: Bundle = {
+    bundleId: 0,
+    bundleName: "",
+    bundlePercentage: 0.0,
+    productOnePojo: new Product(),
+    productTwoPojo: new Product()
+  
+  }
+
   //To Provide Different Product Categories in add product form
   public selectedCat: string = "Phone";
   categories = [
@@ -83,6 +97,13 @@ export class AdminComponent implements OnInit {
       discount_description: [''],
       product_id: ['']
     })
+    this.formValueBundle = this.formbuilder.group({
+      bundle_id: [''],
+      bundle_name: [''],
+      bundle_percentage: [''],
+      product_one_id: [''],
+      product_two_id: ['']
+    })
 
     this.formValueDiscountDelete = this.formbuilder.group({
       product_id: [''],
@@ -96,12 +117,15 @@ export class AdminComponent implements OnInit {
     //Load all Products
     this.loadDiscountProducts();
     this.loadProducts();
+      // load all bundles
+      this.loadBundles();
   }
 
   //Toggle Buttons
   displayProducts(){
     this.toggleProductTable=true;
     this.toggleDiscountTable=false;
+    this.toggleBundleTable=false;
 
     // if(this.toggleDiscountTable==false){
      
@@ -116,6 +140,7 @@ export class AdminComponent implements OnInit {
     displayDiscounts(){
       this.toggleDiscountTable=true;
       this.toggleProductTable=false;
+      this.toggleBundleTable=false;
       // if(this.toggleProductTable==false){
       //   // this.toggleProductTable==true;
       //   this.toggleDiscountTable=true;
@@ -158,6 +183,15 @@ export class AdminComponent implements OnInit {
     })
 
   }
+
+  displayBundles(){
+  
+    this.toggleBundleTable=true;
+    this.toggleProductTable=false;
+    this.toggleDiscountTable=false;
+   this.loadBundles();
+    
+  }
   
   // to add Product
   addProducts() {
@@ -188,6 +222,50 @@ export class AdminComponent implements OnInit {
       alert("Make sure to enter values above 0 for Product Cost and Product Quantity");
     }
   }
+// Load Bundles
+loadBundles() {
+  this.productService.getAllBundleProductsService().subscribe(
+    (response: any) => {
+console.log(response);
+    
+      this.allBundles = response;
+    },
+    (error: any) => {
+      this.errorProductMsg = "Unable to get allBundles - Try later";
+    }
+  )
+}
+  // Bundle
+  // to Create Bundle
+  addBundles(): void {
+    this.newBundle.bundleId = this.formValueBundle.value.bundle_id;
+    this.newBundle.bundleName = this.formValueBundle.value.bundle_name;
+    this.newBundle.bundlePercentage = this.formValueBundle.value.product_percentage;
+    this.newBundle.productOnePojo = this.formValueBundle.value.product_one_id;
+    this.newBundle.productTwoPojo = this.formValueBundle.value.product_two_id;
+
+    // Let's post the data through the post request in service
+    if(this.newBundle.bundleId){
+    this.productService.addBundleProductsService(this.newBundle).subscribe(
+      (response: any) => {
+        this.loadBundles();
+      },
+      (error: any) => {
+      })
+
+    this.ngOnInit();
+    alert("Bundle was added successfully");
+    //Close the Form Automatically
+    let ref = document.getElementById("cancel");
+    ref?.click();
+    this.formValue.reset();
+    this.router.navigate(['admin'])
+    }else{
+      alert("Make sure to enter values above 0 for Product Cost and Product Quantity");
+    }
+  }
+
+  //Bundle -end
 
   //As per Poon no direct code to be used for refreshing the S.P.A. 
   // reloadPage(): void {
@@ -428,5 +506,8 @@ export class AdminComponent implements OnInit {
     }
     return result;
   }
+
+  
+
 
 }//end class

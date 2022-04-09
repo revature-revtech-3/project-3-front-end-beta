@@ -36,3 +36,16 @@ export class Discount{
     discountPercentage: number = 0.0;
 }
 
+
+//Bundle Model
+export class Bundle{
+
+    bundleId: number = 0;
+    bundleName: string = "";
+    bundlePercentage: number = 0.0;
+    productOnePojo: Product= new Product();
+    productTwoPojo: Product= new Product();
+    
+
+}
+
