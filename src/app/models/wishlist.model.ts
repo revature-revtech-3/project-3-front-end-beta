@@ -1,34 +1,19 @@
-import { ProductAndDiscount } from "./product.model";
+import { Product, ProductAndDiscount } from "./product.model";
+import { User } from "./user.model";
 
 export class Wishlist {
 
-    wishlistId: number = 0;
-    userId: number = 0;
-    wishlistTotal: number = 0;
-   
+    wishListId: number =0;
+    userPojo: User = new User();
+    wishListTotal: number = 0;
+    wishListItems: Array<WishlistItem> = [];
+    
 }
 
 export class WishlistItem {
 
-    wishlistItemId: number = 0;
-    wishlistId: number = 0;
-    productId: number = 0;
-    wishlistQty: number = 0;
-}
+    wishItemId: number = 0;
+    wishListPojo: Wishlist = new Wishlist();
+    productAndDiscountPojo: ProductAndDiscount = new ProductAndDiscount();
 
-export class WishlistAndItems {
-
-    wishlistId: number = 0;
-    userId: number = 0;
-    wishlistTotal: number = 0;
-    wishlistItems: Array<ItemProductAndDiscount> = [];
-}
-
-export class ItemProductAndDiscount {
-
-    wishlistItemId: number = 0;
-    wishlistId: number = 0;
-    productId: number = 0;
-    wishlistQty: number = 0;
-    productAndDiscount: ProductAndDiscount = new ProductAndDiscount();
 }
