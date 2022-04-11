@@ -338,8 +338,7 @@ export class ProductPageComponent implements OnInit {
 
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
       next: response => {
-        //console.log("getCartAndItemsWithUSerIdService");
-        //console.log(response);
+
         this.buyNowCartAndItems = response;
 
         this.buyNowItem.cartId = this.buyNowCartAndItems.cartId;
@@ -348,40 +347,29 @@ export class ProductPageComponent implements OnInit {
         this.buyNowItem.cartItemId = -1;
         this.cartItemService.addNewItemService(this.buyNowItem).subscribe({
           next: response => {
-            //console.log("addNewItemService");
-           /// console.log(response);
-            //console.log("hello");
+ 
             this.buyNowCartAndItems.cartId = response.cartId;
-           //console.log(this.buyNowCartAndItems.cartId);
-            // this.goToCheckout()
-            // this.loadData();
 
             this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
               next: response => {
                 this.buyNowCartAndItems = response;
-               // console.log("loadData");
-               // console.log(response);
-               // console.log(this.buyNowCartAndItems.cartId);
-
+         
                 this.buyNowCart.cartId = this.buyNowCartAndItems.cartId
-                //this.buyNowCart.userId = this.buyNowCartAndItems.userId
+  
 
                 this.buyNowCart.userId = this.userId;
                 this.buyNowCart.cartTotal = parseInt(this.getItemsTotal());
 
                 this.buyNowCart.cartRemoved = true
                 this.buyNowCart.cartPaid = true
-                //console.log("buyNowCart:");
-               // console.log(this.buyNowCart);
+          
                 this.cartService.updateCartService(this.buyNowCart).subscribe((response) => {
-                  //console.log("updateCartService");
-                  //console.log(response);
+             
                   this.transaction.cartId = this.buyNowCartAndItems.cartId;
                   this.transaction.transactionId = null;
                   this.transaction.transactionDate = null;
                   this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
-                   // console.log("sendTransaction");
-                    //console.log(response);
+           
                     this.newTransaction = response;
                     this.updateMultiProducts();
                     this.addItemsToPurchaseHistory(response.transactionId);
@@ -409,13 +397,7 @@ export class ProductPageComponent implements OnInit {
       error: error => {
       }
     });
-
-
-
-
-
-
-  }
+ }
 
   updateMultiProducts() {
     this.buyNowCartAndItems.cartItems.forEach((item) => {
