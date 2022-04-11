@@ -1,69 +1,77 @@
-======= Wishlist=======
-<section id="wishlist" class="wishlist">
-  <div class ="body">
+<!-- ======= Wishlist======= -->
+<div class="body">
+  <section id="wishlist">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 entries">
-          
-          <div class="entry" *ngFor="let wishlist of wishlistAndItems.wishlistItems">
-            <div class="entry-details  d-flex flex-row">
-              <div class="d-flex flex-column my-cloumn1">
-                <div class="entry-img">
-                  <img [src]="wishlist.productAndDiscount.imageUrl" width=300px height=" auto " class="img-fluid ">
-                </div>
-              </div>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <div class="my-cloumn2 d-flex flex-column align-items-start ">
-                <h5 class="entry-title ">{{wishlist.productAndDiscount.productDescription}}</h5>
-                <div class="entry-content ">
-                  <h4 class="item-details ">Category: {{wishlist.productAndDiscount.productCategory}}
-                  </h4><br>
-                  <h4 class="item-details ">Available: {{wishlist.productAndDiscount.productQty}}</h4>
-                  <br>
-                  <div class=" contact-shop ml-auto d-flex flex-row align-item-start ">
-                    <button class="remove " (click)="remove(wishlist.wishlistItemId)">Remove</button>
-                  </div>
-                </div>
-                <div class="entry-meta ">
-                </div>
-              </div>
-              <div class="entry-item-cost d-flex flex-column align-item-end my-cloumn3 active ">
-                <div class="contact-shop ml-auto d-flex flex-row ">
-                  <h6>Sold by Rev-Tech.com</h6>
-                </div>
-                <div class="d-flex flex-row align-items-start ">
-
-
-                </div>
-                <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto "
-                  *ngIf=" wishlist.productAndDiscount.discountPercentage < 1.0 ">
-                  ${{calculateTotalCost(wishlist, calculateSingleItemCost) | number :'1.2-2'}} </h6>
-                <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto "
-                  *ngIf=" wishlist.productAndDiscount.discountPercentage > 1.0 ">
-                  ${{calculateTotalCost(wishlist, calculateDiscountedItemCost) | number :'1.2-2'}} </h6>
-  
-                <h6 class="item-old-price" *ngIf=" wishlist.productAndDiscount.discountPercentage > 1.0 ">
-                  $ {{calculateTotalCost(wishlist, calculateSingleItemCost) | number :'1.2-2'}}</h6><br>
-                <h6 class="item-old-price" *ngIf=" wishlist.productAndDiscount.discountPercentage < 1.0 "
-                  [ngStyle]="{'visibility': 'hidden'}">
-                  $ {{wishlist.productAndDiscount.productCost}}</h6><br>
-  
-  
-                <div class="item-decrription " *ngIf="wishlist.productAndDiscount.discountPercentage > 1.0 ">
-                  {{"Discounted for: " + wishlist.productAndDiscount.discountDescription }}</div> <br>
-  
-                <div class="item-decrription " *ngIf="wishlist.productAndDiscount.discountPercentage < 1.0"
-                  [ngStyle]="{'visibility': 'hidden'}">
-                  {{wishlist.productAndDiscount.discountDescription }}</div> <br>
-  
-                <h6 class="item-sale " *ngIf=" wishlist.productAndDiscount.discountPercentage < 1.0 "
-                  [ngStyle]="{'visibility': 'hidden'}">
-                </h6>
-  
-                <h6 class="item-sale " *ngIf=" wishlist.productAndDiscount.discountPercentage > 1.0 ">
-                  Sale: {{wishlist.productAndDiscount.discountPercentage}}%</h6>
-              </div>
-            </div>
+          <h1>Wish List</h1>
+          <div *ngIf="wishlist.wishListItems.length == 0">
+            <h2>No Items In WishList Yet!</h2>
           </div>
-          <hr>
-  
+
+          <div *ngIf="wishlist.wishListItems.length != 0">
+            <table>
+              <tr>
+                <th scope="col">Product Id</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Category</th>
+                <th scope="col">Product Percentage</th>
+                <th scope="col">Product Cost</th>
+                <th scope="col">Product Quantity</th>
+                <th scope="col">Product SKU</th>
+                <th scope="col">Product Description</th>
+                <th scope="col">Product Image</th>
+                <th></th>
+              </tr>
+
+              <tr *ngFor="let row of wishlist.wishListItems">
+                <td>{{ row.productAndDiscountPojo.productId }}</td>
+                <td>{{ row.productAndDiscountPojo.productName }}</td>
+                <td>{{ row.productAndDiscountPojo.productCategory }}</td>
+                <td *ngIf="row.productAndDiscountPojo.discountPercentage == 0">
+                  0%
+                </td>
+                <td *ngIf="row.productAndDiscountPojo.discountPercentage != 0">
+                  {{ row.productAndDiscountPojo.discountPercentage }}%
+                </td>
+                <td>
+                  {{
+                    row.productAndDiscountPojo.productCost -
+                      row.productAndDiscountPojo.productCost *
+                        (row.productAndDiscountPojo.discountPercentage / 100)
+                      | currency
+                  }}
+                </td>
+                <td>{{ row.productAndDiscountPojo.productQty }}</td>
+                <td>{{ row.productAndDiscountPojo.productSku }}</td>
+                <td>{{ row.productAndDiscountPojo.productDescription }}</td>
+                <td>
+                  <img
+                    id="image-size"
+                    class=""
+                    src="{{ row.productAndDiscountPojo.imageUrl }}"
+                    width="90px"
+                    height="90px"
+                  />
+                </td>
+
+                <td>
+                  <button
+                    (click)="remove(row.wishItemId)"
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal5"
+                    class="btn btn-dark"
+                  >
+                    <i class="fa fa-trash-o"></i>Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
