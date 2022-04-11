@@ -28,13 +28,14 @@
     <button mat-button (click)="filterByCategory('Headphones')">Headphones</button>
     <button mat-button (click)="filterByCategory('Cameras')">Cameras</button>
     <button mat-button (click)="filterByDiscount()">Discounted Items</button>
+    <button mat-button (click)="filterByDiscount()">Bundle Items</button>
 </div>
 </mat-sidenav>
 
 
 
 <!-- Page content -->
-<div class="container-fluid mat-app-background">
+<div class="container-fluid">
   <div class="content">
     <div class="card-deck" *ngIf="returnQuery()">
       <div class="wrapper">

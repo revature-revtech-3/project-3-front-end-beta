@@ -40,6 +40,8 @@ export class ResetPasswordComponent implements OnInit {
     this.authService.resetPassword(this.userid, this.newPassword).subscribe({
       next: () => {
         this.isPwdChngSuccess = true;
+        this.newPassword = '';
+        this.confirmPassword = '';
       },
       error: () => {
         this.isPwdChngSuccess = false;
@@ -49,3 +51,4 @@ export class ResetPasswordComponent implements OnInit {
 
 
 }
+
