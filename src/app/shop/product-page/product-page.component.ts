@@ -87,7 +87,7 @@ export class ProductPageComponent implements OnInit {
     private productService: ProductService,
     private purchasedItemService: PurchasedItemService,
     private reviewService: ReviewService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // let pId: string = this.activatedRoute.snapshot.paramMap.get("productId") == null ? "" :  this.activatedRoute.snapshot.paramMap.get("productId");
@@ -109,7 +109,7 @@ export class ProductPageComponent implements OnInit {
           this.productAndDiscount = response;
           this.productLoaded = true;
         },
-        error: (error) => {},
+        error: (error) => { },
       });
 
     // if(this.user.userId <= 0) this.user.userId = 1; //Remove this line if not testing
@@ -121,7 +121,7 @@ export class ProductPageComponent implements OnInit {
           // console.log("loadData");
           //console.log(response);
         },
-        error: (error) => {},
+        error: (error) => { },
       });
   }
 
@@ -134,7 +134,7 @@ export class ProductPageComponent implements OnInit {
       next: (response) => {
         this.loadData();
       },
-      error: (error) => {},
+      error: (error) => { },
     });
   }
 
@@ -152,7 +152,7 @@ export class ProductPageComponent implements OnInit {
         console.log(response);
         this.router.navigate(['wishlist']);
       },
-      error: (error) => {},
+      error: (error) => { },
     });
   }
 
@@ -175,12 +175,11 @@ export class ProductPageComponent implements OnInit {
     newItem.productId = item.productId;
     newItem.cartQty = event.value;
     this.cartItemService.updateItemService(newItem).subscribe({
-      next: (response) => {
-        // console.log("changeQuantity");
-        //console.log(response);
+      next: response => {
+
         this.loadData();
       },
-      error: (err) => {},
+      error: (err) => { },
     });
   }
 
@@ -214,7 +213,7 @@ export class ProductPageComponent implements OnInit {
         this.reviews = response;
         this.sortReviews();
       },
-      error: (error) => {},
+      error: (error) => { },
     });
   }
 
@@ -240,7 +239,7 @@ export class ProductPageComponent implements OnInit {
         // this.goToCheckout()
         this.loadReviews();
       },
-      error: (error) => {},
+      error: (error) => { },
     });
   }
 
@@ -283,105 +282,79 @@ export class ProductPageComponent implements OnInit {
   }
 
   proceedToCheckout() {
-    this.cartAndItemsService
-      .getCartAndItemsWithUserIdService(this.userId)
-      .subscribe({
-        next: (response) => {
-          //console.log("getCartAndItemsWithUSerIdService");
-          //console.log(response);
-          this.buyNowCartAndItems = response;
 
-          this.buyNowItem.cartId = this.buyNowCartAndItems.cartId;
-          this.buyNowItem.productId = this.productId;
-          this.buyNowItem.cartQty = 1;
-          this.buyNowItem.cartItemId = -1;
-          this.cartItemService.addNewItemService(this.buyNowItem).subscribe({
-            next: (response) => {
-              //console.log("addNewItemService");
-              /// console.log(response);
-              //console.log("hello");
-              this.buyNowCartAndItems.cartId = response.cartId;
-              //console.log(this.buyNowCartAndItems.cartId);
-              // this.goToCheckout()
-              // this.loadData();
 
-              this.cartAndItemsService
-                .getCartAndItemsWithUserIdService(this.userId)
-                .subscribe({
-                  next: (response) => {
-                    this.buyNowCartAndItems = response;
-                    // console.log("loadData");
-                    // console.log(response);
-                    // console.log(this.buyNowCartAndItems.cartId);
+    this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
+      next: response => {
+        //getCartItemsWithUserIdService uses userId to create new BuyNowCart
+        this.buyNowCartAndItems = response;
 
-                    this.buyNowCart.cartId = this.buyNowCartAndItems.cartId;
-                    //this.buyNowCart.userId = this.buyNowCartAndItems.userId
+        this.buyNowItem.cartId = this.buyNowCartAndItems.cartId;
+        this.buyNowItem.productId = this.productId;
+        this.buyNowItem.cartQty = 1;
+        this.buyNowItem.cartItemId = -1;
+        this.cartItemService.addNewItemService(this.buyNowItem).subscribe({
+          next: response => {
 
-                    this.buyNowCart.userId = this.userId;
-                    this.buyNowCart.cartTotal = parseInt(this.getItemsTotal());
+            this.buyNowCartAndItems.cartId = response.cartId;
+            //getCartAndItemsWithUserIdService gets the item
+            this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
+              next: response => {
+                this.buyNowCartAndItems = response;
 
-                    this.buyNowCart.cartRemoved = true;
-                    this.buyNowCart.cartPaid = true;
-                    //console.log("buyNowCart:");
-                    // console.log(this.buyNowCart);
-                    this.cartService
-                      .updateCartService(this.buyNowCart)
-                      .subscribe(
-                        (response) => {
-                          //console.log("updateCartService");
-                          //console.log(response);
-                          this.transaction.cartId =
-                            this.buyNowCartAndItems.cartId;
-                          this.transaction.transactionId = null;
-                          this.transaction.transactionDate = null;
-                          this.transactionService
-                            .sendTransaction(this.transaction)
-                            .subscribe(
-                              (response) => {
-                                // console.log("sendTransaction");
-                                //console.log(response);
-                                this.newTransaction = response;
-                                this.updateMultiProducts();
-                                this.addItemsToPurchaseHistory(
-                                  response.transactionId
-                                );
-                                this.intervalId = setInterval(() => {
-                                  this.displayStyle = 'none';
-                                  this.router.navigate([
-                                    '/confirmation-checkout/' +
-                                      this.newTransaction.transactionId,
-                                  ]);
-                                }, 2000);
-                              },
-                              (error) => {
-                                this.errorMsg =
-                                  'There was some internal error! Please try again later!';
-                              }
-                            );
-                        },
-                        (error) => {
-                          this.errorMsg =
-                            'There was some internal error! Please try again later!';
-                        }
-                      );
-                  },
-                  error: (error) => {},
+                this.buyNowCart.cartId = this.buyNowCartAndItems.cartId
+
+
+                this.buyNowCart.userId = this.userId;
+                this.buyNowCart.cartTotal = parseInt(this.getItemsTotal());
+
+                this.buyNowCart.cartRemoved = true
+                this.buyNowCart.cartPaid = true
+
+                this.cartService.updateCartService(this.buyNowCart).subscribe((response) => {
+
+                  this.transaction.cartId = this.buyNowCartAndItems.cartId;
+                  this.transaction.transactionId = null;
+                  this.transaction.transactionDate = null;
+                  this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
+                    //generates a transaction and save it to the purchase history
+                    this.newTransaction = response;
+                    this.updateMultiProducts();
+                    this.addItemsToPurchaseHistory(response.transactionId);
+                    this.intervalId = setInterval(() => {
+                      this.displayStyle = "none";
+                      this.router.navigate(['/confirmation-checkout/' + this.newTransaction.transactionId]);
+                    }, 2000);
+                  }, error => {
+                    this.errorMsg = 'There was some internal error! Please try again later!';
+                  });
+                }, error => {
+                  this.errorMsg = 'There was some internal error! Please try again later!';
                 });
-            },
-            error: (error) => {},
-          });
-        },
-        error: (error) => {},
-      });
+              },
+              error: error => {
+              }
+            });
+
+
+          },
+          error: error => {
+          }
+        });
+      },
+      error: error => {
+      }
+    });
   }
+
 
   updateMultiProducts() {
     this.buyNowCartAndItems.cartItems.forEach((item) => {
       let tempProduct = this.toProductModel(item);
       tempProduct.productQty = tempProduct.productQty - item.cartQty;
       this.productService.updateProductsService(tempProduct).subscribe({
-        next: (response) => {},
-        error: (err) => {},
+        next: (response) => { },
+        error: (err) => { },
       });
     });
   }
@@ -436,8 +409,6 @@ export class ProductPageComponent implements OnInit {
   }
 
   addItemsToPurchaseHistory(transactionId: number) {
-    console.log('transaction id:' + transactionId);
-    console.log(this.buyNowCartAndItems.cartItems);
     let purchasedItems: PurchasedItem[] = [];
     this.buyNowCartAndItems.cartItems.forEach((item) => {
       let temp: PurchasedItem = new PurchasedItem();
@@ -452,13 +423,14 @@ export class ProductPageComponent implements OnInit {
       );
       purchasedItems.push(temp);
     });
-    console.log(purchasedItems);
+
     this.purchasedItemService.addPurchasedItems(purchasedItems).subscribe({
-      next: (response) => {
-        console.log('addPurcahsedItems');
-        console.log(response);
+      next: response => {
+
       },
-      error: (err) => {},
+      error: (err) => { },
     });
   }
 }
+
+
