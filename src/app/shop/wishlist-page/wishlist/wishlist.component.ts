@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 import { PurchasedItemService } from 'src/app/services/purchased-item.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { WishlistAndItemsService } from 'src/app/services/wishlist-and-items.service';
 import { WishlistItemService } from 'src/app/services/wishlist-item.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { CommonModule } from '@angular/common';

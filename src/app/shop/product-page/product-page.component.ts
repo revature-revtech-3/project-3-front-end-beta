@@ -10,7 +10,6 @@ import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartAndItemsService } from 'src/app/services/cart-and-items.service';
 import { CartItemService } from 'src/app/services/cart-item.service';
-import { WishlistAndItemsService } from 'src/app/services/wishlist-and-items.service';
 import { WishlistItemService } from 'src/app/services/wishlist-item.service';
 import { ProductAndDiscountService } from 'src/app/services/product-and-discount.service';
 import { TokenStorageService } from '../../services/token-storage.service';
@@ -79,7 +78,6 @@ export class ProductPageComponent implements OnInit {
     private cartAndItemsService: CartAndItemsService,
     private wishlistService: WishlistService,
     private wishlistItemService: WishlistItemService,
-    private wishlistAndItemsService: WishlistAndItemsService,
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private tokenService: TokenStorageService,
