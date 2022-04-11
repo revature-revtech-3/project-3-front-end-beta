@@ -6,38 +6,33 @@ import { Wishlist } from '../models/wishlist.model';
 import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WishlistService {
-
-  baseUrl = Instance.url + "/api/wishList";
+  baseUrl = Instance.url + '/api/wishList';
   header = {};
 
-  constructor(private http: HttpClient, tokenService: TokenStorageService) { 
-
+  constructor(private http: HttpClient, tokenService: TokenStorageService) {
     this.header = {
-      headers: new HttpHeaders()
-        .set('Authorization',  `Bearer ${tokenService.getToken()}`)
-    }
+      headers: new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${tokenService.getToken()}`
+      ),
+    };
   }
 
   addWishlistService(wishlist: Wishlist): Observable<Wishlist> {
-    return this.http.post<Wishlist>(this.baseUrl + "add/wishLists", Wishlist, this.header);
-  }
-  updateWishlistService(wishlist: Wishlist): Observable<Wishlist> {
-    return this.http.put<Wishlist>(this.baseUrl + "/put", wishlist, this.header);
-  }
-
-  getWishlistService(userId: number): Observable<Wishlist>{
-    return this.http.get<Wishlist>(this.baseUrl + "/user/" + userId + "/get", this.header);
+    return this.http.post<Wishlist>(
+      this.baseUrl + '/add/wishLists',
+      wishlist,
+      this.header
+    );
   }
 
-
-
-
-
-
-
-
-
+  getWishlistService(userId: number): Observable<Wishlist> {
+    return this.http.get<Wishlist>(
+      this.baseUrl + '/user/' + userId + '/get',
+      this.header
+    );
+  }
 }
