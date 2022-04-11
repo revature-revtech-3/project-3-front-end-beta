@@ -103,8 +103,6 @@ export class ProductPageComponent implements OnInit {
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
       next: response => {
         this.cartAndItems = response;
-        console.log("loadData");
-        console.log(response);
 
       },
       error: error => {
@@ -134,9 +132,9 @@ export class ProductPageComponent implements OnInit {
   goToWishlist() {
     this.router.navigate(['wishlist']);
   }
-  
 
-  
+
+
 
   changeQuantity(item: ItemProductAndDiscount, event: any) {
     let newItem = new CartItem();
@@ -146,8 +144,7 @@ export class ProductPageComponent implements OnInit {
     newItem.cartQty = event.value;
     this.cartItemService.updateItemService(newItem).subscribe({
       next: response => {
-        console.log("changeQuantity");
-        console.log(response);
+
         this.loadData();
       },
       error: err => {
@@ -279,8 +276,8 @@ export class ProductPageComponent implements OnInit {
 
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
       next: response => {
-        console.log("getCartAndItemsWithUSerIdService");
-        console.log(response);
+        //get CartAndItems With USerId Service to create a new cart
+
         this.buyNowCartAndItems = response;
 
         this.buyNowItem.cartId = this.buyNowCartAndItems.cartId;
@@ -289,40 +286,35 @@ export class ProductPageComponent implements OnInit {
         this.buyNowItem.cartItemId = -1;
         this.cartItemService.addNewItemService(this.buyNowItem).subscribe({
           next: response => {
-            console.log("addNewItemService");
-            console.log(response);
-            console.log("hello");
+
+            //add New Item to the cart 
             this.buyNowCartAndItems.cartId = response.cartId;
-            console.log(this.buyNowCartAndItems.cartId);
-            // this.goToCheckout()
-            //this.loadData();
+
 
             this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
               next: response => {
                 this.buyNowCartAndItems = response;
-                console.log("loadData");
-                console.log(response);
-                console.log(this.buyNowCartAndItems.cartId);
+                //getCartAndItemsWithUserIdService actually  uses userId to send the response to the DB to get a new CartId and bring it back to the front end.
 
                 this.buyNowCart.cartId = this.buyNowCartAndItems.cartId
-                //this.buyNowCart.userId = this.buyNowCartAndItems.userId
+
 
                 this.buyNowCart.userId = this.userId;
                 this.buyNowCart.cartTotal = parseInt(this.getItemsTotal());
-                
+
                 this.buyNowCart.cartRemoved = true
                 this.buyNowCart.cartPaid = true
-                console.log("buyNowCart:");
-                console.log(this.buyNowCart);
+
+                //New BuyNewCart
                 this.cartService.updateCartService(this.buyNowCart).subscribe((response) => {
-                  console.log("updateCartService");
-                  console.log(response);
+
+                  //Update the cart service with BuyNowCart
                   this.transaction.cartId = this.buyNowCartAndItems.cartId;
                   this.transaction.transactionId = null;
                   this.transaction.transactionDate = null;
                   this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
-                    console.log("sendTransaction");
-                    console.log(response);
+
+                    //sendTransaction is the intertransaction of the purchage and this stored into a purchase history table 
                     this.newTransaction = response;
                     this.updateMultiProducts();
                     this.addItemsToPurchaseHistory(response.transactionId);
@@ -372,13 +364,13 @@ export class ProductPageComponent implements OnInit {
   }
 
   getItemsTotal(): any {
-  let total = 0;
-  this.buyNowCartAndItems.cartItems.forEach((value, index) => {
-    total += this.calculateTotalCost(value, this.calculateDiscountedItemCost);
-  });
+    let total = 0;
+    this.buyNowCartAndItems.cartItems.forEach((value, index) => {
+      total += this.calculateTotalCost(value, this.calculateDiscountedItemCost);
+    });
 
-  return total.toFixed(2);
-}
+    return total.toFixed(2);
+  }
 
   // calcSingleItem is the a function parametar
   calculateTotalCost(item: ItemProductAndDiscount, calcSingleItem: any) {
@@ -415,8 +407,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   addItemsToPurchaseHistory(transactionId: number) {
-    console.log("transaction id:" + transactionId);
-    console.log(this.buyNowCartAndItems.cartItems);
+
     let purchasedItems: PurchasedItem[] = [];
     this.buyNowCartAndItems.cartItems.forEach((item) => {
       let temp: PurchasedItem = new PurchasedItem();
@@ -429,11 +420,10 @@ export class ProductPageComponent implements OnInit {
       temp.purchaseCost = this.calculateDiscountedItemCost(item.productAndDiscount);
       purchasedItems.push(temp);
     });
-    console.log(purchasedItems);
+
     this.purchasedItemService.addPurchasedItems(purchasedItems).subscribe({
       next: response => {
-        console.log("addPurcahsedItems");
-        console.log(response);
+
       },
       error: err => {
 
