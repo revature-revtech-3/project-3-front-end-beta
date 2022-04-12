@@ -415,30 +415,30 @@ export class StoreProductComponent implements OnInit {
                         // this is a soft removal of a cart from the database in order to maintain purchase history
                         this.buyBundleCartAndItems.cartRemoved = true;
                         this.buyBundleCartAndItems.cartPaid = true;
-                        console.log(this.buyBundleCartAndItems);
+                        
+                        this.cartService.updateCartService(this.buyBundleCartAndItems).subscribe ({
+                          next: response => {
+                            this.transaction.cartId = this.buyBundleCartAndItems.cartId;
+                            this.transaction.transactionId = null;
+                            this.transaction.transactionDate = null;
+                            this.transactionService.sendTransaction(this.transaction).subscribe({
+                              next: response => {
+                                this.newTransaction = response;
+                                this.updateMultiProducts();
+                                this.addItemsToPurchaseHistory(response.transactionId);
+                                this.intervalId = setInterval(() => {
+                                  this.displayStyle = "none";
+                                  this.router.navigate(['/confirmation-checkout/' + this.newTransaction.transactionId]);
+                                }, 2000);
+                              } 
+                            });  
+                          }
+                        });
                       }
                     })
                     
                    
                     
-                    this.cartService.updateCartService(this.buyBundleCartAndItems).subscribe ({
-                      next: response => {
-                        this.transaction.cartId = this.buyBundleCartAndItems.cartId;
-                        this.transaction.transactionId = null;
-                        this.transaction.transactionDate = null;
-                        this.transactionService.sendTransaction(this.transaction).subscribe({
-                          next: response => {
-                            this.newTransaction = response;
-                            this.updateMultiProducts();
-                            this.addItemsToPurchaseHistory(response.transactionId);
-                            this.intervalId = setInterval(() => {
-                              this.displayStyle = "none";
-                              this.router.navigate(['/confirmation-checkout/' + this.newTransaction.transactionId]);
-                            }, 2000);
-                          } 
-                        });  
-                      }
-                    });
                   }
                 });
               }
