@@ -445,7 +445,9 @@ export class StoreProductComponent implements OnInit {
             });
           }
         });        
-      }
+      },
+      error: (error) => { this.router.navigate(['login']); },
+
     });
   }
 
