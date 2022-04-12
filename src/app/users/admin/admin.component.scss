@@ -1,6 +1,5 @@
 .body {
-  height: 100rem;
-  overflow: hidden;
+  height: 68.9rem;
 }
 
 
@@ -8,7 +7,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  border: 1px solid #ddd;
 }
 
 th, td {
@@ -32,12 +30,18 @@ h2 {
 }
 
 
-#displayProdBtn{
+#displayProdBtn {
   margin-top: 16px;
-  margin-right: 16px;
-  margin-left: 16px;
+  margin-right: 10px;
+  margin-left: -5px;
 }
-#displayDiscountBtn{
+
+
+#displayDiscountBtn {
+  margin-top: 16px;
+}
+
+#displayBundleBtn {
   margin-top: 16px;
 }
 
@@ -75,11 +79,6 @@ h2 {
 
 .modal {
   background: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-  margin: 2px auto;
-  z-index: 1100 !important;
 }
 
 label {
