@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   CartAndItems,
@@ -6,18 +6,15 @@ import {
   ItemProductAndDiscount,
 } from 'src/app/models/cart.model';
 import { ProductAndDiscount } from 'src/app/models/product.model';
-import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartAndItemsService } from 'src/app/services/cart-and-items.service';
 import { CartItemService } from 'src/app/services/cart-item.service';
 import { WishlistItemService } from 'src/app/services/wishlist-item.service';
 import { ProductAndDiscountService } from 'src/app/services/product-and-discount.service';
-import { TokenStorageService } from '../../services/token-storage.service';
-import { HttpClientModule } from '@angular/common/http';
-import { Review, UserReview } from '../../models/review.model';
-import { ReviewService } from '../../services/review.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProductService } from '../../services/product.service';
+import { TokenStorageService } from "../../services/token-storage.service";
+import { Review, UserReview } from "../../models/review.model";
+import { ReviewService } from "../../services/review.service";
+import { ProductService } from "../../services/product.service";
 import { TransactionService } from 'src/app/services/transaction.service';
 
 import { CartService } from "../../services/cart.service";
@@ -29,6 +26,7 @@ import { Product } from 'src/app/models/product.model';
 import { Cart } from 'src/app/models/cart.model';
 import { Wishlist, WishlistItem } from 'src/app/models/wishlist.model';
 import { WishlistService } from 'src/app/services/wishlist.service';
+import { User } from 'src/app/models/user.model';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
@@ -308,6 +306,13 @@ export class ProductPageComponent implements OnInit {
         this.buyNowItem.cartItemId = -1;
         this.cartItemService.addNewItemService(this.buyNowItem).subscribe({
           next: response => {
+            //console.log("addNewItemService");
+            // console.log(response);
+            //console.log("hello");
+            this.buyNowCartAndItems.cartId = response.cartId;
+           //console.log(this.buyNowCartAndItems.cartId);
+            // this.goToCheckout()
+            // this.loadData();
 
             this.buyNowCartAndItems.cartId = response.cartId;
             //getCartAndItemsWithUserIdService gets the item
@@ -330,7 +335,7 @@ export class ProductPageComponent implements OnInit {
                   this.transaction.transactionId = null;
                   this.transaction.transactionDate = null;
                   this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
-                    //generates a transaction and save it to the purchase history
+   
                     this.newTransaction = response;
                     this.updateMultiProducts();
                     this.addItemsToPurchaseHistory(response.transactionId);
