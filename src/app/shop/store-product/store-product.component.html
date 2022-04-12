@@ -171,7 +171,7 @@
        </p>
        <p class="card-text" class="parLength">{{row.productOnePojo.productDescription}}</p>
        <p class="card-text" class="parLength">{{row.productTwoPojo.productDescription}}</p>
-       <p><button class="btn btn-danger" (click)="goToBundle(row.bundleId)">View Bundle Details</button></p> 
+       <p><button class="btn btn-danger" (click)="proceedToCheckout(row.bundleId)">Proceed to Checkout</button></p> 
        <small class="text-muted">{{row.productOnePojo.productSku}}</small>
        <small class="text-muted">{{row.productTwoPojo.productSku}}</small>
      </div>
@@ -186,3 +186,4 @@
 <div class="footer">
   <p>Need Help? <a href="/product" style="color: #dc3545; font-weight: bold;">Live Chat <i class='fas fa-comment-dots' style="color: white;"></i></a></p>
 </div>
+

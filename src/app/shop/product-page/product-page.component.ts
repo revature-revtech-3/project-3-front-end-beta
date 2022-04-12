@@ -1,8 +1,7 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartAndItems, CartItem, ItemProductAndDiscount } from 'src/app/models/cart.model';
 import { ProductAndDiscount } from 'src/app/models/product.model';
-import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartAndItemsService } from 'src/app/services/cart-and-items.service';
 import { CartItemService } from 'src/app/services/cart-item.service';
@@ -10,10 +9,8 @@ import { WishlistAndItemsService } from 'src/app/services/wishlist-and-items.ser
 import { WishlistItemService } from 'src/app/services/wishlist-item.service';
 import { ProductAndDiscountService } from 'src/app/services/product-and-discount.service';
 import { TokenStorageService } from "../../services/token-storage.service";
-import { HttpClientModule } from '@angular/common/http';
 import { Review, UserReview } from "../../models/review.model";
 import { ReviewService } from "../../services/review.service";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProductService } from "../../services/product.service";
 import { TransactionService } from 'src/app/services/transaction.service';
 import { CartService } from "../../services/cart.service";
@@ -360,7 +357,7 @@ export class ProductPageComponent implements OnInit {
         this.cartItemService.addNewItemService(this.buyNowItem).subscribe({
           next: response => {
             //console.log("addNewItemService");
-           /// console.log(response);
+            // console.log(response);
             //console.log("hello");
             this.buyNowCartAndItems.cartId = response.cartId;
            //console.log(this.buyNowCartAndItems.cartId);
@@ -370,9 +367,6 @@ export class ProductPageComponent implements OnInit {
             this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
               next: response => {
                 this.buyNowCartAndItems = response;
-               // console.log("loadData");
-               // console.log(response);
-               // console.log(this.buyNowCartAndItems.cartId);
 
                 this.buyNowCart.cartId = this.buyNowCartAndItems.cartId
                 //this.buyNowCart.userId = this.buyNowCartAndItems.userId
@@ -382,17 +376,14 @@ export class ProductPageComponent implements OnInit {
 
                 this.buyNowCart.cartRemoved = true
                 this.buyNowCart.cartPaid = true
-                //console.log("buyNowCart:");
-               // console.log(this.buyNowCart);
+
                 this.cartService.updateCartService(this.buyNowCart).subscribe((response) => {
-                  //console.log("updateCartService");
-                  //console.log(response);
+
                   this.transaction.cartId = this.buyNowCartAndItems.cartId;
                   this.transaction.transactionId = null;
                   this.transaction.transactionDate = null;
                   this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
-                   // console.log("sendTransaction");
-                    //console.log(response);
+   
                     this.newTransaction = response;
                     this.updateMultiProducts();
                     this.addItemsToPurchaseHistory(response.transactionId);
