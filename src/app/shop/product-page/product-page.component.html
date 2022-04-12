@@ -8,6 +8,7 @@
               <div>
                 <div class="img-big-wrap">
                   <a href="#"> <img [src]="productAndDiscount.imageUrl"></a>
+
                  
                 </div> <!-- card img-big-wrap.// -->
               </div>
@@ -121,76 +122,6 @@
 
                 </div>
                 <!-- bye now button  -->
-
-<!-- Buy Bundle now button  -->
-<div>
-
-  <button type="button" class="btn btn-danger" (click)="toggleBuyBundleForm()">Buy Bundle</button>
-  <mat-card class="card m-5" style="width:30rem;" *ngIf="toggleBuyBundle">
-    <div class="col-lg-9">
-      <div>
-
-        <h3 class="title ">Payment Method</h3>
-        <div class="item categories ">
-
-          <div class="form-check ">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-              value="option1" checked>
-
-            <img src="../assets/image/icons8-visa-48.png " width="30px " hight="auto " alt=" "><label
-              class="form-check-label " for="exampleRadios1 "></label>
-            <img src="../assets/image/icons8-mastercard-48.png " width="30px " hight="auto "
-              alt=" "><label class="form-check-label " for="exampleRadios1 "></label>
-            <img src="../assets/image/icons8-american-express-48.png " width="30px " hight="auto "
-              alt=" "><label class="form-check-label " for="exampleRadios1 "></label>
-            <img src="../assets/image/discover.png " width="50px " hight="auto " alt=" "><label
-              class="form-check-label " for="exampleRadios1 "></label>
-          </div>
-          <div class="form-check ">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-              value="option1" checked>
-            <img src="../assets/image/icons8-paypal-48.png " width="30px " hight="auto " alt=" "><label
-              class="form-check-label " for="exampleRadios1 "></label>
-          </div>
-
-        </div>
-        <!-- ----------------------------------------------- -->
-        <div class="total-items d-flex flex-row ">
-          <h6 class="item-title d-flex flex-row mr-auto ">item(s) total</h6><br>
-          <h6 class="item-amount d-flex flex-row ml-auto ">
-           {{bundle.productOnePojo.productCost-bundle.productOnePojo.productCost*(bundle.bundlePercentage/100)+bundle.productTwoPojo.productCost-bundle.productTwoPojo.productCost*(bundle.bundlePercentage/100) | currency}}</h6>
-        </div>
-        <div class="yousaved d-flex flex-row ">
-          <h6 class="yousaved d-flex flex-row mr-auto  ">You saved</h6><br>
-          <h6 class="item-yousaved d-flex flex-row ml-auto  ">
-            {{bundle.productOnePojo.productCost-bundle.productOnePojo.productCost*(bundle.bundlePercentage/100)+bundle.productTwoPojo.productCost-bundle.productTwoPojo.productCost*(bundle.bundlePercentage/100) | currency}}
-          </h6>
-        </div>
-        <hr>
-
-        <div class="Shipping d-flex flex-row ">
-          <h6 class="Shipping-title d-flex flex-row mr-auto ">Shipping</h6>
-          <h6 class="Shipping-state d-flex d-flex flex-row ml-auto ">Free</h6>
-        </div>
-
-        <div class="sidebar-item recent-posts ">
-          <button type="button " class="btn btn-danger btn-lg btn-block"
-            (click)="proceedToCheckout()">Proceed to
-            checkout</button>
-
-        </div>
-      </div>
-      <!-- End sidebar -->
-    </div>
-  </mat-card>
-
-
-</div>
-<!-- buy bundle now button  -->
-
-
-
-
 
               </div>
             </article> <!-- product-info-aside .// -->
