@@ -66,9 +66,9 @@ The Previous team pick yes for Set up browser animations for Angular Material
 4.	Check the code at Styles.scss. Make sure the code is same as the original Styles.scss
 
 Few important points to check:
-##Make sure `@use @angular/material as mat` set the first line of code
-##Check for `$rev-tech-primary` , `$rev-tech-accent` and `$rev-tech-warm` 
-##Check for `mat.define-light-theme` and `mat.define-dark-theme`
-##Check for `.darkMode`
+* Make sure `@use @angular/material as mat` set the first line of code
+* Check for `$rev-tech-primary` , `$rev-tech-accent` and `$rev-tech-warm` 
+* Check for `mat.define-light-theme` and `mat.define-dark-theme`
+* Check for `.darkMode`
 
 
