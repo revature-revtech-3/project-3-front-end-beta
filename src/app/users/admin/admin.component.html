@@ -32,9 +32,6 @@
           </div>
           <div class="mb-3">
             <label for="product_category" class="form-label" class="asterixRequired">Product Category</label>
-            
-            <!-- <input type="text" formControlName="product_category" class="form-control" id="InputProductCategory"
-              aria-describedby="productCategoryHelp"> -->
 
               <select formControlName="product_category" class="form-control" id="categoryTypes" [ngModel]="selectedCat">
                 <option *ngFor="let option of categories" [value]="option.value">{{option.text}}</option>
@@ -86,8 +83,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" (click)="addProducts()" class="btn btn-primary">Add</button> -->
-        <!-- <button type="button" (click)="addProducts()" class="btn btn-primary">Add</button> -->
         <button type="button" (click)="addProducts()" [disabled]="!formValueProduct.valid"class="btn btn-primary">Add</button>
       </div>
     </div>
@@ -378,9 +373,6 @@
           </div>
           <div class="mb-3">
             <label for="product_category" class="form-label" class="asterixRequired">Product Category</label>
-            
-            <!-- <input type="text" formControlName="product_category" class="form-control" id="InputProductCategory"
-              aria-describedby="productCategoryHelp"> -->
 
               <select formControlName="product_category" class="form-control" id="categoryTypes" [ngModel]="selectedCat">
                 <option *ngFor="let option of categories" [value]="option.value">{{option.text}}</option>
@@ -523,8 +515,6 @@
         </form>
       </div>
       <div class="modal-footer">
-        <!-- <button (click)="onEditRow(row)" type="button" class="btn btn-success" data-bs-toggle="modal"
-          data-bs-target="#exampleModal">Show Update Product Info</button> -->
         <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" (click)="updateDiscountProducts()" class="btn btn-primary" data-bs-toggle="modal">Update Discount</button>
       </div>
