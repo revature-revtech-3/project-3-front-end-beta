@@ -153,7 +153,7 @@ export class ProductPageComponent implements OnInit {
         console.log(response);
         this.router.navigate(['wishlist']);
       },
-      error: (error) => { },
+      error: (error) => {   this.router.navigate(['wishlist']); },
     });
   }
 
