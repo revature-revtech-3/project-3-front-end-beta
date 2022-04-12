@@ -70,7 +70,7 @@ export class StoreProductComponent implements OnInit {
     bundlePercentage: 0.0,
     productOnePojo: new Product(),
     productTwoPojo: new Product()
-  
+
   }
   addBundle: Bundle = {
     bundleId: 0,
@@ -78,13 +78,10 @@ export class StoreProductComponent implements OnInit {
     bundlePercentage: 0.0,
     productOnePojo: new Product(),
     productTwoPojo: new Product()
-  
+
   }
 
-  searchQuery: string="";
-
-
-
+  searchQuery: string = "";
   constructor(
     private router: Router,
     private wishlistItemService: WishlistItemService,
@@ -96,14 +93,14 @@ export class StoreProductComponent implements OnInit {
     private cartItemService: CartItemService,
 
     private overlay: OverlayContainer) { }
-    filteredProducts: Product[] = [];
-    filteredDiscounts: ProductAndDiscount[] = [];
-    filteredBundles: Bundle[] = [];
-    filterFlag: boolean = false;
-    hideFlag: boolean = false;
-    discountOnlyFlag: boolean=false;
-    bundleOnlyFlag: boolean=false;
-    
+  filteredProducts: Product[] = [];
+  filteredDiscounts: ProductAndDiscount[] = [];
+  filteredBundles: Bundle[] = [];
+  filterFlag: boolean = false;
+  hideFlag: boolean = false;
+  discountOnlyFlag: boolean = false;
+  bundleOnlyFlag: boolean = false;
+
 
 
   ngOnInit(): void {
@@ -162,18 +159,18 @@ export class StoreProductComponent implements OnInit {
   }
 
   // Load Bundles
-loadBundles() {
-  this.productService.getAllBundleProductsService().subscribe(
-    (response: any) => {
-console.log(response);
-    
-      this.allBundles = response;
-    },
-    (error: any) => {
-      this.errorProductMsg = "Unable to get allBundles - Try later";
-    }
-  )
-}
+  loadBundles() {
+    this.productService.getAllBundleProductsService().subscribe(
+      (response: any) => {
+        console.log(response);
+
+        this.allBundles = response;
+      },
+      (error: any) => {
+        this.errorProductMsg = "Unable to get allBundles - Try later";
+      }
+    )
+  }
 
   // bundle
   goToBundle(bundleId?: number) {
@@ -191,7 +188,7 @@ console.log(response);
         next: (response) => {
           this.cartAndItems = response;
         },
-        error: (error) => {},
+        error: (error) => { },
       });
   }
 
@@ -202,8 +199,8 @@ console.log(response);
     item.cartQty = 1;
     item.cartItemId = -1;
     this.cartItemService.addNewItemService(item).subscribe({
-      next: (response) => {},
-      error: (error) => {},
+      next: (response) => { },
+      error: (error) => { },
     });
   }
 
@@ -213,15 +210,15 @@ console.log(response);
         console.log(response);
         this.wishlist = response;
       },
-      error: (error) => {},
+      error: (error) => { },
     });
   }
 
   filterByCategory(categoryName: String) {
     this.filteredProducts = [];
 
-    this.filteredDiscounts=[];
-    this.filteredBundles=[];
+    this.filteredDiscounts = [];
+    this.filteredBundles = [];
 
     this.allProducts.forEach((product) => {
       if (product.productCategory == categoryName) {
@@ -234,16 +231,16 @@ console.log(response);
         this.filteredDiscounts.push(product);
       }
     });
-//bundles
+    //bundles
     this.allBundles.forEach((bundle) => {
-      if (bundle.productOnePojo.productCategory == categoryName) {this.filteredBundles.push(bundle)}
+      if (bundle.productOnePojo.productCategory == categoryName) { this.filteredBundles.push(bundle) }
     });
 
     this.hideFlag = true;
     this.filterFlag = true;
     sessionStorage.removeItem('searchQuery');
   }
-  
+
 
   filterByDiscount() {
     sessionStorage.removeItem('searchQuery');
@@ -256,10 +253,10 @@ console.log(response);
   //bundles
   filterByBundle() {
     sessionStorage.removeItem("searchQuery")
-    this.bundleOnlyFlag=true;
-    this.filterFlag=false;
-    this.filteredBundles=[];
-    this.hideFlag=false;
+    this.bundleOnlyFlag = true;
+    this.filterFlag = false;
+    this.filteredBundles = [];
+    this.hideFlag = false;
   }
 
   unfilter() {
@@ -268,9 +265,9 @@ console.log(response);
     sessionStorage.removeItem('searchQuery');
     this.hideFlag = false;
 
-    this.discountOnlyFlag=false;
-    this.bundleOnlyFlag=false;
-    
+    this.discountOnlyFlag = false;
+    this.bundleOnlyFlag = false;
+
 
   }
 
