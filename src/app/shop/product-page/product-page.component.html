@@ -48,7 +48,7 @@
                 </div>
                 <span class="out-of-stock" *ngIf="productAndDiscount.productQty < 1">This item is out of stock</span>
 
-                <button class="btn btn-danger" (click)="goToWishlist()">Add to wishlist</button><br><br>     
+                <button class="btn btn-danger" (click)="addToWishlist()">Add to wishlist</button><br><br>     
                 <!-- <mat-icon>cake</mat-icon> -->
                 <h4 class="item-details ">Available: {{productAndDiscount.productQty}}</h4>
 
