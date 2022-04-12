@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Wishlist } from 'src/app/models/wishlist.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   form: any = {
     username: null,
-    password: null
+    password: null,
   };
   isLoggedIn = false;
   isLoginFailed = false;
@@ -22,7 +22,12 @@ export class LoginComponent implements OnInit {
   username?: string;
   currentUser: any;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+    private wishListService: WishlistService
+  ) {}
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -37,14 +42,13 @@ export class LoginComponent implements OnInit {
       this.username = user.username;
     }
     this.currentUser = this.tokenStorage.getUser();
-
   }
 
   onSubmit(): void {
     const { username, password } = this.form;
 
     this.authService.login(username, password).subscribe(
-      data => {
+      (data) => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
@@ -53,7 +57,7 @@ export class LoginComponent implements OnInit {
         this.roles = this.tokenStorage.getUser().roles;
         this.router.navigate(['/product']);
       },
-      err => {
+      (err) => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
@@ -75,6 +79,4 @@ export class LoginComponent implements OnInit {
   forgetPassword() {
     this.router.navigate(['/forget-password']);
   }
-
-
 }

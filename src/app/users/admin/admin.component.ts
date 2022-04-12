@@ -51,6 +51,14 @@ export class AdminComponent implements OnInit {
     productTwoPojo: new Product()
   
   }
+  addBundle: Bundle = {
+
+    bundleName: "",
+    bundlePercentage: 0.0,
+    productOnePojo: new Product(),
+    productTwoPojo: new Product()
+  
+  }
 
   //To Provide Different Product Categories in add product form
   public selectedCat: string = "Phone";
@@ -238,17 +246,21 @@ console.log(response);
   // Bundle
   // to Create Bundle
   addBundles(): void {
-    this.newBundle.bundleId = this.formValueBundle.value.bundle_id;
-    this.newBundle.bundleName = this.formValueBundle.value.bundle_name;
-    this.newBundle.bundlePercentage = this.formValueBundle.value.product_percentage;
-    this.newBundle.productOnePojo = this.formValueBundle.value.product_one_id;
-    this.newBundle.productTwoPojo = this.formValueBundle.value.product_two_id;
+    // this.newBundle.bundleId = this.formValueBundle.value.bundle_id;
+    this.addBundle.bundleName = this.formValueBundle.value.bundle_name;
+    this.addBundle.bundlePercentage = this.formValueBundle.value.bundle_percentage;
+    this.addBundle.productOnePojo.productId = this.formValueBundle.value.product_one_id;
+    this.addBundle.productTwoPojo.productId = this.formValueBundle.value.product_two_id;
+
+    //console.log(this.newBundle);
 
     // Let's post the data through the post request in service
-    if(this.newBundle.bundleId){
-    this.productService.addBundleProductsService(this.newBundle).subscribe(
-      (response: any) => {
+    this.productService.addBundleProductsService(this.addBundle).subscribe(
+      () => {
+        //console.log(response);
         this.loadBundles();
+        //console.log(response);
+
       },
       (error: any) => {
       })
@@ -260,9 +272,7 @@ console.log(response);
     ref?.click();
     this.formValue.reset();
     this.router.navigate(['admin'])
-    }else{
-      alert("Make sure to enter values above 0 for Product Cost and Product Quantity");
-    }
+
   }
 
   //Bundle -end

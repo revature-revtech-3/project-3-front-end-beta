@@ -22,4 +22,15 @@ export class PurchasedItemProduct {
   purchaseDate: any = new Date();
   product: Product = new Product();
 }
+//Bundle Model
+export class Bundle{
+
+  bundleId?: number = 0;
+  bundleName: string = "";
+  bundlePercentage: number = 0.00;
+  productOnePojo: Product= new Product();
+  productTwoPojo: Product= new Product();
+  
+
+}
 

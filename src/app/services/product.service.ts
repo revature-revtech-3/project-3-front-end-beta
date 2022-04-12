@@ -87,8 +87,13 @@ bundlesUrlAdd = Instance.url + "/api/create/bundles";
    getAllBundleProductsService(): Observable<Bundle[]> {
     return this.http.get<Bundle[]>(this.bundlesUrlGetAll);
   }
-  addBundleProductsService(newBundle: Bundle): Observable<Bundle> {
-    return this.http.post<Bundle>(this.bundlesUrlAdd, newBundle, this.header);
+  addBundleProductsService(addBundle: Bundle): Observable<Bundle> {
+    return this.http.post<Bundle>(this.bundlesUrlAdd,addBundle, this.header);
+
+    // addCartService(cart: Cart): Observable<Cart> {
+    //   return this.http.post<Cart>(this.baseUrl + "/post", cart, this.header);
+    // }
+  
   }
 
 }
