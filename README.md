@@ -38,6 +38,7 @@ The Revtech E-Commerce Application is an Angular Single Page Application (SPA) t
 * Jasmine / Karma (Testing Framework - Front)
 * Microsoft Visual Studio Code (Source Code Editor)
 * Postman (API Platform)
+* Angular Material
 
 ## Project Requirements
 1. As a User, I should be able to register a new account.
@@ -49,6 +50,7 @@ The Revtech E-Commerce Application is an Angular Single Page Application (SPA) t
 7. As a User, I should be able to add items to my cart that I will later purchase or remove from my cart.
 8. As a User, I should be able to select an amount of an item to add to my cart as I am adding an item.
 9. As a User, I should be able to checkout with the items in my cart, purchasing them and removing them from the inventory.
+10. As a User, I should be able to change the color scheme from the normal mode to a dark mode option.
 
 ## Features
 List of features ready and TODOs for future development
@@ -69,6 +71,8 @@ List of features ready and TODOs for future development
 * Ability to logout as a user
 * Ability to add and view customer reviews as a user
 * Ability to view orders history as a user
+* Ability to switch background color from original theme (light) to dark theme by using Angular material
+
 
 To-do list:
 * Ability to update account information as a user
