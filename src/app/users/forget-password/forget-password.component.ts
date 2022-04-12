@@ -23,7 +23,7 @@ export class ForgetPasswordComponent implements OnInit {
       next: () => {
         this.isComplete = true;
         this.isError = false;
-        formObj.reset();
+        formObj.reset(); // to clear the values
 
 
       },
