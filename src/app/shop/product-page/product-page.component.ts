@@ -344,10 +344,6 @@ export class ProductPageComponent implements OnInit {
                   this.transaction.transactionDate = null;
                   this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
 
-   
-
-           
-
                     //generates a transaction and save it to the purchase history
 
                     this.newTransaction = response;
