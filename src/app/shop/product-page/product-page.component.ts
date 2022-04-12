@@ -297,7 +297,9 @@ export class ProductPageComponent implements OnInit {
 
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
       next: response => {
+
         //getCartItemsWithUserIdService uses userId to create new BuyNowCart
+
         this.buyNowCartAndItems = response;
 
         this.buyNowItem.cartId = this.buyNowCartAndItems.cartId;
@@ -306,6 +308,7 @@ export class ProductPageComponent implements OnInit {
         this.buyNowItem.cartItemId = -1;
         this.cartItemService.addNewItemService(this.buyNowItem).subscribe({
           next: response => {
+
             //console.log("addNewItemService");
             // console.log(response);
             //console.log("hello");
@@ -314,13 +317,17 @@ export class ProductPageComponent implements OnInit {
             // this.goToCheckout()
             // this.loadData();
 
+
+
             this.buyNowCartAndItems.cartId = response.cartId;
             //getCartAndItemsWithUserIdService gets the item
             this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
               next: response => {
                 this.buyNowCartAndItems = response;
 
+         
                 this.buyNowCart.cartId = this.buyNowCartAndItems.cartId
+  
 
 
                 this.buyNowCart.userId = this.userId;
@@ -329,13 +336,20 @@ export class ProductPageComponent implements OnInit {
                 this.buyNowCart.cartRemoved = true
                 this.buyNowCart.cartPaid = true
 
+          
                 this.cartService.updateCartService(this.buyNowCart).subscribe((response) => {
 
                   this.transaction.cartId = this.buyNowCartAndItems.cartId;
                   this.transaction.transactionId = null;
                   this.transaction.transactionDate = null;
                   this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
+
    
+
+           
+
+                    //generates a transaction and save it to the purchase history
+
                     this.newTransaction = response;
                     this.updateMultiProducts();
                     this.addItemsToPurchaseHistory(response.transactionId);
@@ -363,7 +377,9 @@ export class ProductPageComponent implements OnInit {
       error: error => {
       }
     });
-  }
+
+ }
+
 
 
   updateMultiProducts() {
