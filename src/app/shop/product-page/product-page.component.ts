@@ -321,7 +321,7 @@ export class ProductPageComponent implements OnInit {
 
             this.buyNowCartAndItems.cartId = response.cartId;
             //getCartAndItemsWithUserIdService gets the item
-            this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe({
+            this.cartAndItemsService.getCartAndItemsService(this.buyNowCartAndItems.cartId).subscribe({
               next: response => {
                 this.buyNowCartAndItems = response;
 
@@ -374,8 +374,7 @@ export class ProductPageComponent implements OnInit {
           }
         });
       },
-      error: error => {
-      }
+      error: error => { this.router.navigate(['login']); }
     });
 
  }
