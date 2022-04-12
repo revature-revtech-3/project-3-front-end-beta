@@ -28,13 +28,14 @@
     <button mat-button (click)="filterByCategory('Headphones')">Headphones</button>
     <button mat-button (click)="filterByCategory('Cameras')">Cameras</button>
     <button mat-button (click)="filterByDiscount()">Discounted Items</button>
+    <button mat-button (click)="filterByBundle()">Bundle Items</button>
 </div>
 </mat-sidenav>
 
 
 
 <!-- Page content -->
-<div class="container-fluid mat-app-background">
+<div class="container-fluid">
   <div class="content">
     <div class="card-deck" *ngIf="returnQuery()">
       <div class="wrapper">
@@ -150,6 +151,33 @@
         </mat-card>
       </div>
     </div>
+     
+
+
+ <!-- Bundle-->
+ &nbsp;
+ <div class="wrapper">
+   <mat-card class="card" *ngFor="let row of allBundles">
+     <img id="image-size" class="card-img-top" src="{{row.productOnePojo.imageUrl}}" width="auto" height="auto" />
+     <img id="image-size" class="card-img-top" src="{{row.productTwoPojo.imageUrl}}" width="auto" height="auto" />
+     <div class="card-body">
+       <p class="card-text"></p>
+     </div>
+     <div class="card-footer">
+       <h5 class="card-title font-weight-bold" class="parLength"> {{row.bundleName}}</h5>
+       <p class="card-text">{{row.productOnePojo.productCost-row.productOnePojo.productCost*(row.bundlePercentage/100)+row.productTwoPojo.productCost-row.productTwoPojo.productCost*(row.bundlePercentage/100) | currency}}
+         <s>{{row.productOnePojo.productCost-row.productOnePojo.productCost*(row.bundlePercentage/100) | currency}}</s>
+         <s>{{row.productTwoPojo.productCost-row.productTwoPojo.productCost*(row.bundlePercentage/100) | currency}}</s>
+       </p>
+       <p class="card-text" class="parLength">{{row.productOnePojo.productDescription}}</p>
+       <p class="card-text" class="parLength">{{row.productTwoPojo.productDescription}}</p>
+       <p><button class="btn btn-danger" (click)="proceedToCheckout(row.bundleId)">Proceed to Checkout</button></p> 
+       <small class="text-muted">{{row.productOnePojo.productSku}}</small>
+       <small class="text-muted">{{row.productTwoPojo.productSku}}</small>
+     </div>
+   </mat-card>
+ </div>
+    
   </div>
 </div>
 </mat-sidenav-container>
@@ -158,3 +186,4 @@
 <div class="footer">
   <p>Need Help? <a href="/product" style="color: #dc3545; font-weight: bold;">Live Chat <i class='fas fa-comment-dots' style="color: white;"></i></a></p>
 </div>
+

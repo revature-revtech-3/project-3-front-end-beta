@@ -1,5 +1,6 @@
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-forget-password',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forget-password.component.scss']
 })
 export class ForgetPasswordComponent implements OnInit {
+
   public email = '';
   public isComplete = false;
   public isError = false;
@@ -16,14 +18,16 @@ export class ForgetPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submit() {
+  submit(formObj: any) {
     this.authService.forgetPassword(this.email).subscribe({
-      next: data => {
+      next: () => {
         this.isComplete = true;
         this.isError = false;
-        this.email = '';
+        formObj.reset(); // to clear the values
+
+
       },
-      error: err => {
+      error: () => {
         this.isComplete = true;
         this.isError = true;
       }
