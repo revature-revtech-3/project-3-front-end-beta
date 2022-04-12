@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Product, ProductAndDiscount } from 'src/app/models/product.model';
+import { Bundle, Product, ProductAndDiscount } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { Cart, CartAndItems, CartItem } from '../../models/cart.model';
 import { TokenStorageService } from '../../services/token-storage.service';
@@ -21,6 +21,7 @@ export class StoreProductComponent implements OnInit {
   darkModeToggle = new FormControl(false);
   @HostBinding('class') className = '';
   allProducts: Product[] = [];
+  allBundles: Bundle[] = [];
   allDiscountProducts: ProductAndDiscount[] = [];
   indexArray: number[] = [];
   productObject: Product = new Product();
@@ -56,9 +57,32 @@ export class StoreProductComponent implements OnInit {
     imageUrl: '',
     productRemoved: false,
     discountId: 0,
-    discountDescription: '',
-    discountPercentage: 0,
-  };
+
+    discountDescription: "",
+    discountPercentage: 0
+  }
+
+  //Bundle
+  //Array for Form Fields to Create new Bundle
+  newBundle: Bundle = {
+    bundleId: 0,
+    bundleName: "",
+    bundlePercentage: 0.0,
+    productOnePojo: new Product(),
+    productTwoPojo: new Product()
+  
+  }
+  addBundle: Bundle = {
+    bundleId: 0,
+    bundleName: "",
+    bundlePercentage: 0.0,
+    productOnePojo: new Product(),
+    productTwoPojo: new Product()
+  
+  }
+
+  searchQuery: string="";
+
 
   searchQuery: string = '';
 
@@ -71,19 +95,24 @@ export class StoreProductComponent implements OnInit {
     private wishlistService: WishlistService,
     private cartAndItemsService: CartAndItemsService,
     private cartItemService: CartItemService,
-    private overlay: OverlayContainer
-  ) {}
-  filteredProducts: Product[] = [];
-  filteredDiscounts: ProductAndDiscount[] = [];
-  filterFlag: boolean = false;
-  hideFlag: boolean = false;
-  discountOnlyFlag: boolean = false;
+
+    private overlay: OverlayContainer) { }
+    filteredProducts: Product[] = [];
+    filteredDiscounts: ProductAndDiscount[] = [];
+    filteredBundles: Bundle[] = [];
+    filterFlag: boolean = false;
+    hideFlag: boolean = false;
+    discountOnlyFlag: boolean=false;
+    bundleOnlyFlag: boolean=false;
+    
+
 
   ngOnInit(): void {
     //add code for the update
 
     this.userId = this.tokenService.getUser().user_id;
     this.loadDiscountedProducts();
+    this.loadBundles();
 
     this.darkModeToggle.valueChanges.subscribe((darkMode) => {
       const darkClassName = 'darkMode';
@@ -133,6 +162,25 @@ export class StoreProductComponent implements OnInit {
     );
   }
 
+  // Load Bundles
+loadBundles() {
+  this.productService.getAllBundleProductsService().subscribe(
+    (response: any) => {
+console.log(response);
+    
+      this.allBundles = response;
+    },
+    (error: any) => {
+      this.errorProductMsg = "Unable to get allBundles - Try later";
+    }
+  )
+}
+
+  // bundle
+  goToBundle(bundleId?: number) {
+    this.router.navigate(['bundle-page/' + bundleId]);
+  }
+
   goToProduct(productId: number) {
     this.router.navigate(['product-page/' + productId]);
   }
@@ -172,7 +220,10 @@ export class StoreProductComponent implements OnInit {
 
   filterByCategory(categoryName: String) {
     this.filteredProducts = [];
-    this.filteredDiscounts = [];
+
+    this.filteredDiscounts=[];
+    this.filteredBundles=[];
+
     this.allProducts.forEach((product) => {
       if (product.productCategory == categoryName) {
         this.filteredProducts.push(product);
@@ -184,10 +235,16 @@ export class StoreProductComponent implements OnInit {
         this.filteredDiscounts.push(product);
       }
     });
+//bundles
+    this.allBundles.forEach((bundle) => {
+      if (bundle.productOnePojo.productCategory == categoryName) {this.filteredBundles.push(bundle)}
+    });
+
     this.hideFlag = true;
     this.filterFlag = true;
     sessionStorage.removeItem('searchQuery');
   }
+  
 
   filterByDiscount() {
     sessionStorage.removeItem('searchQuery');
@@ -197,12 +254,25 @@ export class StoreProductComponent implements OnInit {
     this.hideFlag = false;
   }
 
+  //bundles
+  filterByBundle() {
+    sessionStorage.removeItem("searchQuery")
+    this.bundleOnlyFlag=true;
+    this.filterFlag=false;
+    this.filteredBundles=[];
+    this.hideFlag=false;
+  }
+
   unfilter() {
     this.filterFlag = false;
     this.filteredProducts = [];
     sessionStorage.removeItem('searchQuery');
     this.hideFlag = false;
-    this.discountOnlyFlag = false;
+
+    this.discountOnlyFlag=false;
+    this.bundleOnlyFlag=false;
+    
+
   }
 
   returnQuery() {
@@ -248,6 +318,28 @@ export class StoreProductComponent implements OnInit {
     }
     return returnedSet;
   }
+
+  // bundle
+  // searchedBundles(searched: string|null): Bundle[] {
+  //   let returnedSet: Bundle[] = [];
+  //   if (searched != null) {
+  //     this.filterFlag=false;
+  //     this.hideFlag = true;
+  //     let searchString: string = searched.toLowerCase();
+  //     this.allBundles.forEach((bundle) => {
+  //       let lowercaseName1: string = bundle.productOnePojo.productName.toLowerCase();
+  //       let lowercaseName2: string = bundle.productTwoPojo.productName.toLowerCase();
+  //       let lowercaseCategory: string = bundle.productOnePojo.productCategory.toLowerCase();
+  //       if (lowercaseName1.includes(searchString) || lowercaseCategory.includes(searchString))  {
+  //         returnedSet.push(bundle);
+  //       }
+  //       if (lowercaseName2.includes(searchString) || lowercaseCategory.includes(searchString))  {
+  //         returnedSet.push(bundle);
+  //       }
+  //     });
+  //   }
+  //   return returnedSet;
+  // }
 
   searchStore() {
     sessionStorage.setItem('searchQuery', this.searchQuery);

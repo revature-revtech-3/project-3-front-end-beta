@@ -19,10 +19,12 @@ import { ReviewService } from '../../services/review.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { TransactionService } from 'src/app/services/transaction.service';
-import { CartService } from '../../services/cart.service';
-import { PurchasedItem } from '../../models/purchased-item.model';
-import { Transaction } from '../../models/transaction.model';
-import { PurchasedItemService } from '../../services/purchased-item.service';
+
+import { CartService } from "../../services/cart.service";
+import { Bundle, PurchasedItem } from "../../models/purchased-item.model";
+import { Transaction } from "../../models/transaction.model";
+import { PurchasedItemService } from "../../services/purchased-item.service";
+
 import { Product } from 'src/app/models/product.model';
 import { Cart } from 'src/app/models/cart.model';
 import { Wishlist, WishlistItem } from 'src/app/models/wishlist.model';
@@ -39,6 +41,7 @@ import { WishlistService } from 'src/app/services/wishlist.service';
 // });
 export class ProductPageComponent implements OnInit {
   productAndDiscount: ProductAndDiscount = new ProductAndDiscount();
+  bundle: Bundle = new Bundle();
   userId: any = 0;
   cartAndItems: CartAndItems = new CartAndItems();
   wishlistId: any = 0;
@@ -275,6 +278,16 @@ export class ProductPageComponent implements OnInit {
     if (this.toggleBuyNow) {
       this.toggleBuyNow = false;
     } else this.toggleBuyNow = true;
+  }
+
+  // bundle
+  toggleBuyBundle: boolean = false
+  toggleBuyBundleForm(){
+    if (this.toggleBuyBundle) {
+      this.toggleBuyBundle = false;
+    } else
+      this.toggleBuyBundle = true;
+
   }
 
   ngOnDestroy() {

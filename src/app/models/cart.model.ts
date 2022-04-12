@@ -1,4 +1,4 @@
-import { ProductAndDiscount } from "./product.model";
+import { Product, ProductAndDiscount } from "./product.model";
 
 export class Cart {
 
@@ -34,4 +34,16 @@ export class ItemProductAndDiscount {
     productId: number = 0;
     cartQty: number = 0;
     productAndDiscount: ProductAndDiscount = new ProductAndDiscount();
+}
+
+//Bundle Model
+export class Bundle{
+
+    bundleId?: number = 0;
+    bundleName: string = "";
+    bundlePercentage: number = 0.00;
+    productOnePojo: Product= new Product();
+    productTwoPojo: Product= new Product();
+    
+
 }
