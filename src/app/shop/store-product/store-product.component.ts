@@ -84,7 +84,6 @@ export class StoreProductComponent implements OnInit {
   searchQuery: string="";
 
 
-  searchQuery: string = '';
 
   constructor(
     private router: Router,
