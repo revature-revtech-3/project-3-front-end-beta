@@ -55,7 +55,7 @@ TO RUN APPLICATION REMOTELY:
 3. Build Jenkins Job `Project-3-Front-End-Beta` which handles the building of the frontend (which is connected to and hosted by AWS S3)
 4. Navigate to `http://revature-tech.s3.amazonaws.com/dist/rev-tech/index.html` to access the application
 
-TO RUN ANGUALR MATERIAL FOR THEME CHANGING 
+TO RUN ANGUALR MATERIAL FOR THEME CHANGING:
 ----
 1.	Run `ng add @angular/material` to install angular material
 2.	Pick  Custom theme 
