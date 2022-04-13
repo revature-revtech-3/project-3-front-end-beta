@@ -23,7 +23,7 @@ The Revtech E-Commerce Application is an Angular Single Page Application (SPA) t
 * Java (Programming Language) - version 11.0.12
 * TypeScript (Programming Language)
 * HTML (HyperText Markup Language)
-* CSS / SCSS (Cascading Style Sheets)
+* CSS / SCSS (Cascading Style Sheets) plus Angular Material
 * Eclipse (IDE)
 * Apache Maven (Project Management)
 * H2 (Database)
@@ -38,7 +38,6 @@ The Revtech E-Commerce Application is an Angular Single Page Application (SPA) t
 * Jasmine / Karma (Testing Framework - Front)
 * Microsoft Visual Studio Code (Source Code Editor)
 * Postman (API Platform)
-* Angular Material
 
 ## Project Requirements
 1. As a User, I should be able to register a new account.
