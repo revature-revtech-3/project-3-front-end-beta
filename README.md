@@ -16,10 +16,10 @@ Project 3 - E-Commerce Store (Team Project)
 * [Team Structure](#team-structure)
 * [Contributors](#contributors)
 
-## Project Description
+## Project Description (Edit to add new functionality)
 The Revtech E-Commerce Application is an Angular Single Page Application (SPA) that will allow users to sign up and login as a customer, browse all available products, view an individual product, and add products to their carts for purchase. Any user can browse the database of products, however, in order to purchase one you must be logged into an account. A new account can be created using the sign-up button. After an account is created the user will be able to login and purchase the products(s) of their choice. With our products route, the user is able to view all of the products we have in our database on a single page. When the user clicks on a product that they are interested in, it will redirect them to that product’s specific page to see additional details. Here, the user will be able to see the title, cost, discount and description of the product. This page will also include a button that will add the product to their cart if they would like to purchase it. The cart is the user’s final destination and where they will be able to see the products they wish to purchase, review the total costs of selected products, and also be able to check the products out to complete their purchase.
 
-## Technologies Used
+## Technologies Used (Review for any new technologie)
 * Java (Programming Language) - version 11.0.12
 * TypeScript (Programming Language)
 * HTML (HyperText Markup Language)
@@ -39,7 +39,7 @@ The Revtech E-Commerce Application is an Angular Single Page Application (SPA) t
 * Microsoft Visual Studio Code (Source Code Editor)
 * Postman (API Platform)
 
-## Project Requirements
+## Project Requirements 
 1. As a User, I should be able to register a new account.
 2. As a User, I should be able to log into the application.
 3. As a User, I should be able to log out of the application.
@@ -49,7 +49,9 @@ The Revtech E-Commerce Application is an Angular Single Page Application (SPA) t
 7. As a User, I should be able to add items to my cart that I will later purchase or remove from my cart.
 8. As a User, I should be able to select an amount of an item to add to my cart as I am adding an item.
 9. As a User, I should be able to checkout with the items in my cart, purchasing them and removing them from the inventory.
-10. As a User, I should be able to change the color scheme from the normal mode to a dark mode option.
+
+## New Change Requirements (remember to chronicalize new changes correctly)
+1. As a User, I should be able to change the color scheme from the normal mode to a dark mode option.
 
 ## Features
 List of features ready and TODOs for future development
@@ -72,16 +74,18 @@ List of features ready and TODOs for future development
 * Ability to view orders history as a user
 * Ability to switch background color from original theme (light) to dark theme by using Angular material
 
+## New Features (Remember to add new features)
 
-To-do list:
+
+To-do list: (Remeber to Edit)
 * Ability to update account information as a user
 * Ability to add items and checkout instantly (buy now) as a user
 * Ability to contact customer support (live chat)
 
-## Getting Started
+## Getting Started 
 Please refer to `STARTUP.md` file
 
-# Application Screenshots
+# Application Screenshots (Revise Screenshots)
 ![Store](https://i.postimg.cc/3R4p6GPB/Screen-Shot-2022-01-14-at-12-25-43-PM.png)
 ![Store_with_Dark_Mode](https://i.postimg.cc/9f8KRYdR/dark-mode-store-page.png)
 ![Login / Register / Profile](https://i.postimg.cc/sgMh172R/Screen-Shot-2022-01-14-at-12-40-20-PM.png)
@@ -91,14 +95,14 @@ Please refer to `STARTUP.md` file
 ![Manage Store Forms](https://i.postimg.cc/1XJZxgxW/Screen-Shot-2022-01-14-at-1-04-27-PM.png)
 
 
-# Entity Relationship Diagram
+# Entity Relationship Diagram (New image diagram, decide to remotely host, or from local file. Diagram created by Tyler in email)
 ![ERD Image](https://i.postimg.cc/q75nz3yn/image.png)
 
-# File Structure
+# File Structure (Add Revised Structure)
 Within the download you'll find the following directories and files:
 
 ```
-Rev-Tech • E-Commerce
+Rev-Tech • E-Commerce (Update here)
 
 ├── README.md
 ├── angular.json
@@ -332,11 +336,11 @@ Project-3-Back-End • E-Commerce
 └── README.md
 ```
 
-Team Structure
+Team Structure (Revise Structure)
 ----
 ![Team Structure Image](https://i.postimg.cc/fL0gMJGz/Screen-Shot-2022-01-14-at-12-03-42-PM.png)
 
-Contributors
+Contributors (Revise Contributors)
 -----
 Scrum Master: 
 * Michelle Ng - Scrum Master / Technical Lead
