@@ -50,7 +50,7 @@ The Revtech E-Commerce Application is an Angular Single Page Application (SPA) t
 8. As a User, I should be able to select an amount of an item to add to my cart as I am adding an item.
 9. As a User, I should be able to checkout with the items in my cart, purchasing them and removing them from the inventory.
 
-## New Change Requirements (remember to chronicalize new changes correctly)
+## New Change Requirements (Remember to chronicalize new changes correctly)
 1. As a User, I should be able to change the color scheme from the normal mode to a dark mode option.
 
 ## Features
