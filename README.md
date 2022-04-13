@@ -93,13 +93,17 @@ To-do list: (Remeber to Edit)
 Please refer to `STARTUP.md` file
 
 # Application Screenshots (Revise Screenshots)
-![Store](https://i.postimg.cc/3R4p6GPB/Screen-Shot-2022-01-14-at-12-25-43-PM.png)
+![Store](https://i.postimg.cc/fyngQ8cX/store.png)
 ![Store_with_Dark_Mode](https://i.postimg.cc/9f8KRYdR/dark-mode-store-page.png)
-![Login / Register / Profile](https://i.postimg.cc/sgMh172R/Screen-Shot-2022-01-14-at-12-40-20-PM.png)
-![Product Details / Review](https://i.postimg.cc/wMbDbVB0/Screen-Shot-2022-01-14-at-12-51-19-PM.png)
+![Login / Register / Profile](https://i.postimg.cc/260vYyND/merge-user.png)
+![Forget_Password/Reset_Password](https://i.postimg.cc/QxqYvkH9/merge-from-ofoct.jpg)
+![Product Details](https://i.postimg.cc/zvFpZ8XZ/item-page.png)
+![Product Review](https://i.postimg.cc/15yJ0nJ9/review.png)
 ![Cart / Checkout / Confirmation / Orders History](https://i.postimg.cc/NGPTtdgx/Screen-Shot-2022-01-14-at-12-54-49-PM.png)
+![Wistlist](https://i.postimg.cc/jdvvMxFy/wish-list.png)
 ![Manage Store](https://i.postimg.cc/rst534tT/Screen-Shot-2022-01-14-at-1-09-55-PM.png)
 ![Manage Store Forms](https://i.postimg.cc/1XJZxgxW/Screen-Shot-2022-01-14-at-1-04-27-PM.png)
+![Email_Notifications](https://i.postimg.cc/FsxHYqnP/email-discount.png)
 
 
 # Entity Relationship Diagram (New image diagram, decide to remotely host, or from local file. Diagram created by Tyler in email)
