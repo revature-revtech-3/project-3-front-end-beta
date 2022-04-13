@@ -105,7 +105,7 @@ To-do list:
 ## Getting Started 
 Please refer to `STARTUP.md` file
 
-# Application Screenshots (Revise Screenshots)
+# Application Screenshots 
 ![Store](https://i.postimg.cc/fyngQ8cX/store.png)
 ![Store_with_Dark_Mode](https://i.postimg.cc/9f8KRYdR/dark-mode-store-page.png)
 ![Login / Register / Profile](https://i.postimg.cc/260vYyND/merge-user.png)
