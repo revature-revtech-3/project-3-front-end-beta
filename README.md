@@ -379,7 +379,7 @@ Team Members:
 * Benjamin Barnhill (DevOps Personnel)
 * Rana Ismael (Reset Password Team)
 * Leana Kazi (Reset Password Team)
-* Chunkit Yip (Dark Mode Team)
+* Chunkit Yip (Dark Mode Personnel)
 * Samia Jahan (Buy Now Team)
 * Christopher Phillips (Buy Now Team)
 * Dimitri Luck (Wish List Team)
