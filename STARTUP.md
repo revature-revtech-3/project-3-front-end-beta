@@ -12,9 +12,10 @@ TO RUN APPLICATION LOCALLY:
 
 THINGS TO NOTE:
 ----
-* The application.properties file contains the H2 database configuraton.
+* The application.properties file contains the H2 database configuraton
 * The schema.sql and data.sql files located in src/main/resources will auto generate the tables and data within the H2 database
 * The application.yml file contains the AWS credentials to access the S3 bucket which we use to host the images from product image upload
+* Java simplified encryption can only be ran locally, to get Java encryption started for the back-end. Refer to start-up instructions in documents folder
 
 TO RUN THE APPLICATION REMOTELY:
 ----
@@ -73,10 +74,11 @@ The Previous team pick no for Set up HammerJS for gesture
 The Previous team pick yes for Set up browser animations for Angular Material
 4.	Check the code at Styles.scss. Make sure the code is same as the original Styles.scss
 
-Few important points to check:
+Things to note:
 * Make sure `@use @angular/material as mat` set the first line of code
 * Check for `$rev-tech-primary` , `$rev-tech-accent` and `$rev-tech-warm` 
 * Check for `mat.define-light-theme` and `mat.define-dark-theme`
 * Check for `.darkMode`
+* Check for duplicate imports of Angular material in styles.scss 
 
 
