@@ -1,6 +1,6 @@
 # Getting Started - Backend
 
-* git clone `https://github.com/revature-rev-tech/project-3-back-end.git`
+* git clone `https://github.com/revature-rev-tech2/project-3-back-end.git`
 
 TO RUN APPLICATION LOCALLY:
 ----
