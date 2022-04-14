@@ -122,7 +122,7 @@ Please refer to `STARTUP.md` file
 ![Email_Notifications](https://i.postimg.cc/FsxHYqnP/email-discount.png)
 
 
-# Entity Relationship Diagram (See if we should find a way to resize and/or host differently)
+# Entity Relationship Diagram
 ![shopmeSchemaDiagram](https://user-images.githubusercontent.com/98404483/163305499-cbf3ff20-e36b-487c-9a7e-ff48eb812b19.png)
 
 # File Structure (Add Revised Structure)
