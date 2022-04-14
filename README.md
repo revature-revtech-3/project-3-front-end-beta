@@ -124,7 +124,7 @@ Please refer to `STARTUP.md` file
 # Entity Relationship Diagram
 ![shopmeSchemaDiagram](https://user-images.githubusercontent.com/98404483/163305499-cbf3ff20-e36b-487c-9a7e-ff48eb812b19.png)
 
-# File Structure (Add Revised Structure)
+# File Structure (Talk with the team about this)
 Within the download you'll find the following directories and files:
 
 ```
