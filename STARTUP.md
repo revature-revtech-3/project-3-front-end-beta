@@ -64,14 +64,14 @@ THINGS TO NOTE:
 2. If the S3 bucket URL is no longer available, an S3 bucket will have to be created to host the static website. See documents folder on how to create S3 bucket.
 3. The application.yml file in the backend contains the bucket URL for the static website, this may need to be changed for password reset routing from email link. 
 
-TO RUN ANGUALR MATERIAL FOR THEME CHANGING:
+TO RUN ANGULAR MATERIAL FOR THEME CHANGING:
 ----
 1.	Run `ng add @angular/material` to install angular material
 2.	Pick  Custom theme 
 3.	For “Set up HammerJS for gesture” and “Set up browser animations for Angular Material” , 
-Pick it base on your needs. 
-The Previous team pick no for Set up HammerJS for gesture
-The Previous team pick yes for Set up browser animations for Angular Material
+Pick it based on your needs. 
+The Previous team picked no for Set up HammerJS for gesture.
+The Previous team picked yes for Set up browser animations for Angular Material.
 4.	Check the code at Styles.scss. Make sure the code is same as the original Styles.scss
 
 Things to note:
