@@ -30,14 +30,14 @@ THINGS TO NOTE:
 * The DDL queries at the beginning of the schema.sql and data.sql files must also be uncommented to auto-generate data within the image.
 
 # Getting Started - Frontend
-* git clone `https://github.com/revature-rev-tech/project-3-front-end-beta.git`
+* git clone `https://github.com/revature-rev-tech2/project-3-front-end-beta.git`
 
 TO RUN APPLICATION LOCALLY w/ LOCAL BACKEND:
 ----
 1. Run `npm install` to install the node_modules folder
 2. Open source-code editor (ex.Visual Studio Code) and open project to load into workspace
 3. Make sure the index.html file located in the src file has `<base href"/">` uncommented and `<base href="/dist/rev-tech/">` commented out
-4. Make sure the instance.ts file located in app -> models has `static url: string = "http://localhost:7777";` uncommented and `static url: string = "http://ec2-50-16-74-43.compute-1.amazonaws.com:7777";` commented out 
+4. Make sure the instance.ts file located in app -> models has `static url: string = "http://localhost:7777";` uncommented and `static url: string = "http://ec2-34-230-18-27.compute-1.amazonaws.com:9999";` commented out 
 5. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 6. Follow steps for how to run the backend locally
 
