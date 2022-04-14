@@ -16,7 +16,6 @@ Project 3 - E-Commerce Store (Team Project)
 * [Application Screenshots](#application-screenshots)
 * [Entity Relationship Diagram](#entity-relationship-diagram)
 * [File Structure](#file-structure)
-* [Team Structure](#team-structure)
 * [Contributors](#contributors)
 
 ## Project Sprint 1 Description
@@ -362,9 +361,6 @@ Project-3-Back-End • E-Commerce
 ├── pom.xml
 └── README.md
 ```
-
-Team Structure (Decide if we're keeping)
-----
 
 Contributors
 -----
