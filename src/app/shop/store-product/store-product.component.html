@@ -20,6 +20,7 @@
 <mat-sidenav-container>
 <mat-sidenav mode="side" opened>
 <div class="sidebar">
+  <button  mat-button (click)="unfilter()" id="filterremove">Filter By</button>
     <button mat-button (click)="unfilter()" id="filterremove" class="active">Remove Filter</button>
     <button mat-button (click)="filterByCategory('Phones')">Phones</button>
     <button mat-button (click)="filterByCategory('Laptops')">Laptops</button>
@@ -65,7 +66,7 @@
           </div>
           <div class="card-footer">
             <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}
-   
+
             </h5>
             <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
               <s>{{row.productCost |
@@ -151,7 +152,7 @@
         </mat-card>
       </div>
     </div>
-     
+
 
 
  <!-- Bundle-->
@@ -171,13 +172,13 @@
        </p>
        <p class="card-text" class="parLength">{{row.productOnePojo.productDescription}}</p>
        <p class="card-text" class="parLength">{{row.productTwoPojo.productDescription}}</p>
-       <p><button class="btn btn-danger" (click)="proceedToCheckout(row.bundleId)">Proceed to Checkout</button></p> 
+       <p><button class="btn btn-danger" (click)="proceedToCheckout(row.bundleId)">Proceed to Checkout</button></p>
        <small class="text-muted">{{row.productOnePojo.productSku}}</small>
        <small class="text-muted">{{row.productTwoPojo.productSku}}</small>
      </div>
    </mat-card>
  </div>
-    
+
   </div>
 </div>
 </mat-sidenav-container>
@@ -186,4 +187,3 @@
 <div class="footer">
   <p>Need Help? <a href="/product" style="color: #dc3545; font-weight: bold;">Live Chat <i class='fas fa-comment-dots' style="color: white;"></i></a></p>
 </div>
-
