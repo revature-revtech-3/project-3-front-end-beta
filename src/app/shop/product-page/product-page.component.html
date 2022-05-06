@@ -134,7 +134,16 @@
       <div class="card-body">
         <div class="row">
 <h3>Pictures</h3>
-<a href="#"> <img [src]="productAndDiscount.imageUrl"></a>
+
+<div  *ngFor="let p of productbyname">
+  <h3> Name: {{p.productName}}</h3> 
+  <a href="#"> <img [src]="p.imageUrl"></a>
+</div>
+
+
+
+
+
         </div>
       </div>
     </mat-card>

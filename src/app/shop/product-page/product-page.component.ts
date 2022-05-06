@@ -72,6 +72,12 @@ export class ProductPageComponent implements OnInit {
     one: 0,
     //buy now
   };
+  Xbox: number[] = [1,7];
+  Cam: number[] = [8,9,10,11,12];
+  
+  sproduct: boolean|any;
+  sproduct_name: String |any;
+  productbyname: Product|any;
 
   constructor(
     private productAndDiscountService: ProductAndDiscountService,
@@ -97,10 +103,32 @@ export class ProductPageComponent implements OnInit {
     this.productId = param == null ? 0 : parseInt(param);
     this.currentUser = this.tokenService.getUser;
 
+    
+
+this.loadSecondaryProduct(this.productId);
     this.loadData();
     this.loadReviews();
     this.createWishList();
   }
+
+loadSecondaryProduct(p_id:number){
+if(this.sproduct = this.Xbox.includes(p_id)){
+  alert("it is in here" + p_id)
+this.sproduct_name = "Xbox";
+this.productService.getByNameProductsService(this.sproduct_name).subscribe({
+  next: (response) => {
+    this.productbyname = response;
+    //this.productLoaded = true;
+    //console.log(this.sproduct.productName);
+  },
+  error: (error) => { },
+})
+} else{
+  alert("It is not in here"+ p_id);
+}
+  
+
+}
 
   loadData() {
     this.productAndDiscountService
@@ -460,6 +488,11 @@ export class ProductPageComponent implements OnInit {
       error: (err) => { },
     });
   }
+
+ 
+
+ 
+
 }
 
 
