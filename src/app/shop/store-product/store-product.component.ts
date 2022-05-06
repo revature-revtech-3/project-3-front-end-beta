@@ -25,7 +25,11 @@ import { WishlistService } from 'src/app/services/wishlist.service';
   styleUrls: ['./store-product.component.scss'],
 })
 export class StoreProductComponent implements OnInit {
-  
+//new stuff I added
+  public totalItem: number =0;
+  public searchTerm:string="";
+  searchKey:string = "";
+  ////////////////////////////////////
   darkModeToggle = new FormControl(false);
   @HostBinding('class') className = '';
   allProducts: Product[] = [];
@@ -112,7 +116,7 @@ export class StoreProductComponent implements OnInit {
   // }
 
   searchQuery: string = "";
-  
+
   constructor(
     private router: Router,
     private wishlistItemService: WishlistItemService,
@@ -152,7 +156,11 @@ export class StoreProductComponent implements OnInit {
       }
     });
   }
-
+//stuff I added
+search(event:any){
+  this.searchTerm = (event.target as HTMLInputElement).value;
+}
+///////////////////////////////////////////////////////////////
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }
@@ -266,7 +274,7 @@ export class StoreProductComponent implements OnInit {
     this.filteredDiscounts = [];
     this.filteredBundles = [];
     this.allProducts.forEach((product) => {
-      if (product.productCategory == categoryName) { 
+      if (product.productCategory == categoryName) {
         this.filteredProducts.push(product)}
     });
 
@@ -379,7 +387,7 @@ export class StoreProductComponent implements OnInit {
 
     this.buyBundleCart.userId = this.tokenService.getUser().user_id;
     this.cartService.addCartService(this.buyBundleCart).subscribe({
-      next: response => {  
+      next: response => {
         this.buyBundleCartAndItems.cartId = response.cartId;
         this.buyBundleCartAndItems.userId = response.userId;
         // add item1 to cart object in Angular
@@ -389,13 +397,13 @@ export class StoreProductComponent implements OnInit {
         // add item2 to cart object in Angulaer
         this.buyBundleItem2.cartId = this.buyBundleCartAndItems.cartId;
         this.buyBundleItem2.cartQty = 1;
-        this.buyBundleItem2.cartItemId = -1;  
+        this.buyBundleItem2.cartItemId = -1;
         this.productService.getAllBundleProductsService().subscribe({
           next: response => {
             for (let bundle of response){
               if (bundle.bundleId == bundleId){
               // Assign productId of items in bundle to the items in cart
-              this.buyBundleItem1.productId = bundle.productOnePojo.productId;        
+              this.buyBundleItem1.productId = bundle.productOnePojo.productId;
               this.buyBundleItem2.productId = bundle.productTwoPojo.productId;
 
               }
@@ -409,13 +417,13 @@ export class StoreProductComponent implements OnInit {
                     this.cartAndItemsService.getCartAndItemsService(this.buyBundleCartAndItems.cartId).subscribe({
                       // load product information from database into cart
                       next: response => {
-                        this.buyBundleCartAndItems.cartItems = response.cartItems; 
+                        this.buyBundleCartAndItems.cartItems = response.cartItems;
                         this.buyBundleCartAndItems.cartTotal = parseInt(this.getItemsTotal())*(1-this.buyBundle.bundlePercentage/100);
                         console.log(this.buyBundleCartAndItems.cartTotal);
                         // this is a soft removal of a cart from the database in order to maintain purchase history
                         this.buyBundleCartAndItems.cartRemoved = true;
                         this.buyBundleCartAndItems.cartPaid = true;
-                        
+
                         this.cartService.updateCartService(this.buyBundleCartAndItems).subscribe ({
                           next: response => {
                             this.transaction.cartId = this.buyBundleCartAndItems.cartId;
@@ -430,21 +438,21 @@ export class StoreProductComponent implements OnInit {
                                   this.displayStyle = "none";
                                   this.router.navigate(['/confirmation-checkout/' + this.newTransaction.transactionId]);
                                 }, 2000);
-                              } 
-                            });  
+                              }
+                            });
                           }
                         });
                       }
                     })
-                    
-                   
-                    
+
+
+
                   }
                 });
               }
             });
           }
-        });        
+        });
       },
       error: (error) => { this.router.navigate(['login']); },
 
@@ -490,7 +498,7 @@ export class StoreProductComponent implements OnInit {
     product.productRemoved = item.productAndDiscount.productRemoved;
     return product;
   }
-  
+
   addItemsToPurchaseHistory(transactionId: number) {
     console.log("transaction id:" + transactionId);
     console.log(this.buyBundleCartAndItems.cartItems);
@@ -506,7 +514,7 @@ export class StoreProductComponent implements OnInit {
       temp.purchaseCost = this.calculateDiscountedItemCost(item.productAndDiscount);
       purchasedItems.push(temp);
     });
-    
+
     this.purchasedItemService.addPurchasedItems(purchasedItems).subscribe({
       next: response => {
 

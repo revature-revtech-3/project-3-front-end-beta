@@ -20,7 +20,7 @@
 <mat-sidenav-container>
 <mat-sidenav mode="side" opened>
 <div class="sidebar">
-  <button  mat-button (click)="unfilter()" id="filterremove">Filter By</button>
+  <button [(ngModel)]="searchTerm" (keyup)="search($event)" mat-button data-bs-toggle="modal" data-bs-target="#exampleModal" id="filterremove">Filter By</button>
     <button mat-button (click)="unfilter()" id="filterremove" class="active">Remove Filter</button>
     <button mat-button (click)="filterByCategory('Phones')">Phones</button>
     <button mat-button (click)="filterByCategory('Laptops')">Laptops</button>
@@ -186,4 +186,40 @@
 
 <div class="footer">
   <p>Need Help? <a href="/product" style="color: #dc3545; font-weight: bold;">Live Chat <i class='fas fa-comment-dots' style="color: white;"></i></a></p>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Filter Mode</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Please Filter Products By:</h3>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> Best Selling Products</label><br>
+</div>
+<div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> Hottest Products</label><br>
+</div>
+<div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> Still Can't Believe My Eyes Products</label><br><br>
+</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
 </div>
