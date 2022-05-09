@@ -72,18 +72,6 @@ export class ProductPageComponent implements OnInit {
     one: 0,
     //buy now
   };
-  Xbox: number[] = [1,7];
-  Cam: number[] = [8,9,10,11,12];
-  Apple: number[] = [2,3,6,16];
-  Samsung: number[] = [14,15];
-  Headphones: number[] =[5,13];
-  Dell: number[] = [4,17]
-  Group: string[] = ["Xbox","Cam","Apple","Samsung","Headphones","Dell"];
-  Families: any[] = [this.Xbox,this.Cam,this.Apple,this.Samsung,this.Headphones,this.Dell];
-  
-  sproduct: boolean|any;
-  sproduct_name: String |any;
-  productbyname: Product|any;
 
   constructor(
     private productAndDiscountService: ProductAndDiscountService,
@@ -110,35 +98,10 @@ export class ProductPageComponent implements OnInit {
     this.currentUser = this.tokenService.getUser;
 
     
-
-this.loadSecondaryProduct(this.productId);
     this.loadData();
     this.loadReviews();
     this.createWishList();
   }
-
-loadSecondaryProduct(p_id:number){
-  for(let i= 0; i< this.Families.length; i++){
-
-    if(this.sproduct = this.Families[i].includes(p_id)){
-      alert("it is in here" + p_id)
-    this.sproduct_name = this.Group[i];
-    this.productService.getByNameProductsService(this.sproduct_name).subscribe({
-      next: (response) => {
-        this.productbyname = response;
-        //this.productLoaded = true;
-        //console.log(this.sproduct.productName);
-      },
-      error: (error) => { },
-    })
-    } else{
-      //alert("It is not in here"+ p_id);
-    }
-  }
-
-  
-
-}
 
   loadData() {
     this.productAndDiscountService
@@ -498,11 +461,6 @@ loadSecondaryProduct(p_id:number){
       error: (err) => { },
     });
   }
-
- 
-
- 
-
 }
 
 
