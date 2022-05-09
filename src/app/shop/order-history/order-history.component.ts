@@ -19,6 +19,7 @@ export class OrderHistoryComponent implements OnInit {
               private purchasedItemService: PurchasedItemService,
               private tokenService: TokenStorageService
   ) { }
+  
 
   ngOnInit(): void {
     this.userId = this.tokenService.getUser().user_id;
@@ -33,14 +34,4 @@ export class OrderHistoryComponent implements OnInit {
       this.errorMsg = 'There was some internal error! Please try again later!';
     });
   }
-
-  calculateCost() {
-    let totalCost = 0;
-    this.purchasedItemProduct.forEach(item => {
-      totalCost += (item.purchaseCost * item.itemQty);
-    });
-    return totalCost;
-  }
-
-
 }
