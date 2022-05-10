@@ -129,17 +129,14 @@
         </div> <!-- row.// -->
       </div> <!-- card-body.// -->
     </mat-card>
-
+    <h2 class="m-9">Secondary Product</h2>
     <mat-card class="card">
       <div class="card-body">
-        <div class="row">
-          
-             
-<h3>Pictures</h3>
-
-  <div  *ngFor="let p of productbyname">
-    <h3> Name: {{p.productName}}</h3> 
-    <a href="#"> <img [src]="p.imageUrl"></a>
+        <div class="across">
+  <div  *ngFor="let p of productbyname" class="column" >
+      <h4> {{p.productName}}</h4> 
+      <a href="#"> <img [src]="p.imageUrl" width="200" height="200"></a>
+      <h3>${{p.productCost}}</h3>
   </div>
 
     </div>
