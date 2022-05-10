@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.compon
     ForgetPasswordComponent,
     ResetPasswordComponent,
     WishlistComponent,
+    NotificationsComponent,
 
 
   ],

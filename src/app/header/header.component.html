@@ -20,6 +20,7 @@
       <a routerLink="wishlist" class="topnav" id="wishlist" class="btn btn-danger btn-lg" id="wishlist" style="color: white;">
         <mat-icon>favorite</mat-icon>
       </a>
+      
   </li>
     <li style="float:right" class="nav-item px-1">
         <a routerLink="checkout" class="topnav" id="cart" class="btn btn-danger btn-lg" id="cart" style="color: white;">
@@ -28,7 +29,12 @@
              -->
         </a>
     </li>
-    
+
+    <li style="float:right" class="nav-item px-1">
+        <a routerLink="notification" class="topnav" id="notification" class="btn btn-danger btn-lg" id="notification" style="color: white;">
+         <mat-icon>notifications</mat-icon>
+             </a>
+    </li>
 
     <li style="float:right" class="nav-item" *ngIf="!isLogged()">
         <a class="nav-link" routerLink="login">Sign In</a>
