@@ -67,8 +67,8 @@ bundlesUrlAdd = Instance.url + "/api/create/bundles";
   }
   
   //Get Product By Name
-  getByNameProductsService(productName: String): Observable<Product> {
-    return this.http.get<Product>(this.productsUrlByName + "/" + productName);
+  getByNameProductsService(productId: number): Observable<Product> {
+    return this.http.get<Product>(this.productsUrlByName + "/" + productId);
   }
 
   // Anthony's Discount endpoints

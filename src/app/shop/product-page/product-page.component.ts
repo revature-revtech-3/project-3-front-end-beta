@@ -72,6 +72,7 @@ export class ProductPageComponent implements OnInit {
     one: 0,
     //buy now
   };
+  productbyname: Product|any;
 
   constructor(
     private productAndDiscountService: ProductAndDiscountService,
@@ -96,12 +97,22 @@ export class ProductPageComponent implements OnInit {
     let param = this.activatedRoute.snapshot.paramMap.get('productId');
     this.productId = param == null ? 0 : parseInt(param);
     this.currentUser = this.tokenService.getUser;
+  
 
-    
+this.loadSecondaryProduct(this.productId);
     this.loadData();
     this.loadReviews();
     this.createWishList();
   }
+
+loadSecondaryProduct(p_id:number){
+     // alert("it is in here" + p_id);
+    this.productService.getByNameProductsService(p_id).subscribe({
+      next: (response) => {
+        this.productbyname = response;},
+      error: (error) => { },})
+    
+}
 
   loadData() {
     this.productAndDiscountService
@@ -461,6 +472,10 @@ export class ProductPageComponent implements OnInit {
       error: (err) => { },
     });
   }
-}
 
+ 
+
+ 
+
+}
 
