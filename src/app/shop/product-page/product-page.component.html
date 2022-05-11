@@ -137,6 +137,7 @@
       <h4> {{p.productName}}</h4> 
       <a href="#"> <img [src]="p.imageUrl" width="200" height="200"></a>
       <h3>${{p.productCost}}</h3>
+      <button class="btn btn-danger" (click)="goToProduct(p.productId)">View Details</button><br><br>
   </div>
 
     </div>

@@ -27,6 +27,7 @@ import { Cart } from 'src/app/models/cart.model';
 import { Wishlist, WishlistItem } from 'src/app/models/wishlist.model';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { User } from 'src/app/models/user.model';
+import { Instance } from 'src/app/models/Instance';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
@@ -73,6 +74,7 @@ export class ProductPageComponent implements OnInit {
     //buy now
   };
   productbyname: Product|any;
+ 
 
   constructor(
     private productAndDiscountService: ProductAndDiscountService,
@@ -473,7 +475,12 @@ loadSecondaryProduct(p_id:number){
     });
   }
 
- 
+  goToProduct(productId: number) {
+    //location.replace(Instance.webpage + '/product-page/' + productId);
+     //window.location.href = Instance.webpage + '/product-page/' + productId;
+     //this.router.navigate(['product-page/' + productId]);
+     location.assign(Instance.webpage + '/product-page/' + productId);
+  }
 
  
 

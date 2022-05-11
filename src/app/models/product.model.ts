@@ -11,9 +11,6 @@ export class Product {
     productRemoved: boolean = false;
 }
 
-export class RelatedProduct{
-    productName: string = "";
-}
 export class ProductAndDiscount {
 
     productId: number = 0;
