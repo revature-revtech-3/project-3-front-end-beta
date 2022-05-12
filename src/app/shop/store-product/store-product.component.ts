@@ -8,7 +8,7 @@ import { TokenStorageService } from "../../services/token-storage.service";
 import { CartItemService } from "../../services/cart-item.service";
 import { CartAndItemsService } from "../../services/cart-and-items.service";
 import { Wishlist, WishlistItem } from 'src/app/models/wishlist.model';
-
+import { MatSortModule } from '@angular/material/sort';
 import { WishlistItemService } from 'src/app/services/wishlist-item.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { CartService } from 'src/app/services/cart.service';
@@ -534,4 +534,9 @@ search(event:any){
   searchStore() {
     sessionStorage.setItem('searchQuery', this.searchQuery);
   }
+  sortByProductCost(product:Product){
+  //product.sort()
+    //let sorted = product.productCost;
+}
+
 }
