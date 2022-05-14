@@ -32,4 +32,8 @@ export class PurchasedItemService {
     return this.http.get<PurchasedItemProduct[]>(this.baseUrl + ("/user/" + userId  + "/get"), this.header)
   }
 
+  getPurchasedItemsByMostSold(): Observable<PurchasedItem[]>{
+return this.http.get<PurchasedItem[]>(this.baseUrl+("/purchasedItems"), this.header)
+  }
+
 }

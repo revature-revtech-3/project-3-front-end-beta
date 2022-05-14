@@ -26,6 +26,8 @@ import { WishlistService } from 'src/app/services/wishlist.service';
 })
 export class StoreProductComponent implements OnInit {
 //new stuff I added
+  Products:any = [];
+  Purchases:any =[];
   public totalItem: number =0;
   public searchTerm:string="";
   searchKey:string = "";
@@ -118,6 +120,7 @@ export class StoreProductComponent implements OnInit {
   searchQuery: string = "";
 
   constructor(
+    private puchasedItems:PurchasedItemService,
     private router: Router,
     private wishlistItemService: WishlistItemService,
     private formbuilder: FormBuilder,
@@ -130,6 +133,7 @@ export class StoreProductComponent implements OnInit {
     private transactionService: TransactionService,
     private purchasedItemService: PurchasedItemService,
   private overlay: OverlayContainer) { }
+  purchasedItems: PurchasedItem[] = [];
   filteredProducts: Product[] = [];
   filteredDiscounts: ProductAndDiscount[] = [];
   filteredBundles: Bundle[] = [];
@@ -141,7 +145,6 @@ export class StoreProductComponent implements OnInit {
 
   ngOnInit(): void {
     //add code for the update
-
     this.userId = this.tokenService.getUser().user_id;
     this.loadDiscountedProducts();
     this.loadBundles();
@@ -538,5 +541,26 @@ search(event:any){
   //product.sort()
     //let sorted = product.productCost;
 }
+getBestSellers() {
+  this.purchasedItemService.getPurchasedItemsByMostSold().subscribe((data: {}) => {
+    this.Purchases = data;
+    //this.Purchases.push(this.allProducts)
+    //this.allProducts;
+    //console.log(this.filteredProducts =[]);
+    console.log("Id: " +this.Purchases[0].productId + " Qty sold: "+ this.Purchases[0].itemQty + " Date Sold: "+ this.Purchases[0].purchaseDate)
+    console.log("Id: " +this.Purchases[1].productId + " Qty sold: "+ this.Purchases[1].itemQty + " Date Sold: "+ this.Purchases[1].purchaseDate)
+  });
+}
+
+// getAllproducts() {
+//   this.productService.getAllProductsService().subscribe((data: {}) => {
+//     this.Products = data;
+//     //this.allProducts;
+//     //console.log(this.filteredProducts =[]);
+//     console.log(this.Purchases);
+//     console.log("Id: " +this.Purchases[0].itemId + " Qty sold: "+ this.Purchases[0].itemQty + " Date Sold: "+ this.Purchases[0].purchaseDate)
+//     console.log("Id: " +this.Purchases[1].itemId + " Qty sold: "+ this.Purchases[1].itemQty + " Date Sold: "+ this.Purchases[1].purchaseDate)
+//   });
+//}
 
 }
