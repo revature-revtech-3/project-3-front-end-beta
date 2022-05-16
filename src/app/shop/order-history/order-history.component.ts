@@ -45,21 +45,23 @@ export class OrderHistoryComponent implements OnInit {
     this.purchasedItemService.getOrderByUser(this.userId).subscribe((response) => {
       this.userOrder= response.reverse();
       console.log(this.userOrder);
+      console.log(this.userOrder[0].cartId);
     }, error => {
       this.errorMsg = 'There was some internal error! Please try again later!';
     });
   }
 
-  loadtId(cId: any) {
-    this.purchasedItemService.getTransactionIdBycId(this.cId).subscribe((response) => {
-      this.transId= response;
-      console.log(this.transId);
-    }, error => {
-      this.errorMsg = 'There was some internal error! Please try again later!';
-    });
-  }
+  // loadtId(cId: any) {
+  //   this.purchasedItemService.getTransactionIdBycId(this.cId).subscribe((response) => {
+  //     this.transId= response;
+  //     console.log(this.transId);
+  //     return this.transId;
+  //   }, error => {
+  //     this.errorMsg = 'There was some internal error! Please try again later!';
+  //   });
+  // }
 
-  preview(cId: any) {
-    this.router.navigate(['/order-details/' + this.cId])
+  preview(event: any) {
+    this.router.navigate(['/order-details/' + event.target.attributes.id.nodeValue])
   }
 }

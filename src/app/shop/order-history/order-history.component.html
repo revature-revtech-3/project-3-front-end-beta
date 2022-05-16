@@ -14,12 +14,13 @@
                 <img [src]="item.product.imageUrl" width=300px height=" auto " class="img-fluid ">
               </div>
             </div> -->
+            <!-- {{loadtId(order.cartId)}} -->
             <div class="my-cloumn2 d-flex flex-column align-items-start ">
             <h5 class="entry-title "><b>Order number:</b></h5>
               <h1>000{{order.cartId}}</h1>
             </div>
             <div class="entry-item-cost d-flex flex-column align-item-end my-cloumn3 active ">
-                <a (click)="preview(order.cartId)" class="topnav" id="deets" class="btn btn-danger btn-lg text-right" style="color: white; ">Order Details</a> 
+              <a (click)="preview($event)" class="topnav" id="{{order.cartId}}" class="btn btn-danger btn-lg text-right" style="color: white; ">Order Details</a> 
               <div class="d-flex flex-row align-items-start">
                 <h4>Order confirmation number: {{order.cartTotal}}</h4>
               </div>
