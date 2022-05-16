@@ -34,7 +34,7 @@ export class OrderDetailsComponent implements OnInit {
         this.itemsAmt = this.itemsAmt + amt;
       }
       for (let i = 0; i < this.purchasedItemProduct.length; i++) {
-        let amt = this.purchasedItemProduct[i].purchaseCost;
+        let amt = this.purchasedItemProduct[i].purchaseCost * this.purchasedItemProduct[i].itemQty;
         this.total = this.total + amt;
       }
       console.log(this.purchasedItemProduct)
