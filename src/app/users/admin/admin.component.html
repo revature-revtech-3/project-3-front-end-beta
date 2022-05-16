@@ -355,12 +355,44 @@
 </td> -->
     </tr>
 
-    
+    <br><br>
+  <h3 *ngIf="toggleBestSells==false">This Week's Best Selling Items</h3>
+  <table>
+    <tr *ngIf="toggleBestSells==false">
+      <th scope="col">Product Id </th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Product Category</th>
+      <th scope="col">Product Percentage</th>
+      <th scope="col">Product Cost</th>
+      <th scope="col">Product Quantity</th>
+      <th scope="col">Product SKU</th>
+      <th scope="col">Product Description</th>
+      <th scope="col">Product Image</th>
+      <th scope="col">Add</th>
+      <th></th>
+    </tr>
+  
+    <tr *ngFor="let row of allProducts">
+     
+      <td *ngIf="toggleBestSells==true">{{row.productId}}</td>
+      <td *ngIf="toggleBestSells==true">{{row.productName}}</td>
+      <td *ngIf="toggleBestSells==true">{{row.productCategory}}</td>
+      <td *ngIf="toggleBestSells==true"></td>
+      <td *ngIf="toggleBestSells==true">{{row.productCost | currency}}</td>
+      <td *ngIf="toggleBestSells==true">{{row.productQty}}</td>
+      <td *ngIf="toggleBestSells==true">{{row.productSku}}</td>
+      <td *ngIf="toggleBestSells==true">{{row.productDescription}}</td>
+      <td *ngIf="toggleBestSells==true"><img id="image-size" class="" src="{{row.imageUrl}}" width="90px" height="90px" />
+      </td>
+      <td *ngIf="toggleBestSells==true"> <button (click)="onEditRow(row)" type="button" class="btn btn-success" data-bs-toggle="modal"
+          data-bs-target="#exampleModal" class="btn btn-info"><i class="fa fa-edit">Add</i></button>
+      </td>
+    </tr>
 
   </table>
   <br><br>
 
-</div>
+
 
 
 

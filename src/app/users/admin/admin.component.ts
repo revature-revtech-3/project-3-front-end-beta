@@ -71,6 +71,7 @@ export class AdminComponent implements OnInit {
     {value : 'Video Games',     text : 'Video Games'},
     {value : 'Cameras',         text : 'Cameras'}
   ]
+  toggleBestSells: any;
 
   constructor(
     private router: Router,
@@ -202,9 +203,7 @@ export class AdminComponent implements OnInit {
   }
 
   addBestSells(){
-    this.toggleProductTable=true;
-    this.toggleDiscountTable=false;
-    this.toggleBundleTable=false;
+    this.toggleBestSells=true;
 
     // if(this.toggleDiscountTable==false){
      
