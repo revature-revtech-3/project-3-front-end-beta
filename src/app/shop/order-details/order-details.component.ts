@@ -17,12 +17,13 @@ export class OrderDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cId = this.activatedRoute.snapshot.paramMap.get("orderSelected");
-    this.loadItems();
+    this.loadItems(this.cId);
   }
 
-  loadItems() {
+  loadItems(cId: any) {
     this.purchasedItemService.getPurchasedItemsByOrder(this.cId).subscribe((response) => {
       this.purchasedItemProduct = response;
+      console.log(this.purchasedItemProduct)
     }, error => {
       this.errorMsg = 'There was some internal error! Please try again later!';
     });
