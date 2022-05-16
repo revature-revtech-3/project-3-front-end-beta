@@ -2,7 +2,7 @@
 
   <div class="container">
 
-    <h3>Purchase History</h3>
+    <h3>Order History</h3>
 
     <div class="row">
       <div class="col-lg-8 entries">
@@ -17,13 +17,14 @@
             <!-- {{loadtId(order.cartId)}} -->
             <div class="my-cloumn2 d-flex flex-column align-items-start ">
             <h5 class="entry-title "><b>Order number:</b></h5>
-              <h1>000{{order.cartId}}</h1>
+              <h1>#000{{order.cartId}}</h1>
             </div>
             <div class="entry-item-cost d-flex flex-column align-item-end my-cloumn3 active ">
               <a (click)="preview($event)" class="topnav" id="{{order.cartId}}" class="btn btn-danger btn-lg text-right" style="color: white; ">Order Details</a> 
-              <div class="d-flex flex-row align-items-start">
+              <!-- <div class="d-flex flex-row align-items-start">
                 <h4>Order confirmation number: {{order.cartTotal}}</h4>
-              </div>
+              </div> -->
+              <br>
               <h1 class="d-flex flex-row item-sale-price align-items-end ml-auto ">
                 Order total: ${{order.cartTotal}}
               </h1>
