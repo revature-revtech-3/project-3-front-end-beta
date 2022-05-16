@@ -200,6 +200,21 @@ export class AdminComponent implements OnInit {
    this.loadBundles();
     
   }
+
+  displayBestSells(){
+    this.toggleProductTable=true;
+    this.toggleDiscountTable=false;
+    this.toggleBundleTable=false;
+
+    // if(this.toggleDiscountTable==false){
+     
+    //    this.toggleProductTable=true;
+    //    this.toggleDiscountTable=false;
+    //   this.ngOnInit();
+    // } else{
+    //    this.toggleProductTable=false;
+    // }
+  }
   
   // to add Product
   addProducts() {
