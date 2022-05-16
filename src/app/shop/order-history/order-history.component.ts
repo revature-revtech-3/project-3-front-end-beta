@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PurchasedItemProduct} from "../../models/purchased-item.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PurchasedItemService} from "../../services/purchased-item.service";
 import {TokenStorageService} from "../../services/token-storage.service";
 import { Cart } from 'src/app/models/cart.model';
@@ -15,11 +15,13 @@ export class OrderHistoryComponent implements OnInit {
   userOrder: Cart[] = [];
   errorMsg: string = "";
   transId: any = 0;
+  cId: any = 0;
   userId: number = 0;
 
   constructor(private activatedRoute: ActivatedRoute,
               private purchasedItemService: PurchasedItemService,
-              private tokenService: TokenStorageService
+              private tokenService: TokenStorageService,
+              private router: Router,
   ) { }
   
 
@@ -48,4 +50,16 @@ export class OrderHistoryComponent implements OnInit {
     });
   }
 
+  loadtId(cId: any) {
+    this.purchasedItemService.getTransactionIdBycId(this.cId).subscribe((response) => {
+      this.transId= response;
+      console.log(this.transId);
+    }, error => {
+      this.errorMsg = 'There was some internal error! Please try again later!';
+    });
+  }
+
+  preview(cId: any) {
+    this.router.navigate(['/order-details/' + this.cId])
+  }
 }

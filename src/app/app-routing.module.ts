@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: "product-page/:productId", component: ProductPageComponent },
   { path: "confirmation-checkout/:sentTransaction", component: ConfirmationCheckoutComponent, canActivate: [AdminGuard] },
   { path: "order-history", component: OrderHistoryComponent, canActivate: [AdminGuard] },
-  { path: "order-details", component: OrderDetailsComponent, canActivate: [AdminGuard]},
+  { path: "order-details/:orderSelected", component: OrderDetailsComponent, canActivate: [AdminGuard]},
   { path: "forget-password", component: ForgetPasswordComponent },
   { path: "reset-password", component: ResetPasswordComponent },
   { path: "wishlist", component: WishlistComponent, canActivate: [AdminGuard] },
