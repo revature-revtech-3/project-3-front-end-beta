@@ -201,7 +201,7 @@ export class AdminComponent implements OnInit {
     
   }
 
-  displayBestSells(){
+  addBestSells(){
     this.toggleProductTable=true;
     this.toggleDiscountTable=false;
     this.toggleBundleTable=false;
