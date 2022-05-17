@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { PurchasedItemProduct } from 'src/app/models/purchased-item.model';
 import { User, UserSettings } from 'src/app/models/user.model';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UserService } from 'src/app/services/user.service';
+import { PurchasedItemService } from '../../services/purchased-item.service';
 
 
 @Component({
@@ -11,7 +13,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
+  purchasedItemProduct: PurchasedItemProduct[] = [];
+  userId: number = 0;
 
   form: any = {
     first_name: null,
@@ -63,9 +66,11 @@ export class ProfileComponent implements OnInit {
   errorMsg = "";
   
 
-  constructor(private token: TokenStorageService, private userService: UserService, private fileUploadService: FileUploadService) { }
+  constructor(private token: TokenStorageService, private purchasedItemService: PurchasedItemService, private userService: UserService, private fileUploadService: FileUploadService) { }
 
   ngOnInit(): void {
+    this.userId = this.token.getUser().user_id;
+    this.loadItems();
     this.isLoggedIn = !!this.token.getToken();
     if (this.token.getToken()) {
       this.isLoggedIn = true;
@@ -139,6 +144,23 @@ export class ProfileComponent implements OnInit {
     })
 
   }
+
+  loadItems() {
+    this.purchasedItemService.getPurchasedItemsByUser(this.userId).subscribe((response) => {
+      this.purchasedItemProduct = response;
+    }, error => {
+      this.errorMsg = 'There was some internal error! Please try again later!';
+    });
+  }
+
+  calculateCost() {
+    let totalCost = 0;
+    this.purchasedItemProduct.forEach(item => {
+      totalCost += (item.purchaseCost * item.itemQty);
+    });
+    return totalCost;
+  }
+
 
 /* reloadPage(): void{
     window.location.reload();} */

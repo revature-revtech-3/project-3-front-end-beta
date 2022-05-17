@@ -218,4 +218,6 @@ export class CheckoutComponent implements OnInit {
     else if (cartCheckout.cartQty < 1) cartCheckout.cartQty = 1;
     this.changeQuantity(cartCheckout);
   }
+
+  
 }
