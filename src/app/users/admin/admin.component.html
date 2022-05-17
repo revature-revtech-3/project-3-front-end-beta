@@ -163,7 +163,7 @@
 <!-- bundle product-->
 
 
-<div style="overflow-x:auto; border-radius: 5px; border-style: groove;">
+<!-- <div style="overflow-x:auto; border-radius: 5px; border-style: groove;">
   <div style="border-radius: 5px; border-style: groove; margin-left:30%; margin-right:30%">
   <br>
   <h2>Product Inventory</h2>
@@ -186,7 +186,7 @@
     <p style="padding-left: 2in;padding-right: 2in;text-align: center;">
       Add Best Selling Items: to add a product to the best selling list</p>
 </div>
-  
+   -->
   
   <br>
   &nbsp;
@@ -206,8 +206,14 @@
   <br>
   &nbsp;
   <button type="button" id="displayBestSellersBtn" class="btn btn-primary" (click)="addBestSells()">
-    Add Best Selling Items
+    Add Recommended Items
   </button>  &nbsp; &nbsp; 
+
+<!-- <br>
+<br>
+&nbsp;
+<button mat-button (click)="unfilter()" id="filterremove" class="active">Remove Filter</button>
+&nbsp; &nbsp;  -->
 
 
   <br>
@@ -254,7 +260,7 @@
       <td *ngIf="toggleBestSells==true"> <button (click)="onEditRow(row)" type="button" class="btn btn-success" data-bs-toggle="modal"
           data-bs-target="#exampleModal" class="btn btn-info"><i class="fa fa-edit">Add</i></button>
       </td>
-      <td *ngIf="toggleBestSells==true"> <button (click)="onEditRow(row.productId)" type="button" class="btn btn-secondary" data-bs-toggle=""
+      <td *ngIf="toggleBestSells==true"> <button (click)="onEditRow(row.productId)" type="button" class="btn btn-secondary" data-bs-toggle="modal"
         class="btn btn-danger"><i class="fa fa-trash-o">Remove</i></button>
     </td>
     </tr>

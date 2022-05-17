@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Product, ProductAndDiscount, Discount, Bundle } from 'src/app/models/product.model';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { ProductService } from 'src/app/services/product.service';
+import {StoreProductComponent} from 'src/app/shop/store-product/store-product.component';
 
 @Component({
   selector: 'app-admin',
