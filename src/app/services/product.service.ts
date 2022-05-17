@@ -22,7 +22,7 @@ export class ProductService {
   //Get all products endpoint
   productsUrlGetAll = Instance.url + "/api/products/getall";
   //Get all secondary products endpoint
-  productsUrlByName = Instance.url + "/api/products/byname";
+  productsUrlByName = Instance.url + "/api/products/getsecondary";
 
    // GetAllBundles
 bundlesUrlGetAll = Instance.url + "/api/bundles"

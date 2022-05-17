@@ -476,9 +476,6 @@ loadSecondaryProduct(p_id:number){
   }
 
   goToProduct(productId: number) {
-    //location.replace(Instance.webpage + '/product-page/' + productId);
-     //window.location.href = Instance.webpage + '/product-page/' + productId;
-     //this.router.navigate(['product-page/' + productId]);
      location.assign(Instance.webpage + '/product-page/' + productId);
   }
 
