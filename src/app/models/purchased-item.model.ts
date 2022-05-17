@@ -10,7 +10,7 @@ export class PurchasedItem {
   purchaseCost: number = 0.0;
   purchaseDate: any = new Date();
   //stuff I added
-  imageUrl: string = "";
+  imagesUrl: string = "";
   productSku: string = "";
   productCost: number = 0.0;
   productName: string = "";

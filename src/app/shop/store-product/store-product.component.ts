@@ -542,6 +542,11 @@ search(event:any){
     //let sorted = product.productCost;
 }
 getBestSellers() {
+  //sessionStorage.removeItem("searchQuery")
+  this.discountOnlyFlag = false;
+    this.filterFlag = true;
+    this.filteredProducts = [];
+    this.hideFlag = true;
   this.purchasedItemService.getPurchasedItemsByMostSold().subscribe((data: {}) => {
     this.Purchases = data;
     //this.Purchases.push(this.allProducts)
@@ -553,14 +558,18 @@ getBestSellers() {
 }
 
 // getAllproducts() {
+//   this.discountOnlyFlag=false;
+//   this.filterFlag = true;
+//     this.filteredProducts = [];
+//     this.hideFlag = true;
 //   this.productService.getAllProductsService().subscribe((data: {}) => {
 //     this.Products = data;
 //     //this.allProducts;
 //     //console.log(this.filteredProducts =[]);
-//     console.log(this.Purchases);
-//     console.log("Id: " +this.Purchases[0].itemId + " Qty sold: "+ this.Purchases[0].itemQty + " Date Sold: "+ this.Purchases[0].purchaseDate)
-//     console.log("Id: " +this.Purchases[1].itemId + " Qty sold: "+ this.Purchases[1].itemQty + " Date Sold: "+ this.Purchases[1].purchaseDate)
+//     console.log(this.Products);
+//     //console.log("Id: " +this.Purchases[0].itemId + " Qty sold: "+ this.Purchases[0].itemQty + " Date Sold: "+ this.Purchases[0].purchaseDate)
+//     //console.log("Id: " +this.Purchases[1].itemId + " Qty sold: "+ this.Purchases[1].itemQty + " Date Sold: "+ this.Purchases[1].purchaseDate)
 //   });
-//}
+// }
 
 }
