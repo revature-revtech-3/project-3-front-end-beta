@@ -9,6 +9,12 @@ export class PurchasedItem {
   itemQty: number = 0;
   purchaseCost: number = 0.0;
   purchaseDate: any = new Date();
+  //stuff I added
+  imagesUrl: string = "";
+  productSku: string = "";
+  productCost: number = 0.0;
+  productName: string = "";
+  productDescription: string = "";
 }
 
 export class PurchasedItemProduct {
@@ -30,7 +36,6 @@ export class Bundle{
   bundlePercentage: number = 0.00;
   productOnePojo: Product= new Product();
   productTwoPojo: Product= new Product();
-  
+
 
 }
-

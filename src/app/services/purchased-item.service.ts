@@ -42,7 +42,14 @@ export class PurchasedItemService {
     return this.http.get<Cart[]>(this.baseUrl + ("/order/user/" + userId), this.header)
   }
 
+
+  getPurchasedItemsByMostSold(): Observable<PurchasedItem[]>{
+return this.http.get<PurchasedItem[]>(this.baseUrl+("/purchasedItems"), this.header)
+  }
+
+
   getTransactionIdBycId(cartId: number): Observable<number> {
     return this.http.get<number>(this.baseUrl + ("/order/tid/" + cartId), this.header)
   }
+
 }

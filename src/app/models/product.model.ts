@@ -45,7 +45,5 @@ export class Bundle{
     bundlePercentage: number = 0.00;
     productOnePojo: Product= new Product();
     productTwoPojo: Product= new Product();
-    
 
 }
-

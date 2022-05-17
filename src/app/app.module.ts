@@ -26,13 +26,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
-
-
+import {MatSortModule} from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.component';
+import { FilterPipe } from './shared/filter.pipe';
 import { OrderDetailsComponent } from './shop/order-details/order-details.component';
+
 
 
 @NgModule({
@@ -51,7 +52,12 @@ import { OrderDetailsComponent } from './shop/order-details/order-details.compon
     ForgetPasswordComponent,
     ResetPasswordComponent,
     WishlistComponent,
+
+    FilterPipe,
+
+
     OrderDetailsComponent,
+
 
 
   ],
@@ -83,6 +89,9 @@ import { OrderDetailsComponent } from './shop/order-details/order-details.compon
     MatExpansionModule,
     MaterialModule,
     CommonModule,
+    MatSortModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
