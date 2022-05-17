@@ -40,7 +40,7 @@ export class AdminComponent implements OnInit {
     productCost: 0,
     productQty: 0,
     productRemoved: false,
-    imageUrl: ""
+    imageUrl: "",
   }
 //Bundle
   //Array for Form Fields to Create new Bundle
@@ -50,7 +50,7 @@ export class AdminComponent implements OnInit {
     bundlePercentage: 0.0,
     productOnePojo: new Product(),
     productTwoPojo: new Product()
-  
+
   }
   addBundle: Bundle = {
 
@@ -58,7 +58,7 @@ export class AdminComponent implements OnInit {
     bundlePercentage: 0.0,
     productOnePojo: new Product(),
     productTwoPojo: new Product()
-  
+
   }
 
   //To Provide Different Product Categories in add product form
@@ -138,7 +138,7 @@ export class AdminComponent implements OnInit {
     this.toggleBundleTable=false;
 
     // if(this.toggleDiscountTable==false){
-     
+
     //    this.toggleProductTable=true;
     //    this.toggleDiscountTable=false;
     //   this.ngOnInit();
@@ -195,14 +195,15 @@ export class AdminComponent implements OnInit {
   }
 
   displayBundles(){
-  
+
     this.toggleBundleTable=true;
     this.toggleProductTable=false;
     this.toggleDiscountTable=false;
    this.loadBundles();
-    
+
   }
 
+<<<<<<< HEAD
   addBestSells(){
     this.toggleBestSells=true;
 
@@ -216,6 +217,8 @@ export class AdminComponent implements OnInit {
     // }
   }
   
+=======
+>>>>>>> fa77faec655343533045712bccb176c112b54fd0
   // to add Product
   addProducts() {
     this.newProduct.productSku = this.formValueProduct.value.product_sku;
@@ -250,7 +253,7 @@ loadBundles() {
   this.productService.getAllBundleProductsService().subscribe(
     (response: any) => {
 console.log(response);
-    
+
       this.allBundles = response;
     },
     (error: any) => {
@@ -292,7 +295,7 @@ console.log(response);
 
   //Bundle -end
 
-  //As per Poon no direct code to be used for refreshing the S.P.A. 
+  //As per Poon no direct code to be used for refreshing the S.P.A.
   // reloadPage(): void {
   //   window.location.reload();
   // }
@@ -326,12 +329,12 @@ console.log(response);
     this.productObject.productQty = this.formValue.value.product_qty;
     //To Prevent image being lost on update.
     //We use the same Store Image variable above, check if product image is empty
-    // if Yes assign storeImgUrl to it. 
+    // if Yes assign storeImgUrl to it.
     if(this.productObject.imageUrl == '' ){
       // check if image url is updated or not
       this.productObject.imageUrl = this.storeImgUrl;
     }
-    
+
     //add more later if needed
     if(this.productObject.productCost > 0 && this.productObject.productQty > 0){
     this.productService.updateProductsService(this.productObject).subscribe(
@@ -532,7 +535,7 @@ console.log(response);
     return result;
   }
 
-  
+
 
 
 }//end class
