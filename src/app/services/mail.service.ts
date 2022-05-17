@@ -12,7 +12,7 @@ export class MailService {
   header = {};
   constructor(private http: HttpClient) { }
 
-  email(): Observable<any> {
-    return this.http.post<any>(this.baseUrl + "/notification", this.header);
+  email(userId: any): Observable<any> {
+    return this.http.post<any>(this.baseUrl + "/notification/" + userId, this.header);
   }
 }
