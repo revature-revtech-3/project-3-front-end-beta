@@ -6,7 +6,7 @@ export class NotificationList {
     notificationListId: number =0;
     userPojo: User = new User();
     notificationListTotal: number = 0;
-    notificationListItems: Array<NotificationListItem> = [];
+    notificationItems: Array<NotificationListItem> = [];
     
 }
 

@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Instance } from './models/Instance';
-import { TokenStorageService } from './services/token-storage.service';
+import { Instance } from '../models/Instance';
+import { NotificationListItem } from '../models/notification.model';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,13 @@ export class NotificationItemService {
     };
    }
 
+   addNewItemServiceNotificationList(item: NotificationListItem): Observable<NotificationListItem> {
+    return this.http.post<NotificationListItem>(
+      this.baseUrl + '/add/items',
+      item,
+      this.header
+    );
+  }
 
    removeItemServiceNotificationList(notificationItemId: number): Observable<boolean> {
     return this.http.delete<boolean>(
