@@ -17,7 +17,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
 import { PurchasedItemService } from 'src/app/services/purchased-item.service';
 import { PurchasedItem } from 'src/app/models/purchased-item.model';
 import { WishlistService } from 'src/app/services/wishlist.service';
-
+import { AdminComponent } from 'src/app/users/admin/admin.component';
 
 @Component({
   selector: 'app-store-product',

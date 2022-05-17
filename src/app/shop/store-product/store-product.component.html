@@ -23,6 +23,7 @@
   <button mat-button data-bs-toggle="modal" data-bs-target="#exampleModal">Filter</button>
   <!--<button [(ngModel)]="searchTerm" (keyup)="search($event)" mat-button data-bs-toggle="modal" data-bs-target="#exampleModal" id="filterremove">Filter By</button>-->
     <button mat-button (click)="unfilter()" id="filterremove" class="active">Remove Filter</button>
+    <button mat-button (click)="filterByCategory('Recommendations')">Recommendations</button>
     <button mat-button (click)="filterByCategory('Phones')">Phones</button>
     <button mat-button (click)="filterByCategory('Laptops')">Laptops</button>
     <button mat-button (click)="filterByCategory('Video Games')">Video Games</button>
