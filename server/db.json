@@ -1,0 +1,58 @@
+{
+    "cart_details": [{
+      "cartId": 1,
+      "userId": 21,
+      "cartTotal": 900
+    }, {
+        "cartId": 2,
+        "userId": 21,
+        "cartTotal": 1900
+    }, {
+      "cartId": 3,
+      "userId": 21,
+      "cartTotal": 2000
+  }
+  , {
+    "cartId": 3,
+    "userId": 20,
+    "cartTotal": 2000
+}],
+
+    "purchased_items": [{
+        "itemId": 1,
+        "productId": 2,
+        "userId": 21,
+        "cartId": 1,
+        "transactionId": 1,
+        "purchaseDate": "2022-05-05",
+        "itemQty": 1,
+        "purchaseCost": 900
+      }, {
+        "itemId": 2,
+        "productId": 8,
+        "userId": 21,
+        "cartId": 2,
+        "transactionId": 2,
+        "purchaseDate": "2022-05-05",
+        "itemQty": 1,
+        "purchaseCost": 900
+      },  {
+        "itemId": 3,
+        "productId": 16,
+        "userId": 21,
+        "cartId": 2,
+        "transactionId": 2,
+        "purchaseDate": "2022-05-05",
+        "itemQty": 1,
+        "purchaseCost": 1000
+      } ,  {
+        "itemId": 4,
+        "productId": 13,
+        "userId": 21,
+        "cartId": 3,
+        "transactionId": 3,
+        "purchaseDate": "2022-05-05",
+        "itemQty": 1,
+        "purchaseCost": 2000
+      }]
+  }
