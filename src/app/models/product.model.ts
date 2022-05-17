@@ -46,17 +46,4 @@ export class Bundle{
     productOnePojo: Product= new Product();
     productTwoPojo: Product= new Product();
 
-
-export class BestSellingProducts{
-
-    productId: number = 0;
-    productSku: string = "";
-    productName: string = "";
-    productDescription: string = "";
-    productCategory: string = "";
-    productCost: number = 0.0;
-    productQty: number = 0;
-    imageUrl: string = "";    
-    bestSellAdded: boolean = true;
-
 }

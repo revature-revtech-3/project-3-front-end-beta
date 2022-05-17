@@ -203,12 +203,10 @@ export class AdminComponent implements OnInit {
 
   }
 
-<<<<<<< HEAD
   addBestSells(){
     this.toggleBestSells=true;
 
     // if(this.toggleDiscountTable==false){
-     
     //    this.toggleProductTable=true;
     //    this.toggleDiscountTable=false;
     //   this.ngOnInit();
@@ -217,8 +215,6 @@ export class AdminComponent implements OnInit {
     // }
   }
   
-=======
->>>>>>> fa77faec655343533045712bccb176c112b54fd0
   // to add Product
   addProducts() {
     this.newProduct.productSku = this.formValueProduct.value.product_sku;
