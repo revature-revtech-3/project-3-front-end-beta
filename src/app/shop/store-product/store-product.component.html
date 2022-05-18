@@ -171,10 +171,10 @@
         </div>
       </mat-card>
     </div>
-    &nbsp;
+    <!--&nbsp;
     <div class="wrapper">
       <mat-card class="card" *ngFor="let row of Products">
-        <!--<img [src]="row.product.imageUrl" width=300px height=" auto " class="img-fluid ">-->
+        <img [src]="row.product.imageUrl" width=300px height=" auto " class="img-fluid ">
         <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
         <div class="card-body">
           <p class="card-text"></p>
@@ -184,11 +184,11 @@
           <p class="card-text">{{row.productCost | currency}}</p>
           <p class="card-text" class="parLength">{{row.productDescription}}</p>
           <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details </button></p>
-          <!--<p>Quantity Sold: <small class="text-muted">{{row.itemQty}}</small></p>-->
+          <p>Quantity Sold: <small class="text-muted">{{row.itemQty}}</small></p>
           <small class="text-muted">{{row.productSku}}</small>
         </div>
       </mat-card>
-    </div>
+    </div>-->
 
 
 
