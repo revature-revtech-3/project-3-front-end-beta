@@ -29,12 +29,10 @@ In addition to the Sprint 1 functionality, mulitple functionalities were chosen 
 * HTML (HyperText Markup Language)
 * CSS / SCSS (Cascading Style Sheets) plus Angular Material
 * Eclipse (IDE)
-[//]: # "* Spring Tools Suite (STS)"
-* Sonarlint (Code Refactorization)
+* Sonarlint (Code Refactorization) 
 * Apache Maven (Project Management)
-[//]: # "* Node Package Manager (NPM)"
-* PostgreSQL (Database)
 * H2 (Database)
+* PostgreSQL (Database)
 * Amazon Web Services - Elastic Cloud Computing (AWS EC2)
 * Amazon Web Services - Simple Storage Service (AWS S3)
 * Amazon Web Services - CodePipeline
@@ -45,14 +43,12 @@ In addition to the Sprint 1 functionality, mulitple functionalities were chosen 
 * Spring Secuirty w/ JWT (JSON Web Token)
 * Lombok
 * JUnit 5 and Mockito (Testing Framework - Back)
-[//]: # "* Selenium"
 * Angular2+ (Web Framework)
 * Jasmine / Karma (Testing Framework - Front)
 * Microsoft Visual Studio Code (Source Code Editor)
 * Postman (API Platform)
-[//]: # "* DBeaver (Database Administration Tool)"
 
-## Sprint 1 Requirements
+## Sprint 1 Requirements 
 1. As a User, I should be able to register a new account.
 2. As a User, I should be able to log into the application.
 3. As a User, I should be able to log out of the application.
@@ -63,21 +59,13 @@ In addition to the Sprint 1 functionality, mulitple functionalities were chosen 
 8. As a User, I should be able to select an amount of an item to add to my cart as I am adding an item.
 9. As a User, I should be able to checkout with the items in my cart, purchasing them and removing them from the inventory.
 
-## Sprint 2 Requirements
+## Sprint 2 Requirements 
 1. As a User, I should be able to reset my password.
 2. As a User, I should be able to change the color scheme from the normal mode to a dark mode option.
 3. As a User, I should be able to add item and checkout instantly.
 4. As a User, I should be able to save items to a wish list to buy later.
 5. As an Admin, I should be able to bundle certain items into a bulk deal with extra discount incentives.
 6. As a User, I should receive email notifications when an item in my wish list is put on discount.
-
-[//]: #"## Sprint 3 Requirements"
-[//]: #"1. As an Admin, I should be able to see a dashboard that will show me a trend of sales over the past Month, Quarter, or Year."
-[//]: #"2. As a Admin, I should be able to recommend the top products and automatically mark products as best sellers."
-[//]: #"3. As a User, I should be able to filter by the best selling products and see a label for the recommended products."
-[//]: #"4. As a User, I should receive email notifications when a transaction has completed."
-[//]: #"5. As a User, I should be able to buy accessories or secondary products that compliment or are relevant to my primary products."
-[//]: #"6. As a User, I should be able to view a list of all my previous orders and access the details of each order."
 
 ## Legacy Features
 List of previously implemented features
@@ -99,7 +87,6 @@ List of previously implemented features
 * Ability to add and view customer reviews as a user
 * Ability to view orders history as a user
 
-[//]: # "Convert Below to Legacy"
 ## New Features 
 * Ability to reset password as a user
 * Ability to switch background color from original theme (light) to dark theme by using Angular material
@@ -109,31 +96,12 @@ List of previously implemented features
 * Ability to send automated emails when any item on a user's wish list is discounted
 * Ability to send automated emails when any item, or items on a user's wish list is part of a bundled deal
 
-[//]: # "Actually New"
-[//]: # "## New Features"
-[//]: # "Ability to view a series of Graphs analyzing the Store's Monthly, Quarterly, and Yearly Sales History"
-[//]: # "Ability to mark items as recommended as an admin"
-[//]: # "Ability to view items marked as best selling as an admin or user"
-[//]: # "Ability to send automated emails when a user makes a purchase"
-[//]: # "Ability to view additional secondary items related to the items being actively viewed"
-[//]: # "Ability to view additional details about prior order history transactions"
-
-[//]: # "Rev Tech Second Sprint Team "To-do List [Legacy]"
 To-do list: 
 * Ability to update account information as a user
 * Ability to contact customer support (live chat)
 * Ability to submit payment information as a user
 * Ability to enroll in a payment plan option as a user
 * Ability to display payment information in user details
-
-[//]: # "Rev Tech Third Sprint Team"
-[//]: # "To-do list:"
-[//]: # "* "
-[//]: # "* "
-[//]: # "* "
-[//]: # "* "
-[//]: # "* "
-
 
 ## Getting Started 
 Please refer to `STARTUP.md` file
@@ -151,34 +119,20 @@ Please refer to `STARTUP.md` file
 ![Manage Store Forms](https://i.postimg.cc/1XJZxgxW/Screen-Shot-2022-01-14-at-1-04-27-PM.png)
 ![Email_Notifications](https://i.postimg.cc/FsxHYqnP/email-discount.png)
 
-[//]: # "Jazzdear Singers Application Screenshots [to be merged]"
-![Sales Dashboard]
-
 
 # Entity Relationship Diagram
-![Sales-1]()
-![Sales-2]()
-![Recommended-Admin]()
-![Recommended-Store]()
-![Email-TransactionComplete]()
-![SecondaryProducts]()
-![OrderHistory-1]()
-![OrderHistory-2]()
+![shopmeSchemaDiagram](https://user-images.githubusercontent.com/98404483/163305499-cbf3ff20-e36b-487c-9a7e-ff48eb812b19.png)
 
 Contributors
 -----
-Scrum Master:
+Scrum Master: 
 * Rebecca Lopez - Scrum Master / Technical Lead
-[//]: # "Scrum Master:"
-[//]: # "* Deagan Henderson"
 
-Team Leads:
+Team Leads: 
 * Tyler Boston - Technical Lead (Front-end Development/Email Notifications Team)
 * Suzanna Mei - Technical Lead (Back-end Development/Wish List Team)
-[//]: # "Team Lead:"
-[//]: # "* Kiersten Christlieb"
 
-Team Members:
+Team Members: 
 * Mario Sanchez, Jr. (Testing Team)
 * Joshua Cookhorne (Testing Team)
 * Jordan Cooke (Security Personnel)
@@ -193,27 +147,3 @@ Team Members:
 * Davaras Bronson (Bundle Deals Team)
 * Hailemichael Hagos (Bundle Deals Team)
 * Travis Jackson (Email Notifications Team)
-
-[//]: # "Best Sellers & Recommended Products Team:"
-[//]: # "* Jorge Fernández"
-[//]: # "* Joy Umoekpo"
-
-[//]: # "Email Notifications Team:"
-[//]: # "* Lindi Porter"
-[//]: # "* Robert Williams"
-
-[//]: # "Notifications Team:"
-[//]: # "* Jack Che"
-[//]: # "* Jasson Mendoza"
-
-[//]: # "Sales Analytics Team:"
-[//]: # "* Christopher Costa"
-[//]: # "* Jaunzel Mullins"
-
-[//]: # "Secondary Products Team:"
-[//]: # "* Josh Edwards"
-[//]: # "* Kouame Djah"
-
-[//]: # "View Previous Orders Team:"
-[//]: # "* Kiersten Christlieb"
-[//]: # "* Ryan LaCombe"
