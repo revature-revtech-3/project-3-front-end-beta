@@ -13,6 +13,6 @@ export class MailService {
   constructor(private http: HttpClient) { }
 
   email(userId: any): Observable<any> {
-    return this.http.post<any>(this.baseUrl + "/notification/" + userId, this.header);
+    return this.http.post<any>(this.baseUrl + "/enotif/" + userId, this.header);
   }
 }
