@@ -199,7 +199,7 @@ export class AdminSalesComponent implements OnInit {
     });
   }
   loadArrays(){
-    this.AdminSalesService.getPurchasedItemsCost().subscribe((response) => {
+    this.AdminSalesService.PurchasedItemsTotalCost().subscribe((response) => {
         console.log("hello")
         this.productdata = response;
         console.log(this.productdata)
