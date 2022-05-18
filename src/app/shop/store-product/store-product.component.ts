@@ -8,7 +8,7 @@ import { TokenStorageService } from "../../services/token-storage.service";
 import { CartItemService } from "../../services/cart-item.service";
 import { CartAndItemsService } from "../../services/cart-and-items.service";
 import { Wishlist, WishlistItem } from 'src/app/models/wishlist.model';
-
+import { MatSortModule } from '@angular/material/sort';
 import { WishlistItemService } from 'src/app/services/wishlist-item.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { CartService } from 'src/app/services/cart.service';
@@ -17,7 +17,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
 import { PurchasedItemService } from 'src/app/services/purchased-item.service';
 import { PurchasedItem } from 'src/app/models/purchased-item.model';
 import { WishlistService } from 'src/app/services/wishlist.service';
-
+import { AdminComponent } from 'src/app/users/admin/admin.component';
 
 @Component({
   selector: 'app-store-product',
@@ -25,7 +25,13 @@ import { WishlistService } from 'src/app/services/wishlist.service';
   styleUrls: ['./store-product.component.scss'],
 })
 export class StoreProductComponent implements OnInit {
-  
+//new stuff I added
+  Products:any = [];
+  Purchases:any =[];
+  public totalItem: number =0;
+  public searchTerm:string="";
+  searchKey:string = "";
+  ////////////////////////////////////
   darkModeToggle = new FormControl(false);
   @HostBinding('class') className = '';
   allProducts: Product[] = [];
@@ -112,8 +118,9 @@ export class StoreProductComponent implements OnInit {
   // }
 
   searchQuery: string = "";
-  
+
   constructor(
+    private puchasedItems:PurchasedItemService,
     private router: Router,
     private wishlistItemService: WishlistItemService,
     private formbuilder: FormBuilder,
@@ -126,6 +133,7 @@ export class StoreProductComponent implements OnInit {
     private transactionService: TransactionService,
     private purchasedItemService: PurchasedItemService,
   private overlay: OverlayContainer) { }
+  purchasedItems: PurchasedItem[] = [];
   filteredProducts: Product[] = [];
   filteredDiscounts: ProductAndDiscount[] = [];
   filteredBundles: Bundle[] = [];
@@ -137,7 +145,6 @@ export class StoreProductComponent implements OnInit {
 
   ngOnInit(): void {
     //add code for the update
-
     this.userId = this.tokenService.getUser().user_id;
     this.loadDiscountedProducts();
     this.loadBundles();
@@ -152,7 +159,11 @@ export class StoreProductComponent implements OnInit {
       }
     });
   }
-
+//stuff I added
+search(event:any){
+  this.searchTerm = (event.target as HTMLInputElement).value;
+}
+///////////////////////////////////////////////////////////////
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }
@@ -266,7 +277,7 @@ export class StoreProductComponent implements OnInit {
     this.filteredDiscounts = [];
     this.filteredBundles = [];
     this.allProducts.forEach((product) => {
-      if (product.productCategory == categoryName) { 
+      if (product.productCategory == categoryName) {
         this.filteredProducts.push(product)}
     });
 
@@ -379,7 +390,7 @@ export class StoreProductComponent implements OnInit {
 
     this.buyBundleCart.userId = this.tokenService.getUser().user_id;
     this.cartService.addCartService(this.buyBundleCart).subscribe({
-      next: response => {  
+      next: response => {
         this.buyBundleCartAndItems.cartId = response.cartId;
         this.buyBundleCartAndItems.userId = response.userId;
         // add item1 to cart object in Angular
@@ -389,13 +400,13 @@ export class StoreProductComponent implements OnInit {
         // add item2 to cart object in Angulaer
         this.buyBundleItem2.cartId = this.buyBundleCartAndItems.cartId;
         this.buyBundleItem2.cartQty = 1;
-        this.buyBundleItem2.cartItemId = -1;  
+        this.buyBundleItem2.cartItemId = -1;
         this.productService.getAllBundleProductsService().subscribe({
           next: response => {
             for (let bundle of response){
               if (bundle.bundleId == bundleId){
               // Assign productId of items in bundle to the items in cart
-              this.buyBundleItem1.productId = bundle.productOnePojo.productId;        
+              this.buyBundleItem1.productId = bundle.productOnePojo.productId;
               this.buyBundleItem2.productId = bundle.productTwoPojo.productId;
 
               }
@@ -409,13 +420,13 @@ export class StoreProductComponent implements OnInit {
                     this.cartAndItemsService.getCartAndItemsService(this.buyBundleCartAndItems.cartId).subscribe({
                       // load product information from database into cart
                       next: response => {
-                        this.buyBundleCartAndItems.cartItems = response.cartItems; 
+                        this.buyBundleCartAndItems.cartItems = response.cartItems;
                         this.buyBundleCartAndItems.cartTotal = parseInt(this.getItemsTotal())*(1-this.buyBundle.bundlePercentage/100);
                         console.log(this.buyBundleCartAndItems.cartTotal);
                         // this is a soft removal of a cart from the database in order to maintain purchase history
                         this.buyBundleCartAndItems.cartRemoved = true;
                         this.buyBundleCartAndItems.cartPaid = true;
-                        
+
                         this.cartService.updateCartService(this.buyBundleCartAndItems).subscribe ({
                           next: response => {
                             this.transaction.cartId = this.buyBundleCartAndItems.cartId;
@@ -430,21 +441,21 @@ export class StoreProductComponent implements OnInit {
                                   this.displayStyle = "none";
                                   this.router.navigate(['/confirmation-checkout/' + this.newTransaction.transactionId]);
                                 }, 2000);
-                              } 
-                            });  
+                              }
+                            });
                           }
                         });
                       }
                     })
-                    
-                   
-                    
+
+
+
                   }
                 });
               }
             });
           }
-        });        
+        });
       },
       error: (error) => { this.router.navigate(['login']); },
 
@@ -490,7 +501,7 @@ export class StoreProductComponent implements OnInit {
     product.productRemoved = item.productAndDiscount.productRemoved;
     return product;
   }
-  
+
   addItemsToPurchaseHistory(transactionId: number) {
     console.log("transaction id:" + transactionId);
     console.log(this.buyBundleCartAndItems.cartItems);
@@ -506,7 +517,7 @@ export class StoreProductComponent implements OnInit {
       temp.purchaseCost = this.calculateDiscountedItemCost(item.productAndDiscount);
       purchasedItems.push(temp);
     });
-    
+
     this.purchasedItemService.addPurchasedItems(purchasedItems).subscribe({
       next: response => {
 
@@ -526,4 +537,39 @@ export class StoreProductComponent implements OnInit {
   searchStore() {
     sessionStorage.setItem('searchQuery', this.searchQuery);
   }
+  sortByProductCost(product:Product){
+  //product.sort()
+    //let sorted = product.productCost;
+}
+getBestSellers() {
+  //sessionStorage.removeItem("searchQuery")
+  this.discountOnlyFlag = false;
+    this.filterFlag = true;
+    this.filteredProducts = [];
+    this.hideFlag = true;
+  this.purchasedItemService.getPurchasedItemsByMostSold().subscribe((data: {}) => {
+    this.Purchases = data;
+    //this.Purchases.push(this.allProducts)
+    //this.allProducts;
+    //console.log(this.filteredProducts =[]);
+    console.log("Id: " +this.Purchases[0].productId + " Qty sold: "+ this.Purchases[0].itemQty + " Date Sold: "+ this.Purchases[0].purchaseDate)
+    console.log("Id: " +this.Purchases[1].productId + " Qty sold: "+ this.Purchases[1].itemQty + " Date Sold: "+ this.Purchases[1].purchaseDate)
+  });
+}
+
+// getAllproducts() {
+//   this.discountOnlyFlag=false;
+//   this.filterFlag = true;
+//     this.filteredProducts = [];
+//     this.hideFlag = true;
+//   this.productService.getAllProductsService().subscribe((data: {}) => {
+//     this.Products = data;
+//     //this.allProducts;
+//     //console.log(this.filteredProducts =[]);
+//     console.log(this.Products);
+//     //console.log("Id: " +this.Purchases[0].itemId + " Qty sold: "+ this.Purchases[0].itemQty + " Date Sold: "+ this.Purchases[0].purchaseDate)
+//     //console.log("Id: " +this.Purchases[1].itemId + " Qty sold: "+ this.Purchases[1].itemQty + " Date Sold: "+ this.Purchases[1].purchaseDate)
+//   });
+// }
+
 }

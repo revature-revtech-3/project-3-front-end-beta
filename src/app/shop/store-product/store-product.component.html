@@ -20,6 +20,8 @@
 <mat-sidenav-container>
 <mat-sidenav mode="side" opened>
 <div class="sidebar">
+  <button mat-button data-bs-toggle="modal" data-bs-target="#exampleModal">Filter</button>
+  <!--<button [(ngModel)]="searchTerm" (keyup)="search($event)" mat-button data-bs-toggle="modal" data-bs-target="#exampleModal" id="filterremove">Filter By</button>-->
     <button mat-button (click)="unfilter()" id="filterremove" class="active">Remove Filter</button>
     <button mat-button (click)="filterByCategory('Phones')">Phones</button>
     <button mat-button (click)="filterByCategory('Laptops')">Laptops</button>
@@ -42,18 +44,18 @@
       <mat-card class="card" *ngFor="let row of searchedProducts(returnQuery())" >
           <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
           <div class="card-body">
-              <p class="card-text">
-              </p>
+            <p class="card-text">
+            </p>
           </div>
           <div class="card-footer">
-              <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
-              <p class="card-text">{{row.productCost | currency}}
-              </p>
-              <p class="card-text" class="parLength">{{row.productDescription}}</p>
-              <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
-              <small class="text-muted">{{row.productSku}}</small>
-              </div>
-          </mat-card>
+            <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
+            <p class="card-text">{{row.productCost | currency}}
+            </p>
+            <p class="card-text" class="parLength">{{row.productDescription}}</p>
+            <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
+            <small class="text-muted">{{row.productSku}}</small>
+          </div>
+        </mat-card>
       </div>
       &nbsp;
       <div class="wrapper">
@@ -65,34 +67,34 @@
           </div>
           <div class="card-footer">
             <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}
-   
+
             </h5>
             <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
               <s>{{row.productCost |
                 currency}}</s>
-            </p>
+              </p>
+              <p class="card-text" class="parLength">{{row.productDescription}}</p>
+              <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details </button></p>
+              <small class="text-muted">{{row.productSku}}</small>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    <div class="card-deck" *ngIf="filterFlag">
+      <div class="wrapper">
+        <mat-card class="card" *ngFor="let row of filteredProducts" >
+          <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
+          <div class="card-body">
+            <p class="card-text"></p>
+          </div>
+          <div class="card-footer">
+            <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
+            <p class="card-text">{{row.productCost | currency}}</p>
             <p class="card-text" class="parLength">{{row.productDescription}}</p>
             <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
             <small class="text-muted">{{row.productSku}}</small>
           </div>
         </mat-card>
-      </div>
-    </div>
-    <div class="card-deck" *ngIf="filterFlag">
-      <div class="wrapper">
-      <mat-card class="card" *ngFor="let row of filteredProducts" >
-          <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
-          <div class="card-body">
-              <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
-              <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
-              <p class="card-text">{{row.productCost | currency}}</p>
-              <p class="card-text" class="parLength">{{row.productDescription}}</p>
-              <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
-              <small class="text-muted">{{row.productSku}}</small>
-              </div>
-          </mat-card>
       </div>
       &nbsp;
       <div class="wrapper">
@@ -106,9 +108,9 @@
             <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
               <s>{{row.productCost |
                 currency}}</s>
-            </p>
-            <p class="card-text" class="parLength">{{row.productDescription}}</p>
-            <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
+              </p>
+              <p class="card-text" class="parLength">{{row.productDescription}}</p>
+              <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
             <small class="text-muted">{{row.productSku}}</small>
           </div>
         </mat-card>
@@ -126,7 +128,6 @@
             <p class="card-text">{{row.productCost | currency}}</p>
             <p class="card-text" class="parLength">{{row.productDescription}}</p>
             <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
-
             <small class="text-muted">{{row.productSku}}</small>
           </div>
         </mat-card>
@@ -143,18 +144,57 @@
             <p class="card-text">{{row.productCost-row.productCost*(row.discountPercentage/100) | currency }}
               <s>{{row.productCost |
                 currency}}</s>
-            </p>
+              </p>
             <p class="card-text" class="parLength">{{row.productDescription}}</p>
-            <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details</button></p>
+            <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details </button></p>
             <small class="text-muted">{{row.productSku}}</small>
           </div>
         </mat-card>
       </div>
     </div>
-     
+    &nbsp;
+    <div class="wrapper">
+      <mat-card class="card" *ngFor="let row of Purchases">
+        <h2><label class="btn-warning" for="recommendedproduct">Recommended</label></h2>
+        <!--<img [src]="row.product.imageUrl" width=300px height=" auto " class="img-fluid ">-->
+        <img id="image-size" class="card-img-top" src="{{row.product.imageUrl}}" width="auto" height="auto" />
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+        <div class="card-footer">
+          <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
+          <p class="card-text">{{row.purchaseCost | currency}}</p>
+          <p class="card-text" class="parLength">{{row.product.productDescription}}</p>
+          <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details </button></p>
+          <p>Quantity Sold: <small class="text-muted">{{row.itemQty}}</small></p>
+          <small class="text-muted">{{row.product.productSku}}</small>
+        </div>
+      </mat-card>
+    </div>
+    &nbsp;
+    <div class="wrapper">
+      <mat-card class="card" *ngFor="let row of Products">
+        <!--<img [src]="row.product.imageUrl" width=300px height=" auto " class="img-fluid ">-->
+        <img id="image-size" class="card-img-top" src="{{row.imageUrl}}" width="auto" height="auto" />
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+        <div class="card-footer">
+          <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
+          <p class="card-text">{{row.productCost | currency}}</p>
+          <p class="card-text" class="parLength">{{row.productDescription}}</p>
+          <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details </button></p>
+          <!--<p>Quantity Sold: <small class="text-muted">{{row.itemQty}}</small></p>-->
+          <small class="text-muted">{{row.productSku}}</small>
+        </div>
+      </mat-card>
+    </div>
 
 
- <!-- Bundle-->
+
+
+
+    <!-- Bundle-->
  &nbsp;
  <div class="wrapper">
    <mat-card class="card" *ngFor="let row of allBundles">
@@ -171,19 +211,55 @@
        </p>
        <p class="card-text" class="parLength">{{row.productOnePojo.productDescription}}</p>
        <p class="card-text" class="parLength">{{row.productTwoPojo.productDescription}}</p>
-       <p><button class="btn btn-danger" (click)="proceedToCheckout(row.bundleId)">Proceed to Checkout</button></p> 
+       <p><button class="btn btn-danger" (click)="proceedToCheckout(row.bundleId)">Proceed to Checkout</button></p>
        <small class="text-muted">{{row.productOnePojo.productSku}}</small>
        <small class="text-muted">{{row.productTwoPojo.productSku}}</small>
      </div>
    </mat-card>
  </div>
-    
+
   </div>
 </div>
 </mat-sidenav-container>
+
 
 
 <div class="footer">
   <p>Need Help? <a href="/product" style="color: #dc3545; font-weight: bold;">Live Chat <i class='fas fa-comment-dots' style="color: white;"></i></a></p>
 </div>
 
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Filter Mode</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Please Filter Products By:</h3>
+      </div>
+      <div style="margin-left: 10px;" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+        <input type="radio" id="best" name="choose" value="Best Selling">
+  <label for="Best Selling">Best Sellers</label><br>
+</div>
+<!--<div style="margin-left: 10px;" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+  <input type="checkbox" id="lowest" name="choose" value="Lowest Price" data-bs-dismiss="modal">
+  <label for="Lowest price">Lowest Price</label><br>
+</div>-->
+<!--<div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> Still Can't Believe My Eyes Products</label><br><br>
+</div>-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="getBestSellers()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
