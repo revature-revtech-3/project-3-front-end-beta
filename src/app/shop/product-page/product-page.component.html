@@ -129,6 +129,22 @@
         </div> <!-- row.// -->
       </div> <!-- card-body.// -->
     </mat-card>
+    <h2 class="m-9">Secondary Product</h2>
+    <mat-card class="card">
+      <div class="card-body">
+        <div class="across">
+  <div  *ngFor="let p of productbyname" class="column" >
+      <h4> {{p.productName}}</h4> 
+      <a href="#"> <img [src]="p.imageUrl" width="200" height="200"></a>
+      <h3>${{p.productCost}}</h3>
+
+      <button class="btn btn-danger" (click)="goToProduct(p.productId)">View Details</button><br><br>
+  </div>
+
+    </div>
+     </div>
+    </mat-card>
+
 
     <h2 class="m-9">Submit Review</h2>
     <mat-card class="card mt-5">

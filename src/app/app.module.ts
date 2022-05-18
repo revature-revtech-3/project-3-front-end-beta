@@ -32,6 +32,8 @@ import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.component';
 import { FilterPipe } from './shared/filter.pipe';
+import { OrderDetailsComponent } from './shop/order-details/order-details.component';
+
 
 
 @NgModule({
@@ -50,7 +52,11 @@ import { FilterPipe } from './shared/filter.pipe';
     ForgetPasswordComponent,
     ResetPasswordComponent,
     WishlistComponent,
+
     FilterPipe,
+
+
+    OrderDetailsComponent,
 
 
 
