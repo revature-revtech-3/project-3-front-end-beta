@@ -32,6 +32,10 @@ export class OrderHistoryComponent implements OnInit {
   }
 
 
+  loadItems() {
+    this.purchasedItemService.getPurchasedItemsByUser(this.userId).subscribe((response) => {
+      this.purchasedItemProduct = response;
+      console.log(this.purchasedItemProduct)
   // loadItems() {
   //   this.purchasedItemService.getPurchasedItemsByUser(this.userId).subscribe((response) => {
   //     this.purchasedItemProduct = response;
