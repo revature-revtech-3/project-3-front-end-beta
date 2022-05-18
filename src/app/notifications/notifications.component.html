@@ -1,0 +1,77 @@
+
+<div class="body">
+  <section id="wishlist">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 entries">
+          <h1>Notification List</h1>
+          <div *ngIf="notificationList.notificationItems.length == 0">
+            <h2>No Notifications Yet!</h2>
+          </div>
+
+          <div *ngIf="notificationList.notificationItems.length != 0">
+            <table>
+              <tr>
+                <th scope="col">Product Id</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Category</th>
+                <th scope="col">Product Percentage</th>
+                <th scope="col">Product Cost</th>
+                <th scope="col">Product Quantity</th>
+                <th scope="col">Product SKU</th>
+                <th scope="col">Product Description</th>
+                <th scope="col">Product Image</th>
+                <th></th>
+              </tr>
+
+              <tr *ngFor="let row of notificationList.notificationItems">
+                <td>{{ row.productAndDiscountPojo.productId }}</td>
+                <td>{{ row.productAndDiscountPojo.productName }}</td>
+                <td>{{ row.productAndDiscountPojo.productCategory }}</td>
+                <td *ngIf="row.productAndDiscountPojo.discountPercentage == 0">
+                  0%
+                </td>
+                <td *ngIf="row.productAndDiscountPojo.discountPercentage != 0">
+                  {{ row.productAndDiscountPojo.discountPercentage }}%
+                </td>
+                <td>
+                  {{
+                    row.productAndDiscountPojo.productCost -
+                      row.productAndDiscountPojo.productCost *
+                        (row.productAndDiscountPojo.discountPercentage / 100)
+                      | currency
+                  }}
+                </td>
+                <td>{{ row.productAndDiscountPojo.productQty }}</td>
+                <td>{{ row.productAndDiscountPojo.productSku }}</td>
+                <td>{{ row.productAndDiscountPojo.productDescription }}</td>
+                <td>
+                  <img
+                    id="image-size"
+                    class=""
+                    src="{{ row.productAndDiscountPojo.imageUrl }}"
+                    width="90px"
+                    height="90px"
+                  />
+                </td>
+
+                <!-- <td>
+                  <button
+                    (click)="remove(row.notificationItemId)"
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-toggle="modal-container"
+                    data-bs-target="#exampleModal5"
+                    class="btn btn-dark"
+                  >
+                    <i class="fa fa-trash-o"></i>Remove
+                  </button>
+                </td> -->
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

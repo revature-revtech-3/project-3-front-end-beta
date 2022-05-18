@@ -26,14 +26,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
-
-
+import {MatSortModule} from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.component';
 import { AdminSalesComponent } from './admin-sales/admin-sales.component';
-
+import { NotificationsComponent } from './notifications/notifications.component';
+import { FilterPipe } from './shared/filter.pipe';
+import { OrderDetailsComponent } from './shop/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +53,9 @@ import { AdminSalesComponent } from './admin-sales/admin-sales.component';
     ResetPasswordComponent,
     WishlistComponent,
     AdminSalesComponent,
-
-
+    NotificationsComponent,
+    FilterPipe,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +85,7 @@ import { AdminSalesComponent } from './admin-sales/admin-sales.component';
     MatExpansionModule,
     MaterialModule,
     CommonModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

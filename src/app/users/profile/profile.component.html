@@ -72,6 +72,15 @@
                             </td>
                             &nbsp;&nbsp;&nbsp;{{currentUser.contact}}
                         </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                    Total Expenses:
+                                </strong>
+                            </td>
+                            &nbsp;&nbsp;&nbsp;${{ calculateCost() | number :'1.2-2'}}
+                        </tr>
                     </tbody>
                 </table>
             </div>
