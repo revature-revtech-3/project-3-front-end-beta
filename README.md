@@ -20,9 +20,6 @@ Project 3 - E-Commerce Store (Team Project)
 ## Project Sprint 1 & 2 Summary
 RevTech is a Single Page E-Commerce Application with an assortment of high-tech gear. Anybody can browse the selection freely, but need to Register or Login to an Account if they want to purchase anything. RevTech keeps tracks of all purchases it's Users had and allows Admins to run special discounts on anything in stock. Individual Items can be added to a cart and purchased in bulk, or bought on the spot.
 
-[//]: * "## Project Sprint 3 Description"
-
-
 ## Technologies Used 
 * Java (Programming Language) - version 11.0.12
 * TypeScript (Programming Language)
@@ -166,7 +163,7 @@ Sales Analytics Team:
 * Jaunzel Mullins
 
 Secondary Products Team:
-* Josh Edwards"
+* Josh Edwards
 * Kouame Djah
 
 View Previous Orders Team:
