@@ -26,13 +26,15 @@ import { AdminComponent } from 'src/app/users/admin/admin.component';
 })
 export class StoreProductComponent implements OnInit {
 //new stuff I added
-  Products:any = [];
-  Purchases:any =[];
-  public totalItem: number =0;
-  public searchTerm:string="";
-  searchKey:string = "";
-  ////////////////////////////////////
-  darkModeToggle = new FormControl(false);
+i:any;
+radio: any;
+Products:any = [];
+Purchases:any =[];
+public totalItem: number =0;
+public searchTerm:string="";
+searchKey:string = "";
+////////////////////////////////////
+darkModeToggle = new FormControl(false);
   @HostBinding('class') className = '';
   allProducts: Product[] = [];
   allBundles: Bundle[] = [];
@@ -116,6 +118,7 @@ export class StoreProductComponent implements OnInit {
   // searchQuery: string = "";
 
   // }
+
 
   searchQuery: string = "";
 
@@ -543,33 +546,15 @@ search(event:any){
 }
 getBestSellers() {
   //sessionStorage.removeItem("searchQuery")
-  this.discountOnlyFlag = false;
-    this.filterFlag = true;
+  //this.discountOnlyFlag = false;
+    //this.filterFlag = true;
     this.filteredProducts = [];
     this.hideFlag = true;
   this.purchasedItemService.getPurchasedItemsByMostSold().subscribe((data: {}) => {
     this.Purchases = data;
-    //this.Purchases.push(this.allProducts)
-    //this.allProducts;
-    //console.log(this.filteredProducts =[]);
     console.log("Id: " +this.Purchases[0].productId + " Qty sold: "+ this.Purchases[0].itemQty + " Date Sold: "+ this.Purchases[0].purchaseDate)
     console.log("Id: " +this.Purchases[1].productId + " Qty sold: "+ this.Purchases[1].itemQty + " Date Sold: "+ this.Purchases[1].purchaseDate)
   });
 }
-
-// getAllproducts() {
-//   this.discountOnlyFlag=false;
-//   this.filterFlag = true;
-//     this.filteredProducts = [];
-//     this.hideFlag = true;
-//   this.productService.getAllProductsService().subscribe((data: {}) => {
-//     this.Products = data;
-//     //this.allProducts;
-//     //console.log(this.filteredProducts =[]);
-//     console.log(this.Products);
-//     //console.log("Id: " +this.Purchases[0].itemId + " Qty sold: "+ this.Purchases[0].itemQty + " Date Sold: "+ this.Purchases[0].purchaseDate)
-//     //console.log("Id: " +this.Purchases[1].itemId + " Qty sold: "+ this.Purchases[1].itemQty + " Date Sold: "+ this.Purchases[1].purchaseDate)
-//   });
-// }
 
 }
