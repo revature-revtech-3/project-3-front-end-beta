@@ -22,7 +22,7 @@ export class ProductService {
   //Get all products endpoint
   productsUrlGetAll = Instance.url + "/api/products/getall";
   //Get all secondary products endpoint
-  productsUrlByName = Instance.url + "/api/products/getsecondary";
+  productsUrlByCategory = Instance.url + "/api/products/getsecondary";
 
    // GetAllBundles
 bundlesUrlGetAll = Instance.url + "/api/bundles"
@@ -67,8 +67,8 @@ bundlesUrlAdd = Instance.url + "/api/create/bundles";
   }
   
   //Get Product By Name
-  getByNameProductsService(productId: number): Observable<Product> {
-    return this.http.get<Product>(this.productsUrlByName + "/" + productId);
+  getByCategoryProductsService(productId: number): Observable<Product> {
+    return this.http.get<Product>(this.productsUrlByCategory + "/" + productId);
   }
 
   // Anthony's Discount endpoints

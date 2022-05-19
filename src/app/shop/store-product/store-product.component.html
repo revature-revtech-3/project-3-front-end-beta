@@ -162,7 +162,7 @@
           <p class="card-text"></p>
         </div>
         <div class="card-footer">
-          <h5 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h5>
+          <h5 class="card-title font-weight-bold" class="parLength"> {{row.product.productName}}</h5>
           <p class="card-text">{{row.purchaseCost | currency}}</p>
           <p class="card-text" class="parLength">{{row.product.productDescription}}</p>
           <p><button class="btn btn-danger" (click)="goToProduct(row.productId)">View Details </button></p>

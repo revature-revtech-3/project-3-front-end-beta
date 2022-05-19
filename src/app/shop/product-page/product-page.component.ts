@@ -109,7 +109,7 @@ this.loadSecondaryProduct(this.productId);
 
 loadSecondaryProduct(p_id:number){
      // alert("it is in here" + p_id);
-    this.productService.getByNameProductsService(p_id).subscribe({
+    this.productService.getByCategoryProductsService(p_id).subscribe({
       next: (response) => {
         this.productbyname = response;},
       error: (error) => { },})
