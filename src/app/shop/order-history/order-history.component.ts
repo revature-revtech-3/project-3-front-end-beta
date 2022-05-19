@@ -23,7 +23,7 @@ export class OrderHistoryComponent implements OnInit {
               private tokenService: TokenStorageService,
               private router: Router,
   ) { }
-  
+
 
   ngOnInit(): void {
     this.userId = this.tokenService.getUser().user_id;
