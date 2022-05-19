@@ -113,12 +113,12 @@ List of previously implemented features
 * Ability to send automated emails when any item, or items on a user's wish list is part of a bundled deal
 
 ## New Features
-Ability to view a series of Graphs analyzing the Store's Monthly, Quarterly, and Yearly Sales History
-Ability to mark items as recommended as an admin
-Ability to view items marked as best selling as an admin or user
-Ability to send automated emails when a user makes a purchase
-Ability to view additional secondary items related to the items being actively viewed
-Ability to view additional details about prior order history transactions
+* Ability to view a series of Graphs analyzing the Store's Monthly, Quarterly, and Yearly Sales History
+* Ability to mark items as recommended as an admin
+* Ability to view items marked as best selling as an admin or user
+* Ability to send automated emails when a user makes a purchase
+* Ability to view additional secondary items related to the items being actively viewed
+* Ability to view additional details about prior order history transactions
 
 Rev Tech Third Sprint Team
 To-do list:
@@ -135,14 +135,14 @@ Please refer to `STARTUP.md` file
 Legacy Screenshots can be viewed from the Previous Sprint Team's Readme.
 https://github.com/revature-revtech-3/project-3-front-end-beta/blob/presentation/OLD_README.md
 
-![Sales-1](src\assets\screenshots\Sales-1.png)
-![Sales-2](src\assets\screenshots\Sales-2.png)
-![Recommended-Admin](src\assets\screenshots\Recommended-Admin.png)
-![Recommended-Store](src\assets\screenshots\Recommended-Store.png)
-![Email-TransactionComplete](src\assets\screenshots\Email-Transaction.png)
-![SecondaryProducts](src\assets\screenshots\SecondaryProducts.png)
-![OrderHistory-1](src\assets\screenshots\OrderHistory-1.png)
-![OrderHistory-2](src\assets\screenshots\OrderHistory-2.png)
+![Sales-1](src/assets/screenshots/Sales-1.png)
+![Sales-2](src/assets/screenshots/Sales-2.png)
+![Recommended-Admin](src/assets/screenshots/Recommended-Admin.png)
+![Recommended-Store](src/assets/screenshots/Recommended-Store.png)
+![Email-TransactionComplete](src/assets/screenshots/Email-Transaction.png)
+![SecondaryProducts](src/assets/screenshots/SecondaryProducts.png)
+![OrderHistory-1](src/assets/screenshots/OrderHistory-1.png)
+![OrderHistory-2](src/assets/screenshots/OrderHistory-2.png)
 
 
 # Entity Relationship Diagram
