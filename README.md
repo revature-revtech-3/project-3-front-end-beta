@@ -139,7 +139,7 @@ https://github.com/revature-revtech-3/project-3-front-end-beta/blob/presentation
 ![Sales-2](src/assets/screenshots/Sales-2.png)
 ![Recommended-Admin](src/assets/screenshots/Recommended-Admin.png)
 ![Recommended-Store](src/assets/screenshots/Recommended-Store.png)
-![Email-TransactionComplete](src/assets/screenshots/Email-Transaction.png)
+![Email-TransactionComplete](src/assets/screenshots/Email-TransactionComplete.png)
 ![SecondaryProducts](src/assets/screenshots/SecondaryProducts.png)
 ![OrderHistory-1](src/assets/screenshots/OrderHistory-1.png)
 ![OrderHistory-2](src/assets/screenshots/OrderHistory-2.png)
