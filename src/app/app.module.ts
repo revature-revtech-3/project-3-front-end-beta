@@ -32,9 +32,11 @@ import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.component';
 import { AdminSalesComponent } from './admin-sales/admin-sales.component';
+import { QuarterlySalesComponent } from './quarterly-sales/quarterly-sales.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { OrderDetailsComponent } from './shop/order-details/order-details.component';
+
 
 @NgModule({
   declarations: [
@@ -53,9 +55,11 @@ import { OrderDetailsComponent } from './shop/order-details/order-details.compon
     ResetPasswordComponent,
     WishlistComponent,
     AdminSalesComponent,
+    QuarterlySalesComponent,
     NotificationsComponent,
     FilterPipe,
     OrderDetailsComponent,
+
   ],
   imports: [
     BrowserModule,
