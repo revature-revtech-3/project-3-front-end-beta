@@ -17,16 +17,10 @@ Project 3 - E-Commerce Store (Team Project)
 * [Entity Relationship Diagram](#entity-relationship-diagram)
 * [Contributors](#contributors)
 
-## Project Sprint 1 Description
-The Revtech E-Commerce Application is an Angular Single Page Application (SPA) that will allow users to sign up and login as a customer, browse all available products, view an individual product, and add products to their carts for purchase. Any user can browse the database of products, however, in order to purchase one you must be logged into an account. A new account can be created using the sign-up button. After an account is created the user will be able to login and purchase the products(s) of their choice. With our products route, the user is able to view all of the products we have in our database on a single page. When the user clicks on a product that they are interested in, it will redirect them to that product’s specific page to see additional details. Here, the user will be able to see the title, cost, discount and description of the product. This page will also include a button that will add the product to their cart if they would like to purchase it. The cart is the user’s final destination and where they will be able to see the products they wish to purchase, review the total costs of selected products, and also be able to check the products out to complete their purchase.
-
-## Project Sprint 2 Description
-In addition to the Sprint 1 functionality, mulitple functionalities were chosen to complement the existing Revtech application. Any user has the ability to reset their password. A user also has the ability to change the brightness of the application from the normal mode to a dark mode. Users are able to add one, or multiple items and checkout instantly. A new cart was created, so when a user chooses an item, it generates a new transaction and is saved to the purchase history. As well, one or multiple items are able to be placed on a wish list for future purchase. An administrator can create bundles from various products, along with applying a discount and name for the bundle. The administrator can also view a separate bundle table to see previous and newly created bundles to update their stock. On the user end, customers can view a newly created bundle tab, which when clicked, brings them to the page for bundled products that are discounted for an incentive to purchase them.  The user can then proceed to check-out the bundle for purchase. Users will receive an email notification when an item on their wish list is put on discount. Also, any bundle deal created with a user’s wish list item as part of the bundle, will trigger an email notification, because the item will be discounted as part of the bundle. When multiple wish list items are part of a bundled deal, only one email will be sent to the user.
-
 ## Project Sprint 1 & 2 Summary
 RevTech is a Single Page E-Commerce Application with an assortment of high-tech gear. Anybody can browse the selection freely, but need to Register or Login to an Account if they want to purchase anything. RevTech keeps tracks of all purchases it's Users had and allows Admins to run special discounts on anything in stock. Individual Items can be added to a cart and purchased in bulk, or bought on the spot.
 
-## Project Sprint 3 Description
+[//]: * "## Project Sprint 3 Description"
 
 
 ## Technologies Used 
@@ -136,7 +130,6 @@ Legacy Screenshots can be viewed from the Previous Sprint Team's Readme.
 https://github.com/revature-revtech-3/project-3-front-end-beta/blob/presentation/OLD_README.md
 
 ![Sales-1](src/assets/screenshots/Sales-1.png)
-![Sales-2](src/assets/screenshots/Sales-2.png)
 ![Recommended-Admin](src/assets/screenshots/Recommended-Admin.png)
 ![Recommended-Store](src/assets/screenshots/Recommended-Store.png)
 ![Email-TransactionComplete](src/assets/screenshots/Email-TransactionComplete.png)
