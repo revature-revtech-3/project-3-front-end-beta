@@ -12,6 +12,7 @@ import { CheckoutComponent } from './checkout.component';
 import { CartAndItems } from 'src/app/models/cart.model';
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+
 //Assert
 describe('CheckoutComponent', () => {
   let component: CheckoutComponent;

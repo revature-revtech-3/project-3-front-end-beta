@@ -26,14 +26,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
-
-
+import {MatSortModule} from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.component';
 import { AdminSalesComponent } from './admin-sales/admin-sales.component';
 import { QuarterlySalesComponent } from './quarterly-sales/quarterly-sales.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { FilterPipe } from './shared/filter.pipe';
+import { OrderDetailsComponent } from './shop/order-details/order-details.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { QuarterlySalesComponent } from './quarterly-sales/quarterly-sales.compo
     WishlistComponent,
     AdminSalesComponent,
     QuarterlySalesComponent,
-
+    NotificationsComponent,
+    FilterPipe,
+    OrderDetailsComponent,
 
   ],
   imports: [
@@ -85,6 +89,7 @@ import { QuarterlySalesComponent } from './quarterly-sales/quarterly-sales.compo
     MatExpansionModule,
     MaterialModule,
     CommonModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

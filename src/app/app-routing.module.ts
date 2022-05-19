@@ -17,8 +17,8 @@ import { ResetPasswordComponent } from './users/reset-password/reset-password.co
 import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.component';
 import { AdminSalesComponent } from './admin-sales/admin-sales.component';
 import { QuarterlySalesComponent } from './quarterly-sales/quarterly-sales.component';
-
-
+import { NotificationsComponent } from './notifications/notifications.component';
+import { OrderDetailsComponent } from './shop/order-details/order-details.component';
 
 
 const routes: Routes = [
@@ -34,16 +34,15 @@ const routes: Routes = [
   { path: "product-page/:productId", component: ProductPageComponent },
   { path: "confirmation-checkout/:sentTransaction", component: ConfirmationCheckoutComponent, canActivate: [AdminGuard] },
   { path: "order-history", component: OrderHistoryComponent, canActivate: [AdminGuard] },
+  { path: "order-details/:orderSelected", component: OrderDetailsComponent, canActivate: [AdminGuard]},
   { path: "forget-password", component: ForgetPasswordComponent },
   { path: "reset-password", component: ResetPasswordComponent },
   { path: "wishlist", component: WishlistComponent, canActivate: [AdminGuard] },
   { path: "admin-sales", component: AdminSalesComponent},
   { path: "quarterly-sales", component: QuarterlySalesComponent},
-
-
+  { path: "notification", component: NotificationsComponent },
 
 ];
-
 
 @NgModule({
   imports: [
