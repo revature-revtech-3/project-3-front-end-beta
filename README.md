@@ -120,13 +120,13 @@ List of previously implemented features
 * Ability to view additional secondary items related to the items being actively viewed
 * Ability to view additional details about prior order history transactions
 
-Rev Tech Third Sprint Team
-To-do list:
-* 
-* 
-* 
-* 
-* 
+## To-do list:
+* Payment Plan Options
+* Track User Searches
+* Delivery Updates
+* S3 Bucket
+* Social Media
+
 
 ## Getting Started 
 Please refer to `STARTUP.md` file
