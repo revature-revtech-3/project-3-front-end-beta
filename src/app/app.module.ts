@@ -33,6 +33,7 @@ import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { WishlistComponent } from './shop/wishlist-page/wishlist/wishlist.component';
 import { AdminSalesComponent } from './admin-sales/admin-sales.component';
+import { QuarterlySalesComponent } from './quarterly-sales/quarterly-sales.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { AdminSalesComponent } from './admin-sales/admin-sales.component';
     ResetPasswordComponent,
     WishlistComponent,
     AdminSalesComponent,
+    QuarterlySalesComponent,
 
 
   ],
